@@ -1,0 +1,28 @@
+# .NET / MAUI
+bin/
+obj/
+*.user
+*.suo
+.vs/
+packages/
+*.userprefs
+
+# Test results
+TestResults/
+coveragereport/
+
+# Android
+*.apk
+*.aab
+*.keystore
+
+# iOS
+*.ipa
+
+# Logs
+logs/
+*.log
+
+# OS
+.DS_Store
+Thumbs.db

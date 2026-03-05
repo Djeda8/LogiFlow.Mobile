@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ResourceDictionary xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+
+    <!-- Botón principal -->
+    <Style x:Key="PrimaryButtonStyle" TargetType="Button">
+        <Setter Property="BackgroundColor" Value="{StaticResource PrimaryColor}" />
+        <Setter Property="TextColor" Value="{StaticResource IconTextDefault}" />
+        <Setter Property="FontFamily" Value="RobotoMedium" />
+        <Setter Property="FontSize" Value="16" />
+        <Setter Property="FontAttributes" Value="Bold" />
+        <Setter Property="HeightRequest" Value="48" />
+        <Setter Property="CornerRadius" Value="8" />
+        <Setter Property="HorizontalOptions" Value="Fill" />
+        <!-- Visual States -->
+        <Setter Property="VisualStateManager.VisualStateGroups">
+            <VisualStateGroupList>
+                <VisualStateGroup Name="CommonStates">
+
+                    <!-- Estado normal -->
+                    <VisualState Name="Normal">
+                        <VisualState.Setters>
+                            <Setter Property="Opacity" Value="1" />
+                        </VisualState.Setters>
+                    </VisualState>
+
+                    <!-- Estado deshabilitado -->
+                    <VisualState Name="Disabled">
+                        <VisualState.Setters>
+                            <Setter Property="Opacity" Value="0.5" />
+                            <Setter Property="BackgroundColor" Value="{StaticResource DisabledColor}" />
+                            <Setter Property="TextColor" Value="{StaticResource IconTextDefault}" />
+                        </VisualState.Setters>
+                    </VisualState>
+                    
+                    <VisualState Name="Pressed">
+                        <VisualState.Setters>
+                            <Setter Property="BackgroundColor" Value="{StaticResource LightPrimary}" />
+                        </VisualState.Setters>
+                    </VisualState>
+                </VisualStateGroup>
+            </VisualStateGroupList>
+        </Setter>
+    </Style>
+
+    <!-- Botón secundario (outline) -->
+    <Style x:Key="SecondaryButtonStyle" TargetType="Button">
+        <Setter Property="BackgroundColor" Value="Transparent" />
+        <Setter Property="TextColor" Value="{StaticResource PrimaryColor}" />
+        <Setter Property="FontFamily" Value="RobotoMedium" />
+        <Setter Property="FontSize" Value="16" />
+        <Setter Property="HeightRequest" Value="48" />
+        <Setter Property="CornerRadius" Value="8" />
+        <Setter Property="BorderColor" Value="{StaticResource PrimaryColor}" />
+        <Setter Property="BorderWidth" Value="1.5" />
+        <Setter Property="HorizontalOptions" Value="Fill" />
+        <Setter Property="VisualStateManager.VisualStateGroups">
+            <VisualStateGroupList>
+                <VisualStateGroup Name="CommonStates">
+                    <VisualState Name="Normal">
+                        <VisualState.Setters>
+                            <Setter Property="Opacity" Value="1" />
+                        </VisualState.Setters>
+                    </VisualState>
+                    <VisualState Name="Disabled">
+                        <VisualState.Setters>
+                            <Setter Property="Opacity" Value="0.5" />
+                            <Setter Property="BorderColor" Value="{StaticResource DisabledColor}" />
+                            <Setter Property="TextColor" Value="{StaticResource DisabledColor}" />
+                        </VisualState.Setters>
+                    </VisualState>
+                    <VisualState Name="Pressed">
+                        <VisualState.Setters>
+                            <Setter Property="BackgroundColor" Value="{StaticResource LightPrimary}" />
+                        </VisualState.Setters>
+                    </VisualState>
+                </VisualStateGroup>
+            </VisualStateGroupList>
+        </Setter>
+    </Style>
+
+    <Style x:Key="DangerButtonStyle"
+       TargetType="Button"
+       BasedOn="{StaticResource PrimaryButtonStyle}">
+
+        <Setter Property="BackgroundColor"
+            Value="{StaticResource ErrorColor}" />
+    </Style>
+
+</ResourceDictionary>

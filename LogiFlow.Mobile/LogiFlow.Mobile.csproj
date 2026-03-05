@@ -1,0 +1,207 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFrameworks>net9.0;net9.0-android;net9.0-ios;net9.0-maccatalyst</TargetFrameworks>
+        <TargetFrameworks Condition="$([MSBuild]::IsOSPlatform('windows'))">$(TargetFrameworks);net9.0-windows10.0.19041.0</TargetFrameworks>
+        <OutputType Condition="'$(TargetFramework)' == 'net9.0'">Library</OutputType>
+        <OutputType Condition="'$(TargetFramework)' != 'net9.0'">Exe</OutputType>
+        <RootNamespace>LogiFlow.Mobile</RootNamespace>
+        <UseMaui>true</UseMaui>
+        <SingleProject>true</SingleProject>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+
+        <ApplicationTitle>LogiFlow</ApplicationTitle>
+        <ApplicationId>com.companyname.logiflow.mobile</ApplicationId>
+        <ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>
+        <ApplicationVersion>1</ApplicationVersion>
+
+        <SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'ios'">11.0</SupportedOSPlatformVersion>
+        <SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'maccatalyst'">13.1</SupportedOSPlatformVersion>
+        <SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'android'">21.0</SupportedOSPlatformVersion>
+        <SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</SupportedOSPlatformVersion>
+        <TargetPlatformMinVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</TargetPlatformMinVersion>
+        <SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'tizen'">6.5</SupportedOSPlatformVersion>
+    </PropertyGroup>
+
+    <PropertyGroup>
+        <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    </PropertyGroup>
+
+    <PropertyGroup>
+        <EnableDefaultCompileItems>true</EnableDefaultCompileItems>
+    </PropertyGroup>
+
+    <PropertyGroup>
+        <NoWarn>SA1633;SA1309;SA1101;XC0025;CS1591;WME1006;MVVMTK0045;CA1416</NoWarn>
+    </PropertyGroup>
+
+    <ItemGroup Condition="'$(TargetFramework)' != 'net9.0'">
+        <MauiSplashScreen Include="Resources\Splash\splash.svg" Color="#2563EB" />
+    </ItemGroup>
+
+    <!-- Excluir recursos MAUI para net9.0 -->
+    <ItemGroup Condition="'$(TargetFramework)' == 'net9.0'">
+        <MauiIcon Remove="Resources\AppIcon\appicon.png" />
+        <MauiSplashScreen Remove="Resources\Splash\splash.svg" />
+        <MauiImage Remove="Resources\Images\*" />
+        <MauiFont Remove="Resources\Fonts\*" />
+        <MauiAsset Remove="Resources\Raw\**" />
+    </ItemGroup>
+
+    <!-- Recursos MAUI solo para targets de plataforma -->
+    <ItemGroup Condition="'$(TargetFramework)' != 'net9.0'">
+        <MauiIcon Include="Resources\AppIcon\appicon.png" ForegroundScale="0.65" />
+        <MauiSplashScreen Include="Resources\Splash\splash.svg" Color="#2563EB" />
+        <MauiImage Include="Resources\Images\*" />
+        <MauiImage Update="Resources\Images\dotnet_bot.png" Resize="True" BaseSize="300,185" />
+        <MauiFont Include="Resources\Fonts\*" />
+        <MauiAsset Include="Resources\Raw\**" LogicalName="%(RecursiveDir)%(Filename)%(Extension)" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <None Remove="Resources\AppIcon\appicon.svg" />
+        <AdditionalFiles Include="stylecop.json" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <PackageReference Include="CommunityToolkit.Maui" Version="9.1.1" />
+        <PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.0" />
+        <PackageReference Include="Microsoft.Maui.Controls" Version="9.0.120" />
+        <PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="9.0.120" />
+        <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="9.0.13" />
+        <PackageReference Include="Serilog" Version="4.3.1" />
+        <PackageReference Include="Serilog.Extensions.Logging" Version="10.0.0" />
+        <PackageReference Include="Serilog.Sinks.Debug" Version="3.0.0" />
+        <PackageReference Include="Serilog.Sinks.File" Version="7.0.0" />
+        <PackageReference Include="StyleCop.Analyzers" Version="1.2.0-beta.556">
+            <PrivateAssets>all</PrivateAssets>
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
+        </PackageReference>
+    </ItemGroup>
+
+    <ItemGroup>
+        <Compile Update="Resources\Languages\AppResources.Designer.cs">
+            <DesignTime>True</DesignTime>
+            <AutoGen>True</AutoGen>
+            <DependentUpon>AppResources.resx</DependentUpon>
+        </Compile>
+    </ItemGroup>
+
+    <ItemGroup>
+        <EmbeddedResource Update="Resources\Languages\AppResources.resx">
+            <Generator>ResXFileCodeGenerator</Generator>
+            <LastGenOutput>AppResources.Designer.cs</LastGenOutput>
+        </EmbeddedResource>
+    </ItemGroup>
+
+    <ItemGroup>
+        <MauiXaml Update="Resources\Styles\Buttons.xaml">
+            <Generator>MSBuild:Compile</Generator>
+        </MauiXaml>
+        <MauiXaml Update="Resources\Styles\Entries.xaml">
+            <Generator>MSBuild:Compile</Generator>
+        </MauiXaml>
+        <MauiXaml Update="Resources\Styles\Labels.xaml">
+            <Generator>MSBuild:Compile</Generator>
+        </MauiXaml>
+        <MauiXaml Update="Resources\Styles\Layout.xaml">
+            <Generator>MSBuild:Compile</Generator>
+        </MauiXaml>
+        <MauiXaml Update="Resources\Styles\MenuStyles.xaml">
+            <Generator>MSBuild:Compile</Generator>
+        </MauiXaml>
+        <MauiXaml Update="Resources\Styles\Typography.xaml">
+            <Generator>MSBuild:Compile</Generator>
+        </MauiXaml>
+        <MauiXaml Update="Views\Inventory\InventoryPage.xaml">
+            <Generator>MSBuild:Compile</Generator>
+        </MauiXaml>
+        <MauiXaml Update="Views\ItemInfo\ItemInfoPage.xaml">
+            <Generator>MSBuild:Compile</Generator>
+        </MauiXaml>
+        <MauiXaml Update="Views\Login\LoginPage.xaml">
+            <Generator>MSBuild:Compile</Generator>
+        </MauiXaml>
+        <MauiXaml Update="Views\Menu\MenuPage.xaml">
+            <Generator>MSBuild:Compile</Generator>
+        </MauiXaml>
+        <MauiXaml Update="Views\Movements\MovementsPage.xaml">
+            <Generator>MSBuild:Compile</Generator>
+        </MauiXaml>
+        <MauiXaml Update="Views\Picking\PickingPage.xaml">
+            <Generator>MSBuild:Compile</Generator>
+        </MauiXaml>
+        <MauiXaml Update="Views\Reception\ReceptionPage.xaml">
+            <Generator>MSBuild:Compile</Generator>
+        </MauiXaml>
+        <MauiXaml Update="Views\Settings\SettingsPage.xaml">
+            <Generator>MSBuild:Compile</Generator>
+        </MauiXaml>
+        <MauiXaml Update="Views\Splash\SplashPage.xaml">
+            <Generator>MSBuild:Compile</Generator>
+        </MauiXaml>
+    </ItemGroup>
+
+    <ItemGroup>
+        <None Update="Resources\Styles\Buttons.xaml">
+            <Generator>MSBuild:Compile</Generator>
+        </None>
+        <None Update="Resources\Styles\Entries.xaml">
+            <Generator>MSBuild:Compile</Generator>
+        </None>
+        <None Update="Resources\Styles\Labels.xaml">
+            <Generator>MSBuild:Compile</Generator>
+        </None>
+        <None Update="Resources\Styles\Layout.xaml">
+            <Generator>MSBuild:Compile</Generator>
+        </None>
+        <None Update="Resources\Styles\Typography.xaml">
+            <Generator>MSBuild:Compile</Generator>
+        </None>
+        <None Update="Views\Inventory\InventoryPage.xaml">
+            <Generator>MSBuild:Compile</Generator>
+        </None>
+        <None Update="Views\ItemInfo\ItemInfoPage.xaml">
+            <Generator>MSBuild:Compile</Generator>
+        </None>
+        <None Update="Views\Menu\MenuPage.xaml">
+            <Generator>MSBuild:Compile</Generator>
+        </None>
+        <None Update="Views\Movements\MovementsPage.xaml">
+            <Generator>MSBuild:Compile</Generator>
+        </None>
+        <None Update="Views\Picking\PickingPage.xaml">
+            <Generator>MSBuild:Compile</Generator>
+        </None>
+        <None Update="Views\Reception\ReceptionPage.xaml">
+            <Generator>MSBuild:Compile</Generator>
+        </None>
+        <None Update="Views\Settings\SettingsPage.xaml">
+            <Generator>MSBuild:Compile</Generator>
+        </None>
+    </ItemGroup>
+
+    <ItemGroup Condition="'$(TargetFramework)' == 'net9.0-android'">
+      <PackageReference Include="Serilog.Sinks.Xamarin">
+        <Version>1.0.0</Version>
+      </PackageReference>
+    </ItemGroup>
+
+    <ItemGroup Condition="'$(TargetFramework)' == 'net9.0-ios'">
+      <PackageReference Include="Serilog.Sinks.Xamarin">
+        <Version>1.0.0</Version>
+      </PackageReference>
+    </ItemGroup>
+
+    <ItemGroup Condition="'$(TargetFramework)' == 'net9.0-maccatalyst'">
+      <PackageReference Include="Serilog.Sinks.Xamarin">
+        <Version>1.0.0</Version>
+      </PackageReference>
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="Platforms\Android\Resources\drawable\" />
+    </ItemGroup>
+
+</Project>

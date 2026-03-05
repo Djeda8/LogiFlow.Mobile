@@ -1,0 +1,24 @@
+{
+  "$schema": "https://raw.githubusercontent.com/DotNetAnalyzers/StyleCopAnalyzers/master/StyleCop.Analyzers/StyleCop.Analyzers/Settings/stylecop.schema.json",
+  "settings": {
+    "documentationRules": {
+      "companyName": "LogiFlow",
+      "copyrightText": "Copyright (c) {companyName}. All rights reserved.",
+      "documentInterfaces": true,
+      "documentExposedElements": true,
+      "documentInternalElements": false,
+      "documentPrivateElements": false
+    },
+    "orderingRules": {
+      "usingDirectivesPlacement": "outsideNamespace",
+      "systemUsingDirectivesFirst": true
+    },
+    "namingRules": {
+      "allowCommonHungarianPrefixes": false,
+      "allowedHungarianPrefixes": []
+    },
+    "layoutRules": {
+      "newlineAtEndOfFile": "require"
+    }
+  }
+}

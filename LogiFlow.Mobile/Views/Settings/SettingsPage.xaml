@@ -1,0 +1,262 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:LogiFlow.Mobile.ViewModels.Settings"
+             x:Class="LogiFlow.Mobile.Views.Settings.SettingsPage"
+             xmlns:icons="clr-namespace:LogiFlow.Mobile.Resources.Icons"
+             xmlns:local="clr-namespace:LogiFlow.Mobile.Extensions"
+             x:DataType="vm:SettingsViewModel"
+             NavigationPage.HasNavigationBar="False"
+             Title="{local:Translate Key=SettingsTitle}">
+
+    <Grid Padding="24" RowSpacing="16">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <!-- ===== HEADER ===== -->
+        <VerticalStackLayout Grid.Row="0" Spacing="4" HorizontalOptions="Center">
+            <Label>
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span Text="Logi" FontSize="28" TextColor="{StaticResource PrimaryColor}" />
+                        <Span Text="Flow" FontSize="32" FontAttributes="Bold" TextColor="{StaticResource PrimaryColor}" />
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
+            <Label Text="{local:Translate Key=SettingsTitle}"
+                   Style="{StaticResource SecondaryTextStyle}"
+                   HorizontalOptions="Center"/>
+        </VerticalStackLayout>
+
+        <!-- ===== CONTENIDO ===== -->
+        <ScrollView Grid.Row="1">
+            <VerticalStackLayout Spacing="0">
+
+                <!-- ===== Sección General ===== -->
+                <Border Style="{StaticResource SectionCardStyle}">
+                    <VerticalStackLayout Spacing="12">
+                        <Grid ColumnSpacing="10">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Image Grid.Column="0"
+                                   Source="{icons:AppIcon Icon=Settings, Color={StaticResource PrimaryColor}}"
+                                   WidthRequest="22" HeightRequest="22" VerticalOptions="Center"/>
+                            <Label Grid.Column="1"
+                                   Text="{local:Translate Key=SettingsSectionGeneral}"
+                                   Style="{StaticResource SectionTitleStyle}" />
+                        </Grid>
+
+                        <Label Text="{local:Translate Key=SettingsActiveUser}" Style="{StaticResource FieldLabelStyle}" />
+                        <Entry Text="{Binding Settings.UsuarioActivo}" IsReadOnly="True" Style="{StaticResource PrimaryEntryStyle}" />
+
+                        <Label Text="{local:Translate Key=SettingsLanguage}" Style="{StaticResource FieldLabelStyle}" />
+                        <Picker ItemsSource="{Binding AvailableLanguages}" SelectedItem="{Binding SelectedLanguage}" />
+
+                        <Label Text="{local:Translate Key=SettingsTheme}" Style="{StaticResource FieldLabelStyle}" />
+                        <Picker ItemsSource="{Binding AvailableThemes}" SelectedItem="{Binding Settings.TemaVisual}" />
+
+                        <Grid ColumnSpacing="12">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+                            <Label Grid.Column="0"
+                                   Text="{local:Translate Key=SettingsDemoMode}"
+                                   Style="{StaticResource BodyTextStyle}"
+                                   VerticalOptions="Center"/>
+                            <Switch Grid.Column="1" IsToggled="{Binding Settings.ModoDemo}" HorizontalOptions="End"/>
+                        </Grid>
+                    </VerticalStackLayout>
+                </Border>
+
+                <!-- ===== Sección Scanner ===== -->
+                <Border Style="{StaticResource SectionCardStyle}">
+                    <VerticalStackLayout Spacing="12">
+                        <Grid ColumnSpacing="10">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Image Grid.Column="0"
+                                   Source="{icons:AppIcon Icon=QrCodeScanner, Color={StaticResource PrimaryColor}}"
+                                   WidthRequest="22" HeightRequest="22" VerticalOptions="Center"/>
+                            <Label Grid.Column="1"
+                                   Text="{local:Translate Key=SettingsSectionScanner}"
+                                   Style="{StaticResource SectionTitleStyle}" />
+                        </Grid>
+
+                        <Label Text="{local:Translate Key=SettingsScannerType}" Style="{StaticResource FieldLabelStyle}" />
+                        <Picker ItemsSource="{Binding ScannerTypes}" SelectedItem="{Binding Settings.TipoLector}" />
+
+                        <Grid ColumnSpacing="12">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+                            <Label Grid.Column="0"
+                                   Text="{local:Translate Key=SettingsSuccessSound}"
+                                   Style="{StaticResource BodyTextStyle}" VerticalOptions="Center"/>
+                            <Switch Grid.Column="1" IsToggled="{Binding Settings.SonidoCorrecto}" HorizontalOptions="End"/>
+                        </Grid>
+
+                        <Grid ColumnSpacing="12">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+                            <Label Grid.Column="0"
+                                   Text="{local:Translate Key=SettingsSuccessVibration}"
+                                   Style="{StaticResource BodyTextStyle}" VerticalOptions="Center"/>
+                            <Switch Grid.Column="1" IsToggled="{Binding Settings.VibracionCorrecta}" HorizontalOptions="End"/>
+                        </Grid>
+
+                        <Grid ColumnSpacing="12">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+                            <Label Grid.Column="0"
+                                   Text="{local:Translate Key=SettingsErrorSound}"
+                                   Style="{StaticResource BodyTextStyle}" VerticalOptions="Center"/>
+                            <Switch Grid.Column="1" IsToggled="{Binding Settings.SonidoError}" HorizontalOptions="End"/>
+                        </Grid>
+
+                        <Button Text="{local:Translate Key=SettingsTestScanner}"
+                                Style="{StaticResource SecondaryButtonStyle}"
+                                Command="{Binding TestScannerCommand}"
+                                IsEnabled="{Binding IsNotBusy}"/>
+                    </VerticalStackLayout>
+                </Border>
+
+                <!-- ===== Sección Servidor ===== -->
+                <Border Style="{StaticResource SectionCardStyle}">
+                    <VerticalStackLayout Spacing="12">
+                        <Grid ColumnSpacing="10">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Image Grid.Column="0"
+                                   Source="{icons:AppIcon Icon=Dns, Color={StaticResource PrimaryColor}}"
+                                   WidthRequest="22" HeightRequest="22" VerticalOptions="Center"/>
+                            <Label Grid.Column="1"
+                                   Text="{local:Translate Key=SettingsSectionServer}"
+                                   Style="{StaticResource SectionTitleStyle}" />
+                        </Grid>
+
+                        <Label Text="{local:Translate Key=SettingsEnvironment}" Style="{StaticResource FieldLabelStyle}" />
+                        <Picker ItemsSource="{Binding ServerEnvironments}" SelectedItem="{Binding Settings.EntornoServidor}" />
+
+                        <Label Text="{local:Translate Key=SettingsServerUrl}" Style="{StaticResource FieldLabelStyle}" />
+                        <Border Stroke="{StaticResource Divider}" StrokeThickness="1.5" StrokeShape="RoundRectangle 8">
+                            <Border.Triggers>
+                                <DataTrigger TargetType="Border" Binding="{Binding UrlServidorHasError}" Value="True">
+                                    <Setter Property="Stroke" Value="{StaticResource ErrorColor}"/>
+                                </DataTrigger>
+                            </Border.Triggers>
+                            <Entry Text="{Binding Settings.UrlServidor}" Style="{StaticResource PrimaryEntryStyle}" />
+                        </Border>
+
+                        <Label Text="{local:Translate Key=SettingsTimeout}" Style="{StaticResource FieldLabelStyle}" />
+                        <Border Stroke="{StaticResource Divider}" StrokeThickness="1.5" StrokeShape="RoundRectangle 8">
+                            <Border.Triggers>
+                                <DataTrigger TargetType="Border" Binding="{Binding TimeoutHasError}" Value="True">
+                                    <Setter Property="Stroke" Value="{StaticResource ErrorColor}"/>
+                                </DataTrigger>
+                            </Border.Triggers>
+                            <Entry Text="{Binding Settings.Timeout}" Keyboard="Numeric" Style="{StaticResource PrimaryEntryStyle}" />
+                        </Border>
+
+                        <Button Text="{local:Translate Key=SettingsTestConnection}"
+                                Style="{StaticResource SecondaryButtonStyle}"
+                                Command="{Binding TestConnectionCommand}"
+                                IsEnabled="{Binding IsNotBusy}" />
+                    </VerticalStackLayout>
+                </Border>
+
+                <!-- ===== Sección About ===== -->
+                <Border Style="{StaticResource SectionCardStyle}">
+                    <VerticalStackLayout Spacing="12">
+                        <Grid ColumnSpacing="10">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Image Grid.Column="0"
+                                   Source="{icons:AppIcon Icon=Info, Color={StaticResource PrimaryColor}}"
+                                   WidthRequest="22" HeightRequest="22" VerticalOptions="Center"/>
+                            <Label Grid.Column="1"
+                                   Text="{local:Translate Key=SettingsSectionAbout}"
+                                   Style="{StaticResource SectionTitleStyle}" />
+                        </Grid>
+
+                        <Grid ColumnSpacing="12">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+                            <Label Grid.Column="0" Text="{local:Translate Key=SettingsVersion}" Style="{StaticResource FieldLabelStyle}"/>
+                            <Label Grid.Column="1" Text="{Binding AppVersion}" Style="{StaticResource SecondaryTextStyle}"/>
+                        </Grid>
+
+                        <Grid ColumnSpacing="12">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+                            <Label Grid.Column="0" Text="{local:Translate Key=SettingsEnvironment}" Style="{StaticResource FieldLabelStyle}"/>
+                            <Label Grid.Column="1" Text="{Binding Settings.EntornoServidor}" Style="{StaticResource SecondaryTextStyle}"/>
+                        </Grid>
+
+                        <Grid ColumnSpacing="12">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+                            <Label Grid.Column="0" Text="{local:Translate Key=SettingsUser}" Style="{StaticResource FieldLabelStyle}"/>
+                            <Label Grid.Column="1" Text="{Binding Settings.UsuarioActivo}" Style="{StaticResource SecondaryTextStyle}"/>
+                        </Grid>
+                    </VerticalStackLayout>
+                </Border>
+
+            </VerticalStackLayout>
+        </ScrollView>
+
+        <!-- ===== ERROR ===== -->
+        <Grid Grid.Row="2" IsVisible="{Binding HasError}" ColumnSpacing="8" Margin="0,4,0,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Image Grid.Column="0"
+                   Source="{icons:AppIcon Icon=ErrorOutline, Color={StaticResource ErrorColor}}"
+                   WidthRequest="24" HeightRequest="24"/>
+            <Label Grid.Column="1" Text="{Binding ErrorMessage}" Style="{StaticResource ErrorTextStyle}" />
+        </Grid>
+
+        <!-- ===== BOTONES ===== -->
+        <VerticalStackLayout Grid.Row="3" Spacing="12">
+            <Button Text="{local:Translate Key=SettingsSave}"
+                    Style="{StaticResource PrimaryButtonStyle}"
+                    Command="{Binding SaveCommand}"
+                    IsEnabled="{Binding IsNotBusy}"/>
+            <Button Text="{local:Translate Key=SettingsRestoreDefaults}"
+                    Style="{StaticResource DangerButtonStyle}"
+                    Command="{Binding RestoreDefaultsCommand}"
+                    IsEnabled="{Binding IsNotBusy}"/>
+        </VerticalStackLayout>
+
+        <!-- ===== LOADING ===== -->
+        <ActivityIndicator Grid.Row="4"
+                           IsVisible="{Binding IsBusy}"
+                           IsRunning="{Binding IsBusy}"
+                           HorizontalOptions="Center"/>
+    </Grid>
+</ContentPage>

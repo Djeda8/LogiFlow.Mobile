@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="LogiFlow.Mobile.Views.Menu.MenuPage"
+             x:Name="MenuPageRoot"
+             xmlns:vm="clr-namespace:LogiFlow.Mobile.ViewModels.Menu"
+             xmlns:icons="clr-namespace:LogiFlow.Mobile.Resources.Icons"
+             xmlns:local="clr-namespace:LogiFlow.Mobile.Extensions"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             xmlns:converters="clr-namespace:LogiFlow.Mobile.Converters"
+             x:DataType="vm:MenuViewModel"
+             NavigationPage.HasNavigationBar="False">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converters:AppIconGlyphToStringConverter x:Key="IconGlyphConverter"/>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <Grid Padding="24" RowSpacing="24">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="120"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- ========== HEADER ========== -->
+        <VerticalStackLayout Grid.Row="0" Spacing="4" VerticalOptions="Center" HorizontalOptions="Center">
+            <Label>
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span Text="Logi" FontSize="28" TextColor="{StaticResource PrimaryColor}" />
+                        <Span Text="Flow" FontSize="32" FontAttributes="Bold" TextColor="{StaticResource PrimaryColor}" />
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
+            <Label Text="{local:Translate Key=MenuTitle}"
+                   Style="{StaticResource SecondaryTextStyle}"
+                   HorizontalOptions="Center"/>
+        </VerticalStackLayout>
+
+        <!-- ========== MENU ========== -->
+        <ScrollView Grid.Row="1">
+            <CollectionView ItemsSource="{Binding MenuItems}" SelectionMode="None">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="vm:MenuItemViewModel">
+                        <Border Style="{StaticResource MenuItemBorderStyle}">
+                            <Border.Behaviors>
+                                <toolkit:TouchBehavior
+                                    Command="{Binding Source={x:Reference MenuPageRoot}, Path=BindingContext.NavigateCommand}"
+                                    CommandParameter="{Binding Route}"
+                                    IsEnabled="{Binding Source={x:Reference MenuPageRoot}, Path=BindingContext.IsNotBusy}"
+                                    PressedBackgroundColor="{StaticResource LightPrimary}"
+                                    DefaultBackgroundColor="White"
+                                    PressedScale="0.97"
+                                    PressedOpacity="0.95"
+                                    DefaultAnimationDuration="80"/>
+                            </Border.Behaviors>
+                            <Grid ColumnSpacing="16">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <Image Grid.Column="0" WidthRequest="24" HeightRequest="24" VerticalOptions="Center">
+                                    <Image.Source>
+                                        <FontImageSource
+                                            Glyph="{Binding Icon, Converter={StaticResource IconGlyphConverter}}"
+                                            FontFamily="MaterialIconsOutlined"
+                                            Color="{StaticResource PrimaryColor}"
+                                            Size="24"/>
+                                    </Image.Source>
+                                </Image>
+                                <Label Grid.Column="1"
+                                       Text="{Binding Title}"
+                                       Style="{StaticResource MenuItemTextStyle}" />
+                            </Grid>
+                        </Border>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </ScrollView>
+
+        <!-- ========== LOGOUT ========== -->
+        <Button Grid.Row="2"
+                Text="{local:Translate Key=MenuLogout}"
+                Command="{Binding LogoutCommand}"
+                Style="{StaticResource DangerButtonStyle}" />
+    </Grid>
+</ContentPage>

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="LogiFlow.Mobile.Views.Splash.SplashPage"
+             BackgroundColor="#2563EB"
+             NavigationPage.HasNavigationBar="False">
+
+    <Grid RowDefinitions="*,Auto" Padding="32">
+
+        <!-- ===== Logo / Nombre ===== -->
+        <VerticalStackLayout
+            Spacing="8"
+            HorizontalOptions="Center"
+            VerticalOptions="Center">
+
+            <!-- Icono LF -->
+            <Border BackgroundColor="White"
+                    StrokeShape="RoundRectangle 24"
+                    Stroke="Transparent"
+                    WidthRequest="100"
+                    HeightRequest="100"
+                    HorizontalOptions="Center">
+                <Label Text="LF"
+                       FontSize="42"
+                       FontAttributes="Bold"
+                       TextColor="#2563EB"
+                       HorizontalOptions="Center"
+                       VerticalOptions="Center"
+                       HorizontalTextAlignment="Center"
+                       VerticalTextAlignment="Center"/>
+            </Border>
+
+            <!-- Nombre App -->
+            <Label HorizontalOptions="Center" Margin="0,16,0,0">
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span Text="Logi"
+                              FontSize="32"
+                              FontAttributes="None"
+                              TextColor="White"/>
+                        <Span Text="Flow"
+                              FontSize="36"
+                              FontAttributes="Bold"
+                              TextColor="White"/>
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
+
+            <!-- Subtítulo -->
+            <Label Text="Warehouse Management"
+                   FontSize="14"
+                   TextColor="#C5CAE9"
+                   HorizontalOptions="Center"
+                   HorizontalTextAlignment="Center"/>
+
+        </VerticalStackLayout>
+
+        <!-- ===== Indicador de carga ===== -->
+        <ActivityIndicator
+            Grid.Row="1"
+            IsRunning="True"
+            Color="White"
+            HorizontalOptions="Center"
+            Margin="0,24,0,0"/>
+
+    </Grid>
+</ContentPage>
