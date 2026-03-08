@@ -22,7 +22,7 @@ jobs:
         run: dotnet workload install maui-android
 
       - name: Restore dependencies
-        run: dotnet restore LogiFlow.Mobile/LogiFlow.Mobile.csproj
+        run: dotnet restore LogiFlow.Mobile/LogiFlow.Mobile.csproj -p:TargetFrameworks=net9.0-android
 
       - name: Run tests
         run: dotnet test LogiFlow.Mobile.Tests/LogiFlow.Mobile.Tests.csproj --configuration Release
