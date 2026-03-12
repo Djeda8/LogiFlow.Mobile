@@ -49,7 +49,9 @@ jobs:
         id: release_notes
         run: |
           $notes = Get-Content RELEASE_NOTES.md -Raw
-          echo "NOTES=$notes" >> $env:GITHUB_OUTPUT
+          echo "NOTES<<EOF" >> $env:GITHUB_OUTPUT
+          echo $notes >> $env:GITHUB_OUTPUT
+          echo "EOF" >> $env:GITHUB_OUTPUT
 
       - name: Upload to Firebase App Distribution
         run: |
