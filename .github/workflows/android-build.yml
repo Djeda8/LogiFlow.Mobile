@@ -1,14 +1,15 @@
 name: Build and Distribute Android APK
-
 on:
   push:
     branches: [ main ]
   workflow_dispatch:
 
+env:
+  MAJOR_VERSION: 1
+
 jobs:
   build:
     runs-on: windows-latest
-
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -36,13 +37,19 @@ jobs:
             -p:AndroidSdkDirectory=$env:ANDROID_SDK_ROOT `
             -p:AndroidPackageFormat=apk `
             -p:ApplicationVersion=${{ github.run_number }} `
-            -p:ApplicationDisplayVersion=1.0.${{ github.run_number }}
+            -p:ApplicationDisplayVersion=${{ env.MAJOR_VERSION }}.0.${{ github.run_number }}
 
       - name: Find APK
         id: find_apk
         run: |
           $apk = Get-ChildItem -Recurse -Filter "*.apk" | Where-Object { $_.FullName -notlike "*unsigned*" } | Select-Object -First 1
           echo "APK_PATH=$($apk.FullName)" >> $env:GITHUB_OUTPUT
+
+      - name: Read release notes
+        id: release_notes
+        run: |
+          $notes = Get-Content RELEASE_NOTES.md -Raw
+          echo "NOTES=$notes" >> $env:GITHUB_OUTPUT
 
       - name: Upload to Firebase App Distribution
         run: |
@@ -51,4 +58,4 @@ jobs:
             --app "${{ secrets.FIREBASE_APP_ID }}" `
             --token "${{ secrets.FIREBASE_TOKEN }}" `
             --groups "testers" `
-            --release-notes "Build ${{ github.run_number }} - commit ${{ github.sha }}"
+            --release-notes "${{ steps.release_notes.outputs.NOTES }}"
