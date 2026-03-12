@@ -7,6 +7,8 @@ namespace LogiFlow.Mobile.Views.Settings;
 /// </summary>
 public partial class SettingsPage : ContentPage
 {
+    private readonly SettingsViewModel _viewModel;
+
     /// <summary>
     /// Initializes a new instance of the <see cref="SettingsPage"/> class.
     /// </summary>
@@ -14,6 +16,14 @@ public partial class SettingsPage : ContentPage
     public SettingsPage(SettingsViewModel viewModel)
     {
         InitializeComponent();
+        _viewModel = viewModel;
         BindingContext = viewModel;
+    }
+
+    /// <inheritdoc/>
+    protected override void OnAppearing()
+    {
+        base.OnAppearing();
+        _viewModel.LoadSettings();
     }
 }

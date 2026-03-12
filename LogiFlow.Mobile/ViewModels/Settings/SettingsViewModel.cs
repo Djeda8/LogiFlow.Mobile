@@ -3,6 +3,7 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using LogiFlow.Mobile.DTOs;
 using LogiFlow.Mobile.Exceptions;
+using LogiFlow.Mobile.Models;
 using LogiFlow.Mobile.Resources.Languages;
 using LogiFlow.Mobile.Services.Interfaces;
 using LogiFlow.Mobile.ViewModels.Base;
@@ -21,6 +22,7 @@ public partial class SettingsViewModel : BaseViewModel
     private readonly ILocalizationService _localizationService;
     private readonly ILogService _logService;
     private readonly IErrorHandlerService _errorHandlerService;
+    private readonly ISettingsDisplayService _settingsDisplayService;
 
     [ObservableProperty]
     private SettingsDto _settings = new();
@@ -37,6 +39,15 @@ public partial class SettingsViewModel : BaseViewModel
     [ObservableProperty]
     private string _selectedLanguage = string.Empty;
 
+    [ObservableProperty]
+    private SettingsOption? _selectedTheme;
+
+    [ObservableProperty]
+    private SettingsOption? _selectedScannerType;
+
+    [ObservableProperty]
+    private SettingsOption? _selectedEnvironment;
+
     /// <summary>
     /// Initializes a new instance of the <see cref="SettingsViewModel"/> class.
     /// </summary>
@@ -47,6 +58,7 @@ public partial class SettingsViewModel : BaseViewModel
     /// <param name="localizationService">The localization service.</param>
     /// <param name="logService">The logging service.</param>
     /// <param name="errorHandlerService">The error handler service.</param>
+    /// <param name="settingsDisplayService">The settings display service.</param>
     public SettingsViewModel(
         ISettingsService settingsService,
         IScanService scanService,
@@ -54,7 +66,8 @@ public partial class SettingsViewModel : BaseViewModel
         INavigationService navigationService,
         ILocalizationService localizationService,
         ILogService logService,
-        IErrorHandlerService errorHandlerService)
+        IErrorHandlerService errorHandlerService,
+        ISettingsDisplayService settingsDisplayService)
     {
         _settingsService = settingsService;
         _scanService = scanService;
@@ -63,10 +76,7 @@ public partial class SettingsViewModel : BaseViewModel
         _localizationService = localizationService;
         _logService = logService;
         _errorHandlerService = errorHandlerService;
-
-        LoadStaticLists();
-        LoadSettings();
-        InitializeSelectedLanguage();
+        _settingsDisplayService = settingsDisplayService;
 
         _localizationService.LanguageChanged += OnLanguageChanged;
 
@@ -81,17 +91,27 @@ public partial class SettingsViewModel : BaseViewModel
     /// <summary>
     /// Gets the available visual themes.
     /// </summary>
-    public ObservableCollection<string> AvailableThemes { get; } = [];
+    public ObservableCollection<SettingsOption> AvailableThemes { get; } = [];
 
     /// <summary>
     /// Gets the available scanner device types.
     /// </summary>
-    public ObservableCollection<string> ScannerTypes { get; } = [];
+    public ObservableCollection<SettingsOption> ScannerTypes { get; } = [];
 
     /// <summary>
     /// Gets the available server environments.
     /// </summary>
-    public ObservableCollection<string> ServerEnvironments { get; } = [];
+    public ObservableCollection<SettingsOption> ServerEnvironments { get; } = [];
+
+    /// <summary>
+    /// Loads the settings from the settings service.
+    /// </summary>
+    public void LoadSettings()
+    {
+        Settings = _settingsService.LoadSettings();
+        LoadStaticLists();
+        InitializeSelectedLanguage();
+    }
 
     private static bool IsValidUrl(string url) =>
         !string.IsNullOrWhiteSpace(url) &&
@@ -195,7 +215,8 @@ public partial class SettingsViewModel : BaseViewModel
         if (UrlServidorHasError)
         {
             ErrorMessage = _errorHandlerService.Handle(
-                new ValidationException("UrlServidor",
+                new ValidationException(
+                    "UrlServidor",
                     _localizationService.GetString(nameof(AppResources.ErrorInvalidUrl))));
             HasError = true;
             return;
@@ -244,11 +265,10 @@ public partial class SettingsViewModel : BaseViewModel
 
     private void OnLanguageChanged(object? sender, EventArgs e)
     {
+        LoadStaticLists();
         OnPropertyChanged(string.Empty);
         _logService.Info("UI refreshed after language change. Culture={Culture}", _localizationService.CurrentCulture.Name);
     }
-
-    private void LoadSettings() => Settings = _settingsService.LoadSettings();
 
     private void InitializeSelectedLanguage()
     {
@@ -260,19 +280,45 @@ public partial class SettingsViewModel : BaseViewModel
         };
     }
 
+    partial void OnSelectedThemeChanged(SettingsOption? value)
+    {
+        if (value is not null)
+            Settings.TemaVisual = value.Code;
+    }
+
+    partial void OnSelectedScannerTypeChanged(SettingsOption? value)
+    {
+        if (value is not null)
+            Settings.TipoLector = value.Code;
+    }
+
+    partial void OnSelectedEnvironmentChanged(SettingsOption? value)
+    {
+        if (value is not null)
+            Settings.EntornoServidor = value.Code;
+    }
+
     private void LoadStaticLists()
     {
+        var currentTheme = SelectedTheme?.Code ?? Settings?.TemaVisual ?? "light";
+        var currentScanner = SelectedScannerType?.Code ?? Settings?.TipoLector ?? "internal";
+        var currentEnvironment = SelectedEnvironment?.Code ?? Settings?.EntornoServidor ?? "demo";
+
         AvailableThemes.Clear();
-        AvailableThemes.Add("Claro");
-        AvailableThemes.Add("Oscuro");
+        AvailableThemes.Add(new SettingsOption { Code = "light", DisplayName = _settingsDisplayService.GetThemeDisplay("light") });
+        AvailableThemes.Add(new SettingsOption { Code = "dark", DisplayName = _settingsDisplayService.GetThemeDisplay("dark") });
 
         ScannerTypes.Clear();
-        ScannerTypes.Add("Interno");
-        ScannerTypes.Add("Externo");
+        ScannerTypes.Add(new SettingsOption { Code = "internal", DisplayName = _settingsDisplayService.GetScannerDisplay("internal") });
+        ScannerTypes.Add(new SettingsOption { Code = "external", DisplayName = _settingsDisplayService.GetScannerDisplay("external") });
 
         ServerEnvironments.Clear();
-        ServerEnvironments.Add("DEMO");
-        ServerEnvironments.Add("Producción");
+        ServerEnvironments.Add(new SettingsOption { Code = "demo", DisplayName = _settingsDisplayService.GetEnvironmentDisplay("demo") });
+        ServerEnvironments.Add(new SettingsOption { Code = "production", DisplayName = _settingsDisplayService.GetEnvironmentDisplay("production") });
+
+        SelectedTheme = AvailableThemes.FirstOrDefault(x => x.Code == currentTheme);
+        SelectedScannerType = ScannerTypes.FirstOrDefault(x => x.Code == currentScanner);
+        SelectedEnvironment = ServerEnvironments.FirstOrDefault(x => x.Code == currentEnvironment);
     }
 
     partial void OnSelectedLanguageChanged(string value)
@@ -308,15 +354,13 @@ public partial class SettingsViewModel : BaseViewModel
         if (UrlServidorHasError)
         {
             ErrorMessage = _errorHandlerService.Handle(
-                new ValidationException("UrlServidor",
-                    _localizationService.GetString(nameof(AppResources.ErrorInvalidUrl))));
+                new ValidationException("UrlServidor", _localizationService.GetString(nameof(AppResources.ErrorInvalidUrl))));
             HasError = true;
         }
         else if (TimeoutHasError)
         {
             ErrorMessage = _errorHandlerService.Handle(
-                new ValidationException("Timeout",
-                    _localizationService.GetString(nameof(AppResources.ErrorTimeoutInvalid))));
+                new ValidationException("Timeout", _localizationService.GetString(nameof(AppResources.ErrorTimeoutInvalid))));
             HasError = true;
         }
 

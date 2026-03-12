@@ -41,8 +41,8 @@
 
         <!-- ========== MENU ========== -->
         <ScrollView Grid.Row="1">
-            <CollectionView ItemsSource="{Binding MenuItems}" SelectionMode="None">
-                <CollectionView.ItemTemplate>
+            <VerticalStackLayout Spacing="8" BindableLayout.ItemsSource="{Binding MenuItems}">
+                <BindableLayout.ItemTemplate>
                     <DataTemplate x:DataType="vm:MenuItemViewModel">
                         <Border Style="{StaticResource MenuItemBorderStyle}">
                             <Border.Behaviors>
@@ -76,8 +76,8 @@
                             </Grid>
                         </Border>
                     </DataTemplate>
-                </CollectionView.ItemTemplate>
-            </CollectionView>
+                </BindableLayout.ItemTemplate>
+            </VerticalStackLayout>
         </ScrollView>
 
         <!-- ========== LOGOUT ========== -->

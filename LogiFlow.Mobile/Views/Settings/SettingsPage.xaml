@@ -60,7 +60,7 @@
                         <Picker ItemsSource="{Binding AvailableLanguages}" SelectedItem="{Binding SelectedLanguage}" />
 
                         <Label Text="{local:Translate Key=SettingsTheme}" Style="{StaticResource FieldLabelStyle}" />
-                        <Picker ItemsSource="{Binding AvailableThemes}" SelectedItem="{Binding Settings.TemaVisual}" />
+                        <Picker ItemsSource="{Binding AvailableThemes}" SelectedItem="{Binding SelectedTheme}" ItemDisplayBinding="{Binding DisplayName}" />
 
                         <Grid ColumnSpacing="12">
                             <Grid.ColumnDefinitions>
@@ -93,7 +93,7 @@
                         </Grid>
 
                         <Label Text="{local:Translate Key=SettingsScannerType}" Style="{StaticResource FieldLabelStyle}" />
-                        <Picker ItemsSource="{Binding ScannerTypes}" SelectedItem="{Binding Settings.TipoLector}" />
+                        <Picker ItemsSource="{Binding ScannerTypes}" SelectedItem="{Binding SelectedScannerType}" ItemDisplayBinding="{Binding DisplayName}"/>
 
                         <Grid ColumnSpacing="12">
                             <Grid.ColumnDefinitions>
@@ -152,7 +152,7 @@
                         </Grid>
 
                         <Label Text="{local:Translate Key=SettingsEnvironment}" Style="{StaticResource FieldLabelStyle}" />
-                        <Picker ItemsSource="{Binding ServerEnvironments}" SelectedItem="{Binding Settings.EntornoServidor}" />
+                        <Picker ItemsSource="{Binding ServerEnvironments}" SelectedItem="{Binding SelectedEnvironment}" ItemDisplayBinding="{Binding DisplayName}"/>
 
                         <Label Text="{local:Translate Key=SettingsServerUrl}" Style="{StaticResource FieldLabelStyle}" />
                         <Border Stroke="{StaticResource Divider}" StrokeThickness="1.5" StrokeShape="RoundRectangle 8">
@@ -212,7 +212,7 @@
                                 <ColumnDefinition Width="Auto"/>
                             </Grid.ColumnDefinitions>
                             <Label Grid.Column="0" Text="{local:Translate Key=SettingsEnvironment}" Style="{StaticResource FieldLabelStyle}"/>
-                            <Label Grid.Column="1" Text="{Binding Settings.EntornoServidor}" Style="{StaticResource SecondaryTextStyle}"/>
+                            <Label Grid.Column="1" Text="{Binding SelectedEnvironment.DisplayName}" Style="{StaticResource SecondaryTextStyle}"/>
                         </Grid>
 
                         <Grid ColumnSpacing="12">
