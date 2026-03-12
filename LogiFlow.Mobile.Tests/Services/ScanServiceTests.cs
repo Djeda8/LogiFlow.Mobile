@@ -19,7 +19,7 @@ public class ScanServiceTests
     public async Task TestScannerAsync_WithInternalScanner_ReturnsTrue()
     {
         // Act
-        var result = await _scanService.TestScannerAsync("Interno");
+        var result = await _scanService.TestScannerAsync("internal");
 
         // Assert
         Assert.True(result);
@@ -29,7 +29,7 @@ public class ScanServiceTests
     public async Task TestScannerAsync_WithInternalScanner_LogsSuccess()
     {
         // Act
-        await _scanService.TestScannerAsync("Interno");
+        await _scanService.TestScannerAsync("internal");
 
         // Assert
         _logServiceMock.Verify(
@@ -58,11 +58,11 @@ public class ScanServiceTests
     {
         // Act - run multiple times to verify internal scanner always succeeds
         var results = await Task.WhenAll(
-            _scanService.TestScannerAsync("Interno"),
-            _scanService.TestScannerAsync("Interno"),
-            _scanService.TestScannerAsync("Interno"),
-            _scanService.TestScannerAsync("Interno"),
-            _scanService.TestScannerAsync("Interno"));
+            _scanService.TestScannerAsync("internal"),
+            _scanService.TestScannerAsync("internal"),
+            _scanService.TestScannerAsync("internal"),
+            _scanService.TestScannerAsync("internal"),
+            _scanService.TestScannerAsync("internal"));
 
         // Assert
         Assert.All(results, result => Assert.True(result));

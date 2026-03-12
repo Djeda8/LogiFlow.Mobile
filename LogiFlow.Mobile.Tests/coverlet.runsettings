@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<RunSettings>
+  <DataCollectionRunSettings>
+    <DataCollectors>
+      <DataCollector friendlyName="XPlat code coverage">
+        <Configuration>
+          <Format>cobertura</Format>
+          <Exclude>
+            [LogiFlow.Mobile]LogiFlow.Mobile.Views.*,
+            [LogiFlow.Mobile]LogiFlow.Mobile.Platforms.*,
+            [LogiFlow.Mobile]LogiFlow.Mobile.MauiProgram,
+            [LogiFlow.Mobile]LogiFlow.Mobile.App,
+            [LogiFlow.Mobile]LogiFlow.Mobile.AppShell,
+            [LogiFlow.Mobile]LogiFlow.Mobile.Services.Implementations.PreferencesService,
+            [LogiFlow.Mobile]LogiFlow.Mobile.Services.Implementations.NavigationWindowService,
+            [LogiFlow.Mobile]LogiFlow.Mobile.Services.Implementations.FileSystemService,
+            [LogiFlow.Mobile]LogiFlow.Mobile.Resources.Languages.AppResources,
+            [LogiFlow.Mobile]__XamlGeneratedCode__.*,
+            [LogiFlow.Mobile]Microsoft.Maui.Controls.Generated.*
+          </Exclude>
+          <ExcludeByAttribute>ExcludeFromCodeCoverage</ExcludeByAttribute>
+        </Configuration>
+      </DataCollector>
+    </DataCollectors>
+  </DataCollectionRunSettings>
+</RunSettings>

@@ -15,6 +15,7 @@ public class SettingsViewModelTests
     private readonly Mock<ILocalizationService> _localizationServiceMock;
     private readonly Mock<ILogService> _logServiceMock;
     private readonly Mock<IErrorHandlerService> _errorHandlerServiceMock;
+    private readonly Mock<ISettingsDisplayService> _settingsDisplayServiceMock;
     private readonly SettingsViewModel _viewModel;
 
     public SettingsViewModelTests()
@@ -26,6 +27,7 @@ public class SettingsViewModelTests
         _localizationServiceMock = new Mock<ILocalizationService>();
         _logServiceMock = new Mock<ILogService>();
         _errorHandlerServiceMock = new Mock<IErrorHandlerService>();
+        _settingsDisplayServiceMock = new Mock<ISettingsDisplayService>();
 
         _settingsServiceMock
             .Setup(x => x.LoadSettings())
@@ -46,12 +48,16 @@ public class SettingsViewModelTests
             _navigationServiceMock.Object,
             _localizationServiceMock.Object,
             _logServiceMock.Object,
-            _errorHandlerServiceMock.Object);
+            _errorHandlerServiceMock.Object,
+            _settingsDisplayServiceMock.Object);
     }
 
     [Fact]
     public void Constructor_LoadsSettings()
     {
+        // Arrange
+        _viewModel.LoadSettings();
+
         // Assert
         _settingsServiceMock.Verify(x => x.LoadSettings(), Times.Once);
     }
@@ -59,6 +65,9 @@ public class SettingsViewModelTests
     [Fact]
     public void Constructor_InitializesStaticLists()
     {
+        // Arrange
+        _viewModel.LoadSettings();
+
         // Assert
         Assert.NotEmpty(_viewModel.AvailableThemes);
         Assert.NotEmpty(_viewModel.ScannerTypes);
@@ -280,7 +289,7 @@ public class SettingsViewModelTests
         // Arrange
         _settingsServiceMock
             .Setup(x => x.LoadSettings())
-            .Returns(new SettingsDto { Idioma = "fr" });
+            .Returns(new SettingsDto { Idioma = "en" });
 
         var viewModel = new SettingsViewModel(
             _settingsServiceMock.Object,
@@ -289,7 +298,11 @@ public class SettingsViewModelTests
             _navigationServiceMock.Object,
             _localizationServiceMock.Object,
             _logServiceMock.Object,
-            _errorHandlerServiceMock.Object);
+            _errorHandlerServiceMock.Object,
+            _settingsDisplayServiceMock.Object);
+
+        // Act
+        viewModel.LoadSettings();
 
         // Assert
         Assert.Equal("English", viewModel.SelectedLanguage);
@@ -310,7 +323,11 @@ public class SettingsViewModelTests
             _navigationServiceMock.Object,
             _localizationServiceMock.Object,
             _logServiceMock.Object,
-            _errorHandlerServiceMock.Object);
+            _errorHandlerServiceMock.Object,
+            _settingsDisplayServiceMock.Object);
+
+        // Act
+        viewModel.LoadSettings();
 
         // Assert
         Assert.Equal("Español", viewModel.SelectedLanguage);
@@ -399,5 +416,29 @@ public class SettingsViewModelTests
         // Assert
         Assert.True(_viewModel.HasError);
         Assert.Equal("An unexpected error occurred. Please try again.", _viewModel.ErrorMessage);
+    }
+
+    [Fact]
+    public void OnSelectedLanguageChanged_WithEmptyValue_DoesNotChangeLanguage()
+    {
+        // Act
+        _viewModel.SelectedLanguage = string.Empty;
+
+        // Assert
+        _localizationServiceMock.Verify(
+            x => x.SetLanguage(It.IsAny<string>()),
+            Times.Never);
+    }
+
+    [Fact]
+    public void OnSelectedLanguageChanged_WithUnknownLanguage_DefaultsToEnglish()
+    {
+        // Act
+        _viewModel.SelectedLanguage = "Français";
+
+        // Assert
+        _localizationServiceMock.Verify(
+            x => x.SetLanguage("en"),
+            Times.Once);
     }
 }

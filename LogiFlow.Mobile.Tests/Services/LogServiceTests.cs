@@ -126,4 +126,22 @@ public class LogServiceTests
         var exception = Record.Exception(() => new LogService(_fileSystemServiceMock.Object));
         Assert.Null(exception);
     }
+
+    [Fact]
+    public void OperationStart_WithNullDetails_DoesNotThrow()
+    {
+        // Act & Assert
+        var exception = Record.Exception(() =>
+            _logService.OperationStart("TestOperation", "TestUser"));
+        Assert.Null(exception);
+    }
+
+    [Fact]
+    public void OperationSuccess_WithNullDetails_DoesNotThrow()
+    {
+        // Act & Assert
+        var exception = Record.Exception(() =>
+            _logService.OperationSuccess("TestOperation", "TestUser"));
+        Assert.Null(exception);
+    }
 }

@@ -100,4 +100,30 @@ public class SessionServiceTests
             x => x.Info(It.Is<string>(s => s.Contains("cleared")), It.IsAny<object[]>()),
             Times.Once);
     }
+
+    [Fact]
+    public void ClearSession_WithActiveSession_ClearsSession()
+    {
+        // Arrange
+        _sessionService.CreateSession(new LoginResultDto
+        {
+            IsSuccess = true,
+            UserId = "user1",
+            UserName = "User One"
+        });
+
+        // Act
+        _sessionService.ClearSession();
+
+        // Assert
+        Assert.False(_sessionService.HasActiveSession());
+    }
+
+    [Fact]
+    public void ClearSession_WithNoActiveSession_DoesNotThrow()
+    {
+        // Act & Assert
+        var exception = Record.Exception(() => _sessionService.ClearSession());
+        Assert.Null(exception);
+    }
 }

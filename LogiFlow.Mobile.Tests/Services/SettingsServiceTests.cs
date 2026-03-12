@@ -36,14 +36,14 @@ public class SettingsServiceTests
         // Assert
         Assert.NotNull(result);
         Assert.Equal("DemoUser", result.UsuarioActivo);
-        Assert.Equal("Español", result.Idioma);
-        Assert.Equal("Claro", result.TemaVisual);
+        Assert.Equal("en", result.Idioma);
+        Assert.Equal("light", result.TemaVisual);
         Assert.True(result.ModoDemo);
-        Assert.Equal("Interno", result.TipoLector);
+        Assert.Equal("internal", result.TipoLector);
         Assert.True(result.SonidoCorrecto);
         Assert.True(result.VibracionCorrecta);
         Assert.True(result.SonidoError);
-        Assert.Equal("DEMO", result.EntornoServidor);
+        Assert.Equal("demo", result.EntornoServidor);
         Assert.Equal("https://demo.server.com", result.UrlServidor);
         Assert.Equal(10, result.Timeout);
     }

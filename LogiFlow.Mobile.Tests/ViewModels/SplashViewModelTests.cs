@@ -1,3 +1,4 @@
+using LogiFlow.Mobile.DTOs;
 using LogiFlow.Mobile.Services.Interfaces;
 using LogiFlow.Mobile.ViewModels.Splash;
 using Moq;
@@ -9,6 +10,9 @@ public class SplashViewModelTests
     private readonly Mock<INavigationService> _navigationServiceMock;
     private readonly Mock<ISessionService> _sessionServiceMock;
     private readonly Mock<ILogService> _logServiceMock;
+    private readonly Mock<ISettingsService> _settingsServiceMock;
+    private readonly Mock<ILocalizationService> _localizationServiceMock;
+
     private readonly SplashViewModel _viewModel;
 
     public SplashViewModelTests()
@@ -16,11 +20,19 @@ public class SplashViewModelTests
         _navigationServiceMock = new Mock<INavigationService>();
         _sessionServiceMock = new Mock<ISessionService>();
         _logServiceMock = new Mock<ILogService>();
+        _settingsServiceMock = new Mock<ISettingsService>();
+        _localizationServiceMock = new Mock<ILocalizationService>();
+
+        _settingsServiceMock
+            .Setup(x => x.LoadSettings())
+            .Returns(new SettingsDto());
 
         _viewModel = new SplashViewModel(
             _navigationServiceMock.Object,
             _sessionServiceMock.Object,
-            _logServiceMock.Object);
+            _logServiceMock.Object,
+            _settingsServiceMock.Object,
+            _localizationServiceMock.Object);
     }
 
     [Fact]
