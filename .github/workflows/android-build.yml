@@ -28,7 +28,15 @@ jobs:
         run: dotnet test LogiFlow.Mobile.Tests/LogiFlow.Mobile.Tests.csproj --configuration Release
 
       - name: Build Android APK
-        run: dotnet publish LogiFlow.Mobile/LogiFlow.Mobile.csproj -f net9.0-android -c Release --no-restore -p:AndroidSdkDirectory=$env:ANDROID_SDK_ROOT -p:AndroidPackageFormat=apk
+        run: |
+          dotnet publish LogiFlow.Mobile/LogiFlow.Mobile.csproj `
+            -f net9.0-android `
+            -c Release `
+            --no-restore `
+            -p:AndroidSdkDirectory=$env:ANDROID_SDK_ROOT `
+            -p:AndroidPackageFormat=apk `
+            -p:ApplicationVersion=${{ github.run_number }} `
+            -p:ApplicationDisplayVersion=1.0.${{ github.run_number }}
 
       - name: Find APK
         id: find_apk
@@ -42,4 +50,5 @@ jobs:
           firebase appdistribution:distribute "${{ steps.find_apk.outputs.APK_PATH }}" `
             --app "${{ secrets.FIREBASE_APP_ID }}" `
             --token "${{ secrets.FIREBASE_TOKEN }}" `
-            --release-notes "Build from commit ${{ github.sha }}"
+            --groups "testers" `
+            --release-notes "Build ${{ github.run_number }} - commit ${{ github.sha }}"
