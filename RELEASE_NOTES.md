@@ -1,5 +1,5 @@
 ## v1.0.12 - Settings & Internationalization
 
-- Refactor de pantalla de Settings con códigos internos independientes del idioma
-- Soporte completo de internacionalización (EN/ES) con cambio en tiempo real
-- Cobertura de tests mejorada al 95%
+- Refactor of the Settings screen with language-independent internal codes
+- Full internationalization support (EN/ES) with real-time language switching
+- Test coverage improved to 95%
