@@ -61,6 +61,24 @@ namespace LogiFlow.Mobile.Resources.Languages {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Demo.
+        /// </summary>
+        internal static string EnvironmentDemo {
+            get {
+                return ResourceManager.GetString("EnvironmentDemo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Production.
+        /// </summary>
+        internal static string EnvironmentProduction {
+            get {
+                return ResourceManager.GetString("EnvironmentProduction", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Invalid username or password..
         /// </summary>
         internal static string ErrorInvalidCredentials {
@@ -228,6 +246,24 @@ namespace LogiFlow.Mobile.Resources.Languages {
         internal static string Msg_TestErrorConnection {
             get {
                 return ResourceManager.GetString("Msg_TestErrorConnection", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a External.
+        /// </summary>
+        internal static string ScannerExternal {
+            get {
+                return ResourceManager.GetString("ScannerExternal", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Internal.
+        /// </summary>
+        internal static string ScannerInternal {
+            get {
+                return ResourceManager.GetString("ScannerInternal", resourceCulture);
             }
         }
         
@@ -426,6 +462,24 @@ namespace LogiFlow.Mobile.Resources.Languages {
         internal static string SettingsVersion {
             get {
                 return ResourceManager.GetString("SettingsVersion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Dark.
+        /// </summary>
+        internal static string ThemeDark {
+            get {
+                return ResourceManager.GetString("ThemeDark", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Light.
+        /// </summary>
+        internal static string ThemeLight {
+            get {
+                return ResourceManager.GetString("ThemeLight", resourceCulture);
             }
         }
     }

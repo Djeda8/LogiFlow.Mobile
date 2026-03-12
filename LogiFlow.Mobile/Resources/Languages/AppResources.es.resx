@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <root>
-    <!-- 
+  <!-- 
     Microsoft ResX Schema 
     
     Version 2.0
@@ -59,192 +59,203 @@
             : using a System.ComponentModel.TypeConverter
             : and then encoded with base64 encoding.
     -->
-    <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
-        <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
-        <xsd:element name="root" msdata:IsDataSet="true">
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
             <xsd:complexType>
-                <xsd:choice maxOccurs="unbounded">
-                    <xsd:element name="metadata">
-                        <xsd:complexType>
-                            <xsd:sequence>
-                                <xsd:element name="value" type="xsd:string" minOccurs="0" />
-                            </xsd:sequence>
-                            <xsd:attribute name="name" use="required" type="xsd:string" />
-                            <xsd:attribute name="type" type="xsd:string" />
-                            <xsd:attribute name="mimetype" type="xsd:string" />
-                            <xsd:attribute ref="xml:space" />
-                        </xsd:complexType>
-                    </xsd:element>
-                    <xsd:element name="assembly">
-                        <xsd:complexType>
-                            <xsd:attribute name="alias" type="xsd:string" />
-                            <xsd:attribute name="name" type="xsd:string" />
-                        </xsd:complexType>
-                    </xsd:element>
-                    <xsd:element name="data">
-                        <xsd:complexType>
-                            <xsd:sequence>
-                                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
-                                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
-                            </xsd:sequence>
-                            <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
-                            <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
-                            <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
-                            <xsd:attribute ref="xml:space" />
-                        </xsd:complexType>
-                    </xsd:element>
-                    <xsd:element name="resheader">
-                        <xsd:complexType>
-                            <xsd:sequence>
-                                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
-                            </xsd:sequence>
-                            <xsd:attribute name="name" type="xsd:string" use="required" />
-                        </xsd:complexType>
-                    </xsd:element>
-                </xsd:choice>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
             </xsd:complexType>
-        </xsd:element>
-    </xsd:schema>
-    <resheader name="resmimetype">
-        <value>text/microsoft-resx</value>
-    </resheader>
-    <resheader name="version">
-        <value>2.0</value>
-    </resheader>
-    <resheader name="reader">
-        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-    </resheader>
-    <resheader name="writer">
-        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-    </resheader>
-    <!-- ===== Login ===== -->
-    <data name="LoginTitle" xml:space="preserve">
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="LoginTitle" xml:space="preserve">
     <value>Inicio de sesión</value>
-</data>
-    <data name="LoginUsernamePlaceholder" xml:space="preserve">
+  </data>
+  <data name="LoginUsernamePlaceholder" xml:space="preserve">
     <value>Usuario</value>
   </data>
-    <data name="LoginPasswordPlaceholder" xml:space="preserve">
+  <data name="LoginPasswordPlaceholder" xml:space="preserve">
     <value>Contraseña</value>
   </data>
-    <data name="LoginButton" xml:space="preserve">
+  <data name="LoginButton" xml:space="preserve">
     <value>Iniciar sesión</value>
   </data>
-
-    <!-- ===== Menu ===== -->
-    <data name="MenuTitle" xml:space="preserve">
+  <data name="MenuTitle" xml:space="preserve">
     <value>Menú principal</value>
   </data>
-    <data name="MenuLogout" xml:space="preserve">
+  <data name="MenuLogout" xml:space="preserve">
     <value>Cerrar sesión</value>
   </data>
-    <data name="MenuReception" xml:space="preserve">
+  <data name="MenuReception" xml:space="preserve">
     <value>Recepción</value>
   </data>
-    <data name="MenuMovements" xml:space="preserve">
+  <data name="MenuMovements" xml:space="preserve">
     <value>Movimientos</value>
   </data>
-    <data name="MenuPicking" xml:space="preserve">
+  <data name="MenuPicking" xml:space="preserve">
     <value>Picking</value>
   </data>
-    <data name="MenuInventory" xml:space="preserve">
+  <data name="MenuInventory" xml:space="preserve">
     <value>Inventario</value>
   </data>
-    <data name="MenuItemInfo" xml:space="preserve">
+  <data name="MenuItemInfo" xml:space="preserve">
     <value>Info. Artículo</value>
   </data>
-    <data name="MenuSettings" xml:space="preserve">
+  <data name="MenuSettings" xml:space="preserve">
     <value>Configuración</value>
   </data>
-
-    <!-- ===== Settings ===== -->
-    <data name="SettingsTitle" xml:space="preserve">
+  <data name="SettingsTitle" xml:space="preserve">
     <value>Ajustes</value>
   </data>
-    <data name="SettingsSectionGeneral" xml:space="preserve">
+  <data name="SettingsSectionGeneral" xml:space="preserve">
     <value>General</value>
   </data>
-    <data name="SettingsActiveUser" xml:space="preserve">
+  <data name="SettingsActiveUser" xml:space="preserve">
     <value>Usuario activo</value>
   </data>
-    <data name="SettingsLanguage" xml:space="preserve">
+  <data name="SettingsLanguage" xml:space="preserve">
     <value>Idioma</value>
   </data>
-    <data name="SettingsTheme" xml:space="preserve">
+  <data name="SettingsTheme" xml:space="preserve">
     <value>Tema visual</value>
   </data>
-    <data name="SettingsDemoMode" xml:space="preserve">
+  <data name="SettingsDemoMode" xml:space="preserve">
     <value>Modo demo</value>
   </data>
-    <data name="SettingsSectionScanner" xml:space="preserve">
+  <data name="SettingsSectionScanner" xml:space="preserve">
     <value>Scanner</value>
   </data>
-    <data name="SettingsScannerType" xml:space="preserve">
+  <data name="SettingsScannerType" xml:space="preserve">
     <value>Tipo de lector</value>
   </data>
-    <data name="SettingsSuccessSound" xml:space="preserve">
+  <data name="SettingsSuccessSound" xml:space="preserve">
     <value>Sonido correcto</value>
   </data>
-    <data name="SettingsSuccessVibration" xml:space="preserve">
+  <data name="SettingsSuccessVibration" xml:space="preserve">
     <value>Vibración correcta</value>
   </data>
-    <data name="SettingsErrorSound" xml:space="preserve">
+  <data name="SettingsErrorSound" xml:space="preserve">
     <value>Sonido error</value>
   </data>
-    <data name="SettingsTestScanner" xml:space="preserve">
+  <data name="SettingsTestScanner" xml:space="preserve">
     <value>Probar lector</value>
   </data>
-    <data name="SettingsSectionServer" xml:space="preserve">
+  <data name="SettingsSectionServer" xml:space="preserve">
     <value>Servidor / Entorno</value>
   </data>
-    <data name="SettingsEnvironment" xml:space="preserve">
+  <data name="SettingsEnvironment" xml:space="preserve">
     <value>Entorno</value>
   </data>
-    <data name="SettingsServerUrl" xml:space="preserve">
+  <data name="SettingsServerUrl" xml:space="preserve">
     <value>URL servidor</value>
   </data>
-    <data name="SettingsTimeout" xml:space="preserve">
+  <data name="SettingsTimeout" xml:space="preserve">
     <value>Timeout (seg)</value>
   </data>
-    <data name="SettingsTestConnection" xml:space="preserve">
+  <data name="SettingsTestConnection" xml:space="preserve">
     <value>Probar conexión</value>
   </data>
-    <data name="SettingsSectionAbout" xml:space="preserve">
+  <data name="SettingsSectionAbout" xml:space="preserve">
     <value>Acerca de</value>
   </data>
-    <data name="SettingsVersion" xml:space="preserve">
+  <data name="SettingsVersion" xml:space="preserve">
     <value>Versión</value>
   </data>
-    <data name="SettingsUser" xml:space="preserve">
+  <data name="SettingsUser" xml:space="preserve">
     <value>Usuario</value>
   </data>
-    <data name="SettingsSave" xml:space="preserve">
+  <data name="SettingsSave" xml:space="preserve">
     <value>Guardar</value>
   </data>
-    <data name="SettingsRestoreDefaults" xml:space="preserve">
+  <data name="SettingsRestoreDefaults" xml:space="preserve">
     <value>Restaurar valores</value>
   </data>
-
-    <!-- ===== Errors ===== -->
-    <data name="Msg_TestErrorConnection" xml:space="preserve">
+  <data name="Msg_TestErrorConnection" xml:space="preserve">
     <value>No se pudo conectar al servidor. Compruebe la URL e inténtelo de nuevo.</value>
   </data>
-    <data name="ErrorInvalidUrl" xml:space="preserve">
+  <data name="ErrorInvalidUrl" xml:space="preserve">
     <value>URL del servidor no válida. Introduzca una dirección http o https válida.</value>
   </data>
-    <data name="ErrorTimeoutInvalid" xml:space="preserve">
+  <data name="ErrorTimeoutInvalid" xml:space="preserve">
     <value>El tiempo de espera debe ser mayor que 0.</value>
   </data>
-    <data name="ErrorScannerTestFailed" xml:space="preserve">
+  <data name="ErrorScannerTestFailed" xml:space="preserve">
     <value>La prueba del lector ha fallado. Compruebe el dispositivo e inténtelo de nuevo.</value>
   </data>
-    <data name="ErrorUnexpected" xml:space="preserve">
+  <data name="ErrorUnexpected" xml:space="preserve">
     <value>Se ha producido un error inesperado. Inténtelo de nuevo.</value>
   </data>
-    <data name="ErrorInvalidCredentials" xml:space="preserve">
+  <data name="ErrorInvalidCredentials" xml:space="preserve">
     <value>Usuario o contraseña incorrectos.</value>
   </data>
-    <data name="ErrorUnexpectedAuth" xml:space="preserve">
+  <data name="ErrorUnexpectedAuth" xml:space="preserve">
     <value>Se ha producido un error inesperado durante la autenticación. Inténtelo de nuevo.</value>
+  </data>
+  <data name="ThemeLight" xml:space="preserve">
+    <value>Claro</value>
+  </data>
+  <data name="ThemeDark" xml:space="preserve">
+    <value>Oscuro</value>
+  </data>
+  <data name="ScannerInternal" xml:space="preserve">
+    <value>Interno</value>
+  </data>
+  <data name="ScannerExternal" xml:space="preserve">
+    <value>Externo</value>
+  </data>
+  <data name="EnvironmentDemo" xml:space="preserve">
+    <value>Demo</value>
+  </data>
+  <data name="EnvironmentProduction" xml:space="preserve">
+    <value>Producción</value>
   </data>
 </root>

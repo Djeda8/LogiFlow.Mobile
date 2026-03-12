@@ -13,12 +13,12 @@ namespace LogiFlow.Mobile.DTOs
         /// <summary>
         /// Gets or sets the application language code (e.g. "en", "es").
         /// </summary>
-        public string Idioma { get; set; } = "Español";
+        public string Idioma { get; set; } = "en";
 
         /// <summary>
-        /// Gets or sets the visual theme (e.g. "Claro", "Oscuro").
+        /// Gets or sets the visual theme (e.g. "light", "dark").
         /// </summary>
-        public string TemaVisual { get; set; } = "Claro";
+        public string TemaVisual { get; set; } = "light";
 
         /// <summary>
         /// Gets or sets a value indicating whether demo mode is enabled.
@@ -26,9 +26,9 @@ namespace LogiFlow.Mobile.DTOs
         public bool ModoDemo { get; set; } = true;
 
         /// <summary>
-        /// Gets or sets the scanner device type.
+        /// Gets or sets the scanner device type (e.g. "internal", "external").
         /// </summary>
-        public string TipoLector { get; set; } = "Interno";
+        public string TipoLector { get; set; } = "internal";
 
         /// <summary>
         /// Gets or sets a value indicating whether the success sound is enabled.
@@ -46,9 +46,9 @@ namespace LogiFlow.Mobile.DTOs
         public bool SonidoError { get; set; } = true;
 
         /// <summary>
-        /// Gets or sets the server environment (e.g. "DEMO", "Producción").
+        /// Gets or sets the server environment (e.g. "demo", "production").
         /// </summary>
-        public string EntornoServidor { get; set; } = "DEMO";
+        public string EntornoServidor { get; set; } = "demo";
 
         /// <summary>
         /// Gets or sets the server URL.

@@ -247,4 +247,24 @@
     <data name="ErrorUnexpectedAuth" xml:space="preserve">
     <value>An unexpected error occurred during authentication. Please try again.</value>
   </data>
+
+    <!-- ===== Settings Lists ===== -->
+    <data name="ThemeLight" xml:space="preserve">
+  <value>Light</value>
+</data>
+    <data name="ThemeDark" xml:space="preserve">
+  <value>Dark</value>
+</data>
+    <data name="ScannerInternal" xml:space="preserve">
+  <value>Internal</value>
+</data>
+    <data name="ScannerExternal" xml:space="preserve">
+  <value>External</value>
+</data>
+    <data name="EnvironmentDemo" xml:space="preserve">
+  <value>Demo</value>
+</data>
+    <data name="EnvironmentProduction" xml:space="preserve">
+  <value>Production</value>
+</data>
 </root>

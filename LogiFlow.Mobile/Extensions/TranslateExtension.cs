@@ -1,3 +1,4 @@
+using System.Diagnostics.CodeAnalysis;
 using LogiFlow.Mobile.Services.Interfaces;
 
 namespace LogiFlow.Mobile.Extensions
@@ -41,6 +42,7 @@ namespace LogiFlow.Mobile.Extensions
         }
 
         /// <inheritdoc/>
+        [ExcludeFromCodeCoverage]
         object IMarkupExtension.ProvideValue(IServiceProvider serviceProvider)
             => ProvideValue(serviceProvider);
     }

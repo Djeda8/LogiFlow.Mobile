@@ -29,7 +29,7 @@ public class ScanService : IScanService
             await Task.Delay(500);
 
             // Simulation: internal scanner always succeeds, external scanner has 50% failure rate
-            var result = tipoLector == "Interno" || new Random().Next(0, 2) == 0;
+            var result = tipoLector == "internal" || new Random().Next(0, 2) == 0;
 
             if (result)
             {

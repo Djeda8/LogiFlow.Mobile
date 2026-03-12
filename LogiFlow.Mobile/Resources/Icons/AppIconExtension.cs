@@ -1,8 +1,11 @@
+using System.Diagnostics.CodeAnalysis;
+
 namespace LogiFlow.Mobile.Resources.Icons
 {
     /// <summary>
     /// XAML markup extension that provides a <see cref="FontImageSource"/> for Material Symbols icons.
     /// </summary>
+    [ExcludeFromCodeCoverage]
     [AcceptEmptyServiceProvider]
     [ContentProperty(nameof(Icon))]
     public class AppIconExtension : IMarkupExtension<ImageSource>
@@ -35,6 +38,7 @@ namespace LogiFlow.Mobile.Resources.Icons
         }
 
         /// <inheritdoc/>
+        [ExcludeFromCodeCoverage]
         object IMarkupExtension.ProvideValue(IServiceProvider serviceProvider)
             => ProvideValue(serviceProvider);
     }
