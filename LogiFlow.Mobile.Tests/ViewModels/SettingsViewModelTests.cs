@@ -16,6 +16,7 @@ public class SettingsViewModelTests
     private readonly Mock<ILogService> _logServiceMock;
     private readonly Mock<IErrorHandlerService> _errorHandlerServiceMock;
     private readonly Mock<ISettingsDisplayService> _settingsDisplayServiceMock;
+    private readonly Mock<IThemeService> _themeServiceMock;
     private readonly SettingsViewModel _viewModel;
 
     public SettingsViewModelTests()
@@ -28,6 +29,7 @@ public class SettingsViewModelTests
         _logServiceMock = new Mock<ILogService>();
         _errorHandlerServiceMock = new Mock<IErrorHandlerService>();
         _settingsDisplayServiceMock = new Mock<ISettingsDisplayService>();
+        _themeServiceMock = new Mock<IThemeService>();
 
         _settingsServiceMock
             .Setup(x => x.LoadSettings())
@@ -49,7 +51,8 @@ public class SettingsViewModelTests
             _localizationServiceMock.Object,
             _logServiceMock.Object,
             _errorHandlerServiceMock.Object,
-            _settingsDisplayServiceMock.Object);
+            _settingsDisplayServiceMock.Object,
+            _themeServiceMock.Object);
     }
 
     [Fact]
@@ -299,7 +302,8 @@ public class SettingsViewModelTests
             _localizationServiceMock.Object,
             _logServiceMock.Object,
             _errorHandlerServiceMock.Object,
-            _settingsDisplayServiceMock.Object);
+            _settingsDisplayServiceMock.Object,
+            _themeServiceMock.Object);
 
         // Act
         viewModel.LoadSettings();
@@ -324,7 +328,8 @@ public class SettingsViewModelTests
             _localizationServiceMock.Object,
             _logServiceMock.Object,
             _errorHandlerServiceMock.Object,
-            _settingsDisplayServiceMock.Object);
+            _settingsDisplayServiceMock.Object,
+            _themeServiceMock.Object);
 
         // Act
         viewModel.LoadSettings();
@@ -440,5 +445,63 @@ public class SettingsViewModelTests
         _localizationServiceMock.Verify(
             x => x.SetLanguage("en"),
             Times.Once);
+    }
+
+    [Fact]
+    public void OnSelectedThemeChanged_WithDarkTheme_CallsApplyThemeDark()
+    {
+        // Arrange
+        _viewModel.LoadSettings();
+
+        // Act
+        _viewModel.SelectedTheme = _viewModel.AvailableThemes
+            .First(x => x.Code == "dark");
+
+        // Assert
+        _themeServiceMock.Verify(
+            x => x.ApplyTheme("dark"),
+            Times.Once);
+    }
+
+    [Fact]
+    public void OnSelectedThemeChanged_WithLightTheme_CallsApplyThemeLight()
+    {
+        // Arrange
+        _viewModel.LoadSettings();
+
+        // Act
+        _viewModel.SelectedTheme = _viewModel.AvailableThemes
+            .First(x => x.Code == "light");
+
+        // Assert
+        _themeServiceMock.Verify(
+            x => x.ApplyTheme("light"),
+            Times.Once);
+    }
+
+    [Fact]
+    public void OnSelectedThemeChanged_WithDarkTheme_UpdatesSettingsTemaVisual()
+    {
+        // Arrange
+        _viewModel.LoadSettings();
+
+        // Act
+        _viewModel.SelectedTheme = _viewModel.AvailableThemes
+            .First(x => x.Code == "dark");
+
+        // Assert
+        Assert.Equal("dark", _viewModel.Settings.TemaVisual);
+    }
+
+    [Fact]
+    public void OnSelectedThemeChanged_WithNullValue_DoesNotCallApplyTheme()
+    {
+        // Act
+        _viewModel.SelectedTheme = null;
+
+        // Assert
+        _themeServiceMock.Verify(
+            x => x.ApplyTheme(It.IsAny<string>()),
+            Times.Never);
     }
 }

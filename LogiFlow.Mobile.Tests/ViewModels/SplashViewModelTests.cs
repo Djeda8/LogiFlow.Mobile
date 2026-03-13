@@ -12,6 +12,7 @@ public class SplashViewModelTests
     private readonly Mock<ILogService> _logServiceMock;
     private readonly Mock<ISettingsService> _settingsServiceMock;
     private readonly Mock<ILocalizationService> _localizationServiceMock;
+    private readonly Mock<IThemeService> _themeServiceMock;
 
     private readonly SplashViewModel _viewModel;
 
@@ -22,6 +23,7 @@ public class SplashViewModelTests
         _logServiceMock = new Mock<ILogService>();
         _settingsServiceMock = new Mock<ISettingsService>();
         _localizationServiceMock = new Mock<ILocalizationService>();
+        _themeServiceMock = new Mock<IThemeService>();
 
         _settingsServiceMock
             .Setup(x => x.LoadSettings())
@@ -32,7 +34,8 @@ public class SplashViewModelTests
             _sessionServiceMock.Object,
             _logServiceMock.Object,
             _settingsServiceMock.Object,
-            _localizationServiceMock.Object);
+            _localizationServiceMock.Object,
+            _themeServiceMock.Object);
     }
 
     [Fact]

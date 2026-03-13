@@ -99,6 +99,9 @@
         <MauiXaml Update="Resources\Styles\Buttons.xaml">
             <Generator>MSBuild:Compile</Generator>
         </MauiXaml>
+        <MauiXaml Update="Resources\Styles\DarkColors.xaml">
+          <Generator>MSBuild:Compile</Generator>
+        </MauiXaml>
         <MauiXaml Update="Resources\Styles\Entries.xaml">
             <Generator>MSBuild:Compile</Generator>
         </MauiXaml>

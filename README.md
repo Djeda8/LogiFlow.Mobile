@@ -5,8 +5,8 @@
 ![Platform](https://img.shields.io/badge/platform-Android-green)
 ![.NET](https://img.shields.io/badge/.NET-9.0-purple)
 ![MAUI](https://img.shields.io/badge/MAUI-9.0-blue)
-![Tests](https://img.shields.io/badge/tests-151%20passing-brightgreen)
-![Coverage](https://img.shields.io/badge/coverage-85%25-brightgreen)
+![Tests](https://img.shields.io/badge/tests-205%20passing-brightgreen)
+![Coverage](https://img.shields.io/badge/coverage-95%25-brightgreen)
 ![License](https://img.shields.io/badge/license-MIT-blue)
 
 ## Overview
@@ -80,12 +80,13 @@ LogiFlow.Mobile/
 | Serilog | Structured logging |
 | xUnit + Moq | Unit testing |
 | coverlet | Code coverage |
+| CommunityToolkit.MAUI | UI components and behaviors |
 
 ## CI/CD Pipeline
 
 Every push to `main` automatically:
 
-1. ✅ Runs 151 unit tests
+1. ✅ Runs 205 unit tests
 2. ✅ Builds the Android APK in Release mode
 3. ✅ Distributes to testers via Firebase App Distribution
 
@@ -125,6 +126,8 @@ The app follows a strict Design System for consistency across all modules:
 - **Icons**: Material Icons Outlined
 
 Designed for industrial environments with large touch targets (min 48px), high contrast, and clear visual feedback for all states.
+
+**Theme support**: Full dark/light mode with runtime switching. User preference persisted across sessions. Theme selector available in Settings screen.
 
 ## License
 
