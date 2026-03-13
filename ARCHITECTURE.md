@@ -199,7 +199,41 @@ Centralized XAML styles in `Resources/Styles/` following a Design System defined
 
 ---
 
-## 10. How to Add a New Module
+## 10. Theme System
+
+### Decision
+Runtime dark/light theme switching using swappable `ResourceDictionary` instances.
+
+### Style files
+| File | Contents |
+|------|----------|
+| `LightColors.xaml` | Light theme color palette |
+| `DarkColors.xaml` | Dark theme color palette |
+
+Both files expose identical semantic keys so all styles resolve correctly in either theme.
+
+### How it works
+1. `IThemeService.ApplyTheme(code)` removes the active color dictionary from `Application.Current.Resources.MergedDictionaries` and adds the new one
+2. All style properties use `DynamicResource` — controls update automatically without page reload
+3. On startup, `SplashViewModel.StartAsync()` reads `Settings.TemaVisual` and calls `ApplyTheme()` before navigation
+4. Theme selection is persisted via `ISettingsService` alongside other user settings
+
+### Why not MAUI AppTheme
+- `AppTheme` only supports system-level light/dark, not user-controlled switching
+- Custom solution gives full control over colors and allows the same pattern as `ILocalizationService`
+
+### Platform notes
+- `Entry` placeholder color on Android requires a custom `ThemedEntryHandler` — native Android does not respect `DynamicResource` for hint text color
+- Placeholder color is applied on control creation, not in real-time on theme change (planned for a future PR)
+
+### Design principles
+- Semantic keys only — no hardcoded hex values in style files
+- New semantic keys added: `PageBackground`, `CardBackground`, `EntryBackground`, `ErrorEntryBackground`
+- All pages set `BackgroundColor="{DynamicResource PageBackground}"` explicitly
+
+---
+
+## 11. How to Add a New Module
 
 Follow these steps to add a new module (e.g. `Reception`):
 

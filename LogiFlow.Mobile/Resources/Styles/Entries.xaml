@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8" ?>
 <ResourceDictionary xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
                     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
 
@@ -6,8 +6,8 @@
     <Style x:Key="PrimaryEntryStyle" TargetType="Entry">
         <Setter Property="FontFamily" Value="{StaticResource AppFontFamily}" />
         <Setter Property="FontSize" Value="16" />
-        <Setter Property="TextColor" Value="{StaticResource PrimaryText}" />
-        <Setter Property="BackgroundColor" Value="{StaticResource LightPrimary}" />
+        <Setter Property="TextColor" Value="{DynamicResource PrimaryText}" />
+        <Setter Property="BackgroundColor" Value="{DynamicResource EntryBackground}" />
         <Setter Property="HeightRequest" Value="48" />
         <Setter Property="Margin" Value="0,0,0,0" />
         <Setter Property="HorizontalOptions" Value="Fill" />
@@ -16,7 +16,18 @@
     <!-- Entry con error -->
     <Style x:Key="ErrorEntryStyle" TargetType="Entry" BasedOn="{StaticResource PrimaryEntryStyle}">
         <Setter Property="TextColor" Value="{StaticResource ErrorColor}"/>
-        <Setter Property="BackgroundColor" Value="#FEE2E2" />
+        <Setter Property="BackgroundColor" Value="{DynamicResource ErrorEntryBackground}" />
+    </Style>
+
+    <Style TargetType="Picker">
+        <Setter Property="TextColor" Value="{DynamicResource PrimaryText}" />
+        <Setter Property="TitleColor" Value="{DynamicResource SecondaryText}" />
+        <Setter Property="BackgroundColor" Value="{DynamicResource EntryBackground}" />
+    </Style>
+
+    <Style TargetType="Switch">
+        <Setter Property="OnColor" Value="{DynamicResource PrimaryColor}" />
+        <Setter Property="ThumbColor" Value="{DynamicResource IconTextDefault}" />
     </Style>
 
 </ResourceDictionary>

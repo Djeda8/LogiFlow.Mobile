@@ -7,6 +7,7 @@
              xmlns:local="clr-namespace:LogiFlow.Mobile.Extensions"
              x:DataType="vm:SettingsViewModel"
              NavigationPage.HasNavigationBar="False"
+             BackgroundColor="{DynamicResource PageBackground}"
              Title="{local:Translate Key=SettingsTitle}">
 
     <Grid Padding="24" RowSpacing="16">

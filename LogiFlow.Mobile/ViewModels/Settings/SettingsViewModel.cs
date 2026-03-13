@@ -23,6 +23,7 @@ public partial class SettingsViewModel : BaseViewModel
     private readonly ILogService _logService;
     private readonly IErrorHandlerService _errorHandlerService;
     private readonly ISettingsDisplayService _settingsDisplayService;
+    private readonly IThemeService _themeService;
 
     [ObservableProperty]
     private SettingsDto _settings = new();
@@ -59,6 +60,7 @@ public partial class SettingsViewModel : BaseViewModel
     /// <param name="logService">The logging service.</param>
     /// <param name="errorHandlerService">The error handler service.</param>
     /// <param name="settingsDisplayService">The settings display service.</param>
+    /// <param name="themeService">The theme service.</param>
     public SettingsViewModel(
         ISettingsService settingsService,
         IScanService scanService,
@@ -67,7 +69,8 @@ public partial class SettingsViewModel : BaseViewModel
         ILocalizationService localizationService,
         ILogService logService,
         IErrorHandlerService errorHandlerService,
-        ISettingsDisplayService settingsDisplayService)
+        ISettingsDisplayService settingsDisplayService,
+        IThemeService themeService)
     {
         _settingsService = settingsService;
         _scanService = scanService;
@@ -81,6 +84,7 @@ public partial class SettingsViewModel : BaseViewModel
         _localizationService.LanguageChanged += OnLanguageChanged;
 
         _logService.Info("SettingsViewModel initialized. Current URL={Url}, Timeout={Timeout}", Settings.UrlServidor, Settings.Timeout);
+        _themeService = themeService;
     }
 
     /// <summary>
@@ -283,19 +287,26 @@ public partial class SettingsViewModel : BaseViewModel
     partial void OnSelectedThemeChanged(SettingsOption? value)
     {
         if (value is not null)
+        {
             Settings.TemaVisual = value.Code;
+            _themeService.ApplyTheme(value.Code);
+        }
     }
 
     partial void OnSelectedScannerTypeChanged(SettingsOption? value)
     {
         if (value is not null)
+        {
             Settings.TipoLector = value.Code;
+        }
     }
 
     partial void OnSelectedEnvironmentChanged(SettingsOption? value)
     {
         if (value is not null)
+        {
             Settings.EntornoServidor = value.Code;
+        }
     }
 
     private void LoadStaticLists()

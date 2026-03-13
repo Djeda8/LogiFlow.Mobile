@@ -66,6 +66,7 @@ namespace LogiFlow.Mobile
             builder.Services.AddSingleton<IErrorHandlerService, ErrorHandlerService>();
             builder.Services.AddSingleton<INavigationWindowService, NavigationWindowService>();
             builder.Services.AddSingleton<INavigationService, NavigationService>();
+            builder.Services.AddSingleton<IThemeService, ThemeService>();
             builder.Services.AddSingleton<ISettingsDisplayService, SettingsDisplayService>();
             builder.Services.AddSingleton<IPreferencesService, PreferencesService>();
             builder.Services.AddSingleton<ISettingsService, SettingsService>();

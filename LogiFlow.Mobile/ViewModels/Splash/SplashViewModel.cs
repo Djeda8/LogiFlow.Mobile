@@ -13,6 +13,7 @@ namespace LogiFlow.Mobile.ViewModels.Splash
         private readonly ILogService _logService;
         private readonly ISettingsService _settingsService;
         private readonly ILocalizationService _localizationService;
+        private readonly IThemeService _themeService;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="SplashViewModel"/> class.
@@ -22,13 +23,15 @@ namespace LogiFlow.Mobile.ViewModels.Splash
         /// <param name="logService">The logging service.</param>
         /// <param name="settingsService">The settings persistence service.</param>
         /// <param name="localizationService">The localization service.</param>
-        public SplashViewModel(INavigationService navigationService, ISessionService sessionService, ILogService logService, ISettingsService settingsService, ILocalizationService localizationService)
+        /// <param name="themeService">The theme service.</param>
+        public SplashViewModel(INavigationService navigationService, ISessionService sessionService, ILogService logService, ISettingsService settingsService, ILocalizationService localizationService, IThemeService themeService)
         {
             _navigationService = navigationService;
             _sessionService = sessionService;
             _logService = logService;
             _settingsService = settingsService;
             _localizationService = localizationService;
+            _themeService = themeService;
         }
 
         /// <summary>
@@ -47,6 +50,7 @@ namespace LogiFlow.Mobile.ViewModels.Splash
                 // Cargar idioma guardado
                 var settings = _settingsService.LoadSettings();
                 _localizationService.SetLanguage(settings.Idioma);
+                _themeService.ApplyTheme(settings.TemaVisual);
 
                 if (_sessionService.HasActiveSession())
                 {
