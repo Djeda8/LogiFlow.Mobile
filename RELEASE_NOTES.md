@@ -1,3 +1,9 @@
+## v1.0.18 - Theme visual refinements
+- Entry underline color adapts to active theme (normal and focus states)
+- Entry borders standardized with EntryBorderStyle
+- Logo and menu icons now use DynamicResource for theme-aware colors
+- IThemeService exposes CurrentTheme property
+
 ## v1.0.17 - Theme improvements
 - Entry placeholder color now follows the active theme
 - Switch thumb color updated to AccentColor for better visibility in both themes

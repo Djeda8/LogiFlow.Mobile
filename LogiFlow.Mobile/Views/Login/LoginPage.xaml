@@ -23,22 +23,20 @@
         <Label Grid.Row="0" HorizontalOptions="Center" VerticalOptions="Center">
             <Label.FormattedText>
                 <FormattedString>
-                    <Span Text="Logi" FontAttributes="None" FontSize="32" TextColor="{StaticResource PrimaryColor}" />
-                    <Span Text="Flow" FontAttributes="Bold" FontSize="36" TextColor="{StaticResource PrimaryColor}" />
+                    <Span Text="Logi" FontAttributes="None" FontSize="32" TextColor="{DynamicResource PrimaryColor}" />
+                    <Span Text="Flow" FontAttributes="Bold" FontSize="36" TextColor="{DynamicResource PrimaryColor}" />
                 </FormattedString>
             </Label.FormattedText>
         </Label>
 
         <!-- ========== Username ========== -->
         <Border Grid.Row="1"
-                Stroke="{StaticResource Divider}"
-                StrokeThickness="1.5"
-                StrokeShape="RoundRectangle 8">
+                Style="{StaticResource EntryBorderStyle}">
             <Border.Triggers>
                 <DataTrigger TargetType="Border"
                      Binding="{Binding UsernameHasError}"
                      Value="True">
-                    <Setter Property="Stroke" Value="{StaticResource ErrorColor}"/>
+                    <Setter Property="Stroke" Value="{DynamicResource ErrorColor}"/>
                 </DataTrigger>
             </Border.Triggers>
             <Grid ColumnSpacing="0">
@@ -57,14 +55,12 @@
 
         <!-- ========== Password ========== -->
         <Border Grid.Row="2"
-                Stroke="{StaticResource Divider}"
-                StrokeThickness="1.5"
-                StrokeShape="RoundRectangle 8">
+                Style="{StaticResource EntryBorderStyle}">
             <Border.Triggers>
                 <DataTrigger TargetType="Border"
                      Binding="{Binding PasswordHasError}"
                      Value="True">
-                    <Setter Property="Stroke" Value="{StaticResource ErrorColor}"/>
+                    <Setter Property="Stroke" Value="{DynamicResource ErrorColor}"/>
                 </DataTrigger>
             </Border.Triggers>
             <Grid ColumnSpacing="0">

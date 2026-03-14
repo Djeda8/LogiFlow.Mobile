@@ -7,7 +7,7 @@
         <Setter Property="FontFamily" Value="{StaticResource AppFontFamily}" />
         <Setter Property="FontSize" Value="16" />
         <Setter Property="TextColor" Value="{DynamicResource PrimaryText}" />
-        <Setter Property="BackgroundColor" Value="{DynamicResource LightPrimary}" />
+        <!--<Setter Property="BackgroundColor" Value="Transparent" />-->
         <Setter Property="PlaceholderColor" Value="{DynamicResource SecondaryText}" />
         <Setter Property="HeightRequest" Value="48" />
         <Setter Property="Margin" Value="0,0,0,0" />
@@ -17,7 +17,7 @@
     <!-- Entry con error -->
     <Style x:Key="ErrorEntryStyle" TargetType="Entry" BasedOn="{StaticResource PrimaryEntryStyle}">
         <Setter Property="TextColor" Value="{StaticResource ErrorColor}"/>
-        <Setter Property="BackgroundColor" Value="{DynamicResource ErrorEntryBackground}" />
+        <!--<Setter Property="BackgroundColor" Value="Transparent" />-->
     </Style>
 
     <Style TargetType="Picker">
@@ -29,6 +29,16 @@
     <Style TargetType="Switch">
         <Setter Property="OnColor" Value="{DynamicResource PrimaryColor}" />
         <Setter Property="ThumbColor" Value="{DynamicResource AccentColor}" />
+    </Style>
+
+    <Style x:Key="EntryBorderStyle" TargetType="Border">
+        <Setter Property="BackgroundColor" Value="{DynamicResource LightPrimary}" />
+        <Setter Property="Stroke" Value="{DynamicResource Divider}" />
+        <Setter Property="StrokeThickness" Value="1" />
+        <Setter Property="Padding" Value="8,0" />
+        <Setter Property="StrokeShape">
+            <RoundRectangle CornerRadius="8" />
+        </Setter>
     </Style>
 
 </ResourceDictionary>

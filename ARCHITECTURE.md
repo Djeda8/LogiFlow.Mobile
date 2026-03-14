@@ -223,8 +223,11 @@ Both files expose identical semantic keys so all styles resolve correctly in eit
 - Custom solution gives full control over colors and allows the same pattern as `ILocalizationService`
 
 ### Platform notes
-- `Entry` placeholder color on Android requires a custom `ThemedEntryHandler` — native Android does not respect `DynamicResource` for hint text color
-- Placeholder color is applied on control creation, not in real-time on theme change (planned for a future PR)
+- `Entry` placeholder color uses `PlaceholderColor="{DynamicResource SecondaryText}"` in `PrimaryEntryStyle` — updates correctly on theme change
+- `Entry` underline color on Android is controlled via `EntryHandler.Mapper.AppendToMapping` in `MauiProgram.cs`, applying theme-aware colors for normal and focus states — applied on control creation, not in real-time on theme change
+- `Entry` fields are wrapped in `EntryBorderStyle` borders for consistent theming of background and stroke colors
+- `FontImageSource` and `Span` elements use `DynamicResource` for theme-aware color updates
+- Icons using `AppIconExtension` are resolved once on page creation — color is correct at startup but does not update in real-time on theme change (planned for a future PR)
 
 ### Design principles
 - Semantic keys only — no hardcoded hex values in style files
