@@ -165,6 +165,7 @@ public partial class SettingsViewModel : BaseViewModel
         _logService.Info("Settings restored to defaults by user={User}", Settings.UsuarioActivo);
         Settings = _settingsService.GetDefaultSettings();
         InitializeSelectedLanguage();
+        InitializeSelectedTheme();
         ClearAllErrors();
     }
 
@@ -282,6 +283,11 @@ public partial class SettingsViewModel : BaseViewModel
             "es" => "Español",
             _ => "English",
         };
+    }
+
+    private void InitializeSelectedTheme()
+    {
+        SelectedTheme = AvailableThemes.FirstOrDefault(x => x.Code == Settings.TemaVisual);
     }
 
     partial void OnSelectedThemeChanged(SettingsOption? value)

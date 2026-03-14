@@ -25,8 +25,7 @@
     <!-- Theming semántico -->
     <Color x:Key="PageBackground">#F3F4F6</Color>
     <Color x:Key="CardBackground">#FFFFFF</Color>
-    <Color x:Key="EntryBackground">#EEF2FF</Color>
     <Color x:Key="ErrorEntryBackground">#FEE2E2</Color>
-    
+
 </ResourceDictionary>
 

@@ -127,7 +127,7 @@ The app follows a strict Design System for consistency across all modules:
 
 Designed for industrial environments with large touch targets (min 48px), high contrast, and clear visual feedback for all states.
 
-**Theme support**: Full dark/light mode with runtime switching. User preference persisted across sessions. Theme selector available in Settings screen.
+**Theme support**: Full dark/light mode with runtime switching. User preference persisted across sessions. Theme selector available in Settings screen. Placeholder and control colors adapt to active theme.
 
 ## License
 
