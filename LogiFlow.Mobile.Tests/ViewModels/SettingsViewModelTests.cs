@@ -139,6 +139,7 @@ public class SettingsViewModelTests
     public void RestoreDefaults_ResetsSettings()
     {
         // Arrange
+        _viewModel.LoadSettings();
         _viewModel.Settings.UrlServidor = "https://custom.server.com";
         _viewModel.Settings.Timeout = 99;
 
@@ -150,6 +151,8 @@ public class SettingsViewModelTests
         Assert.False(_viewModel.HasError);
         Assert.False(_viewModel.UrlServidorHasError);
         Assert.False(_viewModel.TimeoutHasError);
+        Assert.Equal("light", _viewModel.SelectedTheme?.Code);
+        _themeServiceMock.Verify(x => x.ApplyTheme("light"), Times.Once);
     }
 
     [Fact]

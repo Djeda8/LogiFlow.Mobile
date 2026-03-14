@@ -1,10 +1,14 @@
+## v1.0.17 - Theme improvements
+- Entry placeholder color now follows the active theme
+- Switch thumb color updated to AccentColor for better visibility in both themes
+- Restore Defaults now correctly resets the theme selector and applies light theme
+
 ## v1.0.16 - Dark / Light Theme
 - Full dark and light theme support with runtime switching
 - Theme selector added to Settings screen
 - Theme preference persisted across app sessions
 - Semantic color system refactored into LightColors.xaml and DarkColors.xaml
 - All style files updated to DynamicResource for live theme updates
-- Android Entry placeholder color adapted via custom ThemedEntryHandler
 
 ## v1.0.15 - Tester communications
 - Release notes now managed via RELEASE_NOTES.md for full control over tester communications
