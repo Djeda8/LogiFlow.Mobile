@@ -9,8 +9,13 @@ namespace LogiFlow.Mobile.Services.Implementations;
 public class ThemeService : IThemeService
 {
     /// <inheritdoc/>
+    public string CurrentTheme { get; private set; } = "light";
+
+    /// <inheritdoc/>
     public void ApplyTheme(string themeCode)
     {
+        CurrentTheme = themeCode;
+
         var mergedDictionaries = Application.Current?.Resources.MergedDictionaries;
         if (mergedDictionaries is null) return;
 

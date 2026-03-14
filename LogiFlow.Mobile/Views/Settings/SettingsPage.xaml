@@ -24,8 +24,8 @@
             <Label>
                 <Label.FormattedText>
                     <FormattedString>
-                        <Span Text="Logi" FontSize="28" TextColor="{StaticResource PrimaryColor}" />
-                        <Span Text="Flow" FontSize="32" FontAttributes="Bold" TextColor="{StaticResource PrimaryColor}" />
+                        <Span Text="Logi" FontSize="28" TextColor="{DynamicResource PrimaryColor}" />
+                        <Span Text="Flow" FontSize="32" FontAttributes="Bold" TextColor="{DynamicResource PrimaryColor}" />
                     </FormattedString>
                 </Label.FormattedText>
             </Label>
@@ -156,20 +156,20 @@
                         <Picker ItemsSource="{Binding ServerEnvironments}" SelectedItem="{Binding SelectedEnvironment}" ItemDisplayBinding="{Binding DisplayName}"/>
 
                         <Label Text="{local:Translate Key=SettingsServerUrl}" Style="{StaticResource FieldLabelStyle}" />
-                        <Border Stroke="{StaticResource Divider}" StrokeThickness="1.5" StrokeShape="RoundRectangle 8">
+                        <Border Style="{StaticResource EntryBorderStyle}">
                             <Border.Triggers>
                                 <DataTrigger TargetType="Border" Binding="{Binding UrlServidorHasError}" Value="True">
-                                    <Setter Property="Stroke" Value="{StaticResource ErrorColor}"/>
+                                    <Setter Property="Stroke" Value="{DynamicResource ErrorColor}"/>
                                 </DataTrigger>
                             </Border.Triggers>
                             <Entry Text="{Binding Settings.UrlServidor}" Style="{StaticResource PrimaryEntryStyle}" />
                         </Border>
 
                         <Label Text="{local:Translate Key=SettingsTimeout}" Style="{StaticResource FieldLabelStyle}" />
-                        <Border Stroke="{StaticResource Divider}" StrokeThickness="1.5" StrokeShape="RoundRectangle 8">
+                        <Border Style="{StaticResource EntryBorderStyle}">
                             <Border.Triggers>
                                 <DataTrigger TargetType="Border" Binding="{Binding TimeoutHasError}" Value="True">
-                                    <Setter Property="Stroke" Value="{StaticResource ErrorColor}"/>
+                                    <Setter Property="Stroke" Value="{DynamicResource ErrorColor}"/>
                                 </DataTrigger>
                             </Border.Triggers>
                             <Entry Text="{Binding Settings.Timeout}" Keyboard="Numeric" Style="{StaticResource PrimaryEntryStyle}" />

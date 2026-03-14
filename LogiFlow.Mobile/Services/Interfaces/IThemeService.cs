@@ -6,6 +6,11 @@ namespace LogiFlow.Mobile.Services.Interfaces;
 public interface IThemeService
 {
     /// <summary>
+    /// Gets the current theme code.
+    /// </summary>
+    string CurrentTheme { get; }
+
+    /// <summary>
     /// Applies the theme corresponding to the given code.
     /// </summary>
     /// <param name="themeCode">Theme code: "light" or "dark".</param>

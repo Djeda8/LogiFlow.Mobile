@@ -30,8 +30,8 @@
             <Label>
                 <Label.FormattedText>
                     <FormattedString>
-                        <Span Text="Logi" FontSize="28" TextColor="{StaticResource PrimaryColor}" />
-                        <Span Text="Flow" FontSize="32" FontAttributes="Bold" TextColor="{StaticResource PrimaryColor}" />
+                        <Span Text="Logi" FontSize="28" TextColor="{DynamicResource PrimaryColor}" />
+                        <Span Text="Flow" FontSize="32" FontAttributes="Bold" TextColor="{DynamicResource PrimaryColor}" />
                     </FormattedString>
                 </Label.FormattedText>
             </Label>
@@ -67,7 +67,7 @@
                                         <FontImageSource
                                             Glyph="{Binding Icon, Converter={StaticResource IconGlyphConverter}}"
                                             FontFamily="MaterialIconsOutlined"
-                                            Color="{StaticResource PrimaryColor}"
+                                            Color="{DynamicResource PrimaryColor}"
                                             Size="24"/>
                                     </Image.Source>
                                 </Image>
