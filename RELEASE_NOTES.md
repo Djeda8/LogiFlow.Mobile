@@ -1,3 +1,9 @@
+## v1.0.19 - Entry theme refinements
+- Entry underline and cursor color now update in real-time when theme changes
+- Entry text selection highlight color adapts to active theme
+- Settings screen icons now update in real-time when theme changes
+- EntryThemeUpdater helper centralizes native Android Entry styling
+
 ## v1.0.18 - Theme visual refinements
 - Entry underline color adapts to active theme (normal and focus states)
 - Entry borders standardized with EntryBorderStyle
