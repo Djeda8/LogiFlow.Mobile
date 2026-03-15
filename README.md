@@ -5,7 +5,7 @@
 ![Platform](https://img.shields.io/badge/platform-Android-green)
 ![.NET](https://img.shields.io/badge/.NET-9.0-purple)
 ![MAUI](https://img.shields.io/badge/MAUI-9.0-blue)
-![Tests](https://img.shields.io/badge/tests-205%20passing-brightgreen)
+![Tests](https://img.shields.io/badge/tests-207%20passing-brightgreen)
 ![Coverage](https://img.shields.io/badge/coverage-95%25-brightgreen)
 ![License](https://img.shields.io/badge/license-MIT-blue)
 
@@ -127,7 +127,7 @@ The app follows a strict Design System for consistency across all modules:
 
 Designed for industrial environments with large touch targets (min 48px), high contrast, and clear visual feedback for all states.
 
-**Theme support**: Full dark/light mode with runtime switching. User preference persisted across sessions. Theme selector available in Settings screen. Placeholder, underline, border and control colors adapt to active theme.
+**Theme support**: Full dark/light mode with runtime switching. User preference persisted across sessions. Entry underline, cursor, and selection colors adapt to active theme in real-time. Icons update on theme change.
 
 ## License
 

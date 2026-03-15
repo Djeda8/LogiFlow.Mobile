@@ -6,6 +6,11 @@ namespace LogiFlow.Mobile.Services.Interfaces;
 public interface IThemeService
 {
     /// <summary>
+    /// Occurs when the app theme changes.
+    /// </summary>
+    event EventHandler? ThemeChanged;
+
+    /// <summary>
     /// Gets the current theme code.
     /// </summary>
     string CurrentTheme { get; }

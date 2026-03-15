@@ -42,4 +42,24 @@ public class ThemeServiceTests
         var exception = Record.Exception(() => _themeService.ApplyTheme(string.Empty));
         Assert.Null(exception);
     }
+
+    [Fact]
+    public void ApplyTheme_Dark_UpdatesCurrentTheme()
+    {
+        // Act
+        _themeService.ApplyTheme("dark");
+
+        // Assert
+        Assert.Equal("dark", _themeService.CurrentTheme);
+    }
+
+    [Fact]
+    public void ApplyTheme_Light_UpdatesCurrentTheme()
+    {
+        // Act
+        _themeService.ApplyTheme("light");
+
+        // Assert
+        Assert.Equal("light", _themeService.CurrentTheme);
+    }
 }

@@ -27,7 +27,7 @@
     </Style>
 
     <Style TargetType="Switch">
-        <Setter Property="OnColor" Value="{DynamicResource PrimaryColor}" />
+        <Setter Property="OnColor" Value="{DynamicResource LightPrimary}" />
         <Setter Property="ThumbColor" Value="{DynamicResource AccentColor}" />
     </Style>
 

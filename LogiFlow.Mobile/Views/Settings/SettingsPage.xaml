@@ -5,10 +5,16 @@
              x:Class="LogiFlow.Mobile.Views.Settings.SettingsPage"
              xmlns:icons="clr-namespace:LogiFlow.Mobile.Resources.Icons"
              xmlns:local="clr-namespace:LogiFlow.Mobile.Extensions"
+             xmlns:converters="clr-namespace:LogiFlow.Mobile.Converters"
              x:DataType="vm:SettingsViewModel"
              NavigationPage.HasNavigationBar="False"
              BackgroundColor="{DynamicResource PageBackground}"
              Title="{local:Translate Key=SettingsTitle}">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converters:AppIconGlyphToStringConverter x:Key="IconGlyphConverter"/>
+        </ResourceDictionary>
+    </ContentPage.Resources>
 
     <Grid Padding="24" RowSpacing="16">
         <Grid.RowDefinitions>
@@ -46,9 +52,16 @@
                                 <ColumnDefinition Width="Auto"/>
                                 <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
-                            <Image Grid.Column="0"
-                                   Source="{icons:AppIcon Icon=Settings, Color={StaticResource PrimaryColor}}"
-                                   WidthRequest="22" HeightRequest="22" VerticalOptions="Center"/>
+                            <Image Grid.Column="0" WidthRequest="22" HeightRequest="22" VerticalOptions="Center">
+                                <Image.Source>
+                                    <FontImageSource
+                                        Glyph="{Binding Source={x:Static icons:AppIconGlyph.Settings}, 
+                                                Converter={StaticResource IconGlyphConverter}}"
+                                        FontFamily="MaterialIconsOutlined"
+                                        Color="{DynamicResource PrimaryColor}"
+                                        Size="22"/>
+                                </Image.Source>
+                            </Image>
                             <Label Grid.Column="1"
                                    Text="{local:Translate Key=SettingsSectionGeneral}"
                                    Style="{StaticResource SectionTitleStyle}" />
@@ -85,9 +98,12 @@
                                 <ColumnDefinition Width="Auto"/>
                                 <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
-                            <Image Grid.Column="0"
-                                   Source="{icons:AppIcon Icon=QrCodeScanner, Color={StaticResource PrimaryColor}}"
-                                   WidthRequest="22" HeightRequest="22" VerticalOptions="Center"/>
+                            <Image Grid.Column="0" WidthRequest="22" HeightRequest="22" VerticalOptions="Center">
+                                <Image.Source>
+                                    <FontImageSource Glyph="&#xf206;" FontFamily="MaterialIconsOutlined"
+                                                     Color="{DynamicResource PrimaryColor}" Size="22"/>
+                                </Image.Source>
+                            </Image>
                             <Label Grid.Column="1"
                                    Text="{local:Translate Key=SettingsSectionScanner}"
                                    Style="{StaticResource SectionTitleStyle}" />
@@ -144,9 +160,12 @@
                                 <ColumnDefinition Width="Auto"/>
                                 <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
-                            <Image Grid.Column="0"
-                                   Source="{icons:AppIcon Icon=Dns, Color={StaticResource PrimaryColor}}"
-                                   WidthRequest="22" HeightRequest="22" VerticalOptions="Center"/>
+                            <Image Grid.Column="0" WidthRequest="22" HeightRequest="22" VerticalOptions="Center">
+                                <Image.Source>
+                                    <FontImageSource Glyph="&#xe875;" FontFamily="MaterialIconsOutlined"
+                                                     Color="{DynamicResource PrimaryColor}" Size="22"/>
+                                </Image.Source>
+                            </Image>
                             <Label Grid.Column="1"
                                    Text="{local:Translate Key=SettingsSectionServer}"
                                    Style="{StaticResource SectionTitleStyle}" />
@@ -190,9 +209,12 @@
                                 <ColumnDefinition Width="Auto"/>
                                 <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
-                            <Image Grid.Column="0"
-                                   Source="{icons:AppIcon Icon=Info, Color={StaticResource PrimaryColor}}"
-                                   WidthRequest="22" HeightRequest="22" VerticalOptions="Center"/>
+                            <Image Grid.Column="0" WidthRequest="22" HeightRequest="22" VerticalOptions="Center">
+                                <Image.Source>
+                                    <FontImageSource Glyph="&#xe88e;" FontFamily="MaterialIconsOutlined"
+                                                     Color="{DynamicResource PrimaryColor}" Size="22"/>
+                                </Image.Source>
+                            </Image>
                             <Label Grid.Column="1"
                                    Text="{local:Translate Key=SettingsSectionAbout}"
                                    Style="{StaticResource SectionTitleStyle}" />
@@ -236,9 +258,12 @@
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            <Image Grid.Column="0"
-                   Source="{icons:AppIcon Icon=ErrorOutline, Color={StaticResource ErrorColor}}"
-                   WidthRequest="24" HeightRequest="24"/>
+            <Image Grid.Column="0" WidthRequest="24" HeightRequest="24">
+                <Image.Source>
+                    <FontImageSource Glyph="&#xe001;" FontFamily="MaterialIconsOutlined"
+                                     Color="{DynamicResource ErrorColor}" Size="24"/>
+                </Image.Source>
+            </Image>
             <Label Grid.Column="1" Text="{Binding ErrorMessage}" Style="{StaticResource ErrorTextStyle}" />
         </Grid>
 
