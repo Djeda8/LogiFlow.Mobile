@@ -1,0 +1,417 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:LogiFlow.Mobile.ViewModels.Reception"
+             xmlns:icons="clr-namespace:LogiFlow.Mobile.Resources.Icons"
+             xmlns:local="clr-namespace:LogiFlow.Mobile.Extensions"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             xmlns:dto="clr-namespace:LogiFlow.Mobile.DTOs"
+             x:Class="LogiFlow.Mobile.Views.Reception.ReceptionDetailPage"
+             x:DataType="vm:ReceptionDetailViewModel"
+             NavigationPage.HasNavigationBar="False"
+             BackgroundColor="{DynamicResource PageBackground}"
+             Title="{local:Translate Key=ReceptionDetailTitle}">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <toolkit:IsListNullOrEmptyConverter x:Key="IsEmptyConverter"/>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <Grid Padding="24" RowSpacing="16">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- ===== HEADER ===== -->
+        <VerticalStackLayout Grid.Row="0" Spacing="4">
+            <Label>
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span Text="Logi" FontSize="22" TextColor="{DynamicResource PrimaryColor}"/>
+                        <Span Text="Flow" FontSize="22" FontAttributes="Bold" TextColor="{DynamicResource PrimaryColor}"/>
+                        <Span Text=" · " FontSize="22" TextColor="{DynamicResource SecondaryText}"/>
+                        <Span Text="{local:Translate Key=ReceptionDetailTitle}" FontSize="22" TextColor="{DynamicResource PrimaryText}"/>
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
+            <Label Text="{Binding ReceptionNumber}"
+                   Style="{StaticResource SecondaryTextStyle}"/>
+            <BoxView HeightRequest="1" BackgroundColor="{DynamicResource Divider}" Margin="0,4,0,0"/>
+        </VerticalStackLayout>
+
+        <!-- ===== CONTENT ===== -->
+        <ScrollView Grid.Row="1">
+            <VerticalStackLayout Spacing="0">
+
+                <!-- ===== Article + Quantity + Location ===== -->
+                <Border Style="{StaticResource SectionCardStyle}">
+                    <VerticalStackLayout Spacing="12">
+
+                        <Grid ColumnSpacing="10">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Image Grid.Column="0"
+                                   Source="{icons:AppIcon Icon=Inventory2, Color={StaticResource PrimaryColor}}"
+                                   WidthRequest="22" HeightRequest="22" VerticalOptions="Center"/>
+                            <Label Grid.Column="1"
+                                   Text="{local:Translate Key=ReceptionDetailSectionLogistic}"
+                                   Style="{StaticResource SectionTitleStyle}"/>
+                        </Grid>
+
+                        <!-- Article -->
+                        <Label Text="{local:Translate Key=ReceptionDetailArticle}"
+                               Style="{StaticResource FieldLabelStyle}"/>
+                        <Border Style="{StaticResource EntryBorderStyle}">
+                            <Border.Triggers>
+                                <DataTrigger TargetType="Border"
+                                             Binding="{Binding ArticleHasError}"
+                                             Value="True">
+                                    <Setter Property="Stroke" Value="{DynamicResource ErrorColor}"/>
+                                </DataTrigger>
+                            </Border.Triggers>
+                            <Grid ColumnSpacing="0">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="48"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="48"/>
+                                </Grid.ColumnDefinitions>
+                                <ImageButton Grid.Column="0"
+                                             Source="{icons:AppIcon Icon=QrCodeScanner, Color={StaticResource PrimaryColor}}"
+                                             WidthRequest="48" HeightRequest="48"
+                                             Padding="8"
+                                             BackgroundColor="Transparent"
+                                             Command="{Binding ScanArticleCommand}"
+                                             IsEnabled="{Binding IsNotBusy}"/>
+                                <Entry Grid.Column="1"
+                                       Placeholder="{local:Translate Key=ReceptionDetailArticlePlaceholder}"
+                                       Text="{Binding Article}"
+                                       Style="{StaticResource PrimaryEntryStyle}"
+                                       IsEnabled="{Binding IsNotBusy}"/>
+                                <ImageButton Grid.Column="2"
+                                             Source="{icons:AppIcon Icon=CheckCircle, Color={StaticResource PrimaryColor}}"
+                                             WidthRequest="48" HeightRequest="48"
+                                             Padding="8"
+                                             BackgroundColor="Transparent"
+                                             Command="{Binding AddDetailCommand}"
+                                             IsEnabled="{Binding IsNotBusy}"/>
+                            </Grid>
+                        </Border>
+
+                        <!-- Quantity -->
+                        <Label Text="{local:Translate Key=ReceptionDetailQuantity}"
+                               Style="{StaticResource FieldLabelStyle}"/>
+                        <Border Style="{StaticResource EntryBorderStyle}">
+                            <Border.Triggers>
+                                <DataTrigger TargetType="Border"
+                                             Binding="{Binding QuantityHasError}"
+                                             Value="True">
+                                    <Setter Property="Stroke" Value="{DynamicResource ErrorColor}"/>
+                                </DataTrigger>
+                            </Border.Triggers>
+                            <Entry Placeholder="{local:Translate Key=ReceptionDetailQuantityPlaceholder}"
+                                   Text="{Binding Quantity}"
+                                   Keyboard="Numeric"
+                                   Style="{StaticResource PrimaryEntryStyle}"
+                                   IsEnabled="{Binding IsNotBusy}"/>
+                        </Border>
+
+                        <!-- Location -->
+                        <Label Text="{local:Translate Key=ReceptionDetailLocation}"
+                               Style="{StaticResource FieldLabelStyle}"/>
+                        <Border Style="{StaticResource EntryBorderStyle}">
+                            <Border.Triggers>
+                                <DataTrigger TargetType="Border"
+                                             Binding="{Binding LocationHasError}"
+                                             Value="True">
+                                    <Setter Property="Stroke" Value="{DynamicResource ErrorColor}"/>
+                                </DataTrigger>
+                            </Border.Triggers>
+                            <Grid ColumnSpacing="0">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="48"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <ImageButton Grid.Column="0"
+                                             Source="{icons:AppIcon Icon=QrCodeScanner, Color={StaticResource PrimaryColor}}"
+                                             WidthRequest="48" HeightRequest="48"
+                                             Padding="8"
+                                             BackgroundColor="Transparent"
+                                             Command="{Binding ScanLocationCommand}"
+                                             IsEnabled="{Binding IsNotBusy}"/>
+                                <Entry Grid.Column="1"
+                                       Placeholder="{local:Translate Key=ReceptionDetailLocationPlaceholder}"
+                                       Text="{Binding Location}"
+                                       Style="{StaticResource PrimaryEntryStyle}"
+                                       IsEnabled="{Binding IsNotBusy}"/>
+                            </Grid>
+                        </Border>
+
+                    </VerticalStackLayout>
+                </Border>
+
+                <!-- ===== Dimensions (optional) ===== -->
+                <Border Style="{StaticResource SectionCardStyle}">
+                    <VerticalStackLayout Spacing="12">
+
+                        <Grid ColumnSpacing="10">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Image Grid.Column="0"
+                                   Source="{icons:AppIcon Icon=Straighten, Color={StaticResource PrimaryColor}}"
+                                   WidthRequest="22" HeightRequest="22" VerticalOptions="Center"/>
+                            <Label Grid.Column="1"
+                                   Text="{local:Translate Key=ReceptionDetailSectionDimensions}"
+                                   Style="{StaticResource SectionTitleStyle}"/>
+                        </Grid>
+
+                        <Grid ColumnSpacing="12">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <VerticalStackLayout Grid.Column="0" Spacing="4">
+                                <Label Text="{local:Translate Key=ReceptionDetailWidth}"
+                                       Style="{StaticResource FieldLabelStyle}"/>
+                                <Border Style="{StaticResource EntryBorderStyle}">
+                                    <Entry Text="{Binding Width}"
+                                           Keyboard="Numeric"
+                                           Placeholder="cm"
+                                           Style="{StaticResource PrimaryEntryStyle}"
+                                           IsEnabled="{Binding IsNotBusy}"/>
+                                </Border>
+                            </VerticalStackLayout>
+
+                            <VerticalStackLayout Grid.Column="1" Spacing="4">
+                                <Label Text="{local:Translate Key=ReceptionDetailHeight}"
+                                       Style="{StaticResource FieldLabelStyle}"/>
+                                <Border Style="{StaticResource EntryBorderStyle}">
+                                    <Entry Text="{Binding Height}"
+                                           Keyboard="Numeric"
+                                           Placeholder="cm"
+                                           Style="{StaticResource PrimaryEntryStyle}"
+                                           IsEnabled="{Binding IsNotBusy}"/>
+                                </Border>
+                            </VerticalStackLayout>
+                        </Grid>
+
+                        <Grid ColumnSpacing="12">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <VerticalStackLayout Grid.Column="0" Spacing="4">
+                                <Label Text="{local:Translate Key=ReceptionDetailDepth}"
+                                       Style="{StaticResource FieldLabelStyle}"/>
+                                <Border Style="{StaticResource EntryBorderStyle}">
+                                    <Entry Text="{Binding Depth}"
+                                           Keyboard="Numeric"
+                                           Placeholder="cm"
+                                           Style="{StaticResource PrimaryEntryStyle}"
+                                           IsEnabled="{Binding IsNotBusy}"/>
+                                </Border>
+                            </VerticalStackLayout>
+
+                            <VerticalStackLayout Grid.Column="1" Spacing="4">
+                                <Label Text="{local:Translate Key=ReceptionDetailWeight}"
+                                       Style="{StaticResource FieldLabelStyle}"/>
+                                <Border Style="{StaticResource EntryBorderStyle}">
+                                    <Entry Text="{Binding Weight}"
+                                           Keyboard="Numeric"
+                                           Placeholder="kg"
+                                           Style="{StaticResource PrimaryEntryStyle}"
+                                           IsEnabled="{Binding IsNotBusy}"/>
+                                </Border>
+                            </VerticalStackLayout>
+                        </Grid>
+
+                    </VerticalStackLayout>
+                </Border>
+
+                <!-- ===== TEST SAMPLE extra fields ===== -->
+                <Border Style="{StaticResource SectionCardStyle}"
+                        IsVisible="{Binding IsTestSample}">
+                    <VerticalStackLayout Spacing="12">
+
+                        <Grid ColumnSpacing="10">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Image Grid.Column="0"
+                                   Source="{icons:AppIcon Icon=Tag, Color={StaticResource PrimaryColor}}"
+                                   WidthRequest="22" HeightRequest="22" VerticalOptions="Center"/>
+                            <Label Grid.Column="1"
+                                   Text="{local:Translate Key=ReceptionDetailSectionSample}"
+                                   Style="{StaticResource SectionTitleStyle}"/>
+                        </Grid>
+
+                        <!-- Sample Reference -->
+                        <Label Text="{local:Translate Key=ReceptionDetailSampleReference}"
+                               Style="{StaticResource FieldLabelStyle}"/>
+                        <Border Style="{StaticResource EntryBorderStyle}">
+                            <Border.Triggers>
+                                <DataTrigger TargetType="Border"
+                                             Binding="{Binding SampleReferenceHasError}"
+                                             Value="True">
+                                    <Setter Property="Stroke" Value="{DynamicResource ErrorColor}"/>
+                                </DataTrigger>
+                            </Border.Triggers>
+                            <Grid ColumnSpacing="0">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="48"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <ImageButton Grid.Column="0"
+                                             Source="{icons:AppIcon Icon=QrCodeScanner, Color={StaticResource PrimaryColor}}"
+                                             WidthRequest="48" HeightRequest="48"
+                                             Padding="8"
+                                             BackgroundColor="Transparent"
+                                             Command="{Binding ScanSampleReferenceCommand}"
+                                             IsEnabled="{Binding IsNotBusy}"/>
+                                <Entry Grid.Column="1"
+                                       Placeholder="{local:Translate Key=ReceptionDetailSampleReferencePlaceholder}"
+                                       Text="{Binding SampleReference}"
+                                       Style="{StaticResource PrimaryEntryStyle}"
+                                       IsEnabled="{Binding IsNotBusy}"/>
+                            </Grid>
+                        </Border>
+
+                        <!-- Lot Number -->
+                        <Label Text="{local:Translate Key=ReceptionDetailLotNumber}"
+                               Style="{StaticResource FieldLabelStyle}"/>
+                        <Border Style="{StaticResource EntryBorderStyle}">
+                            <Entry Placeholder="{local:Translate Key=ReceptionDetailLotNumberPlaceholder}"
+                                   Text="{Binding LotNumber}"
+                                   Style="{StaticResource PrimaryEntryStyle}"
+                                   IsEnabled="{Binding IsNotBusy}"/>
+                        </Border>
+
+                        <!-- Extra Observations -->
+                        <Label Text="{local:Translate Key=ReceptionDetailExtraObservations}"
+                               Style="{StaticResource FieldLabelStyle}"/>
+                        <Border Style="{StaticResource EntryBorderStyle}">
+                            <Editor Text="{Binding ExtraObservations}"
+                                    AutoSize="TextChanges"
+                                    MinimumHeightRequest="60"
+                                    Style="{StaticResource PrimaryEntryStyle}"
+                                    IsEnabled="{Binding IsNotBusy}"/>
+                        </Border>
+
+                    </VerticalStackLayout>
+                </Border>
+
+                <!-- ===== Detail lines list ===== -->
+                <Border Style="{StaticResource SectionCardStyle}">
+                    <VerticalStackLayout Spacing="12">
+
+                        <Grid ColumnSpacing="10">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Image Grid.Column="0"
+                                   Source="{icons:AppIcon Icon=ViewList, Color={StaticResource PrimaryColor}}"
+                                   WidthRequest="22" HeightRequest="22" VerticalOptions="Center"/>
+                            <Label Grid.Column="1"
+                                   Text="{local:Translate Key=ReceptionDetailSectionLines}"
+                                   Style="{StaticResource SectionTitleStyle}"/>
+                        </Grid>
+
+                        <Label Text="{local:Translate Key=ReceptionDetailNoLines}"
+                               Style="{StaticResource SecondaryTextStyle}"
+                               IsVisible="{Binding DetailLines, Converter={StaticResource IsEmptyConverter}}"/>
+
+                        <CollectionView ItemsSource="{Binding DetailLines}">
+                            <CollectionView.ItemTemplate>
+                                <DataTemplate x:DataType="dto:ReceptionDetailDto">
+                                    <Border Style="{StaticResource SectionCardStyle}" Margin="0,4">
+                                        <Grid ColumnSpacing="8">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="Auto"/>
+                                            </Grid.ColumnDefinitions>
+                                            <VerticalStackLayout Grid.Column="0" Spacing="2">
+                                                <Label Text="{Binding Article}"
+                                                       Style="{StaticResource BodyTextStyle}"
+                                                       FontAttributes="Bold"/>
+                                                <Label Text="{Binding Location}"
+                                                       Style="{StaticResource SecondaryTextStyle}"/>
+                                                <Label Text="{Binding Quantity}"
+                                                       Style="{StaticResource SecondaryTextStyle}"/>
+                                            </VerticalStackLayout>
+                                            <ImageButton Grid.Column="1"
+                                                         Source="{icons:AppIcon Icon=Cancel, Color={StaticResource ErrorColor}}"
+                                                         WidthRequest="32" HeightRequest="32"
+                                                         BackgroundColor="Transparent"
+                                                         Command="{Binding Source={RelativeSource AncestorType={x:Type vm:ReceptionDetailViewModel}}, Path=RemoveDetailCommand}"
+                                                         CommandParameter="{Binding}"/>
+                                        </Grid>
+                                    </Border>
+                                </DataTemplate>
+                            </CollectionView.ItemTemplate>
+                        </CollectionView>
+
+                        <!-- Add detail button -->
+                        <Button Text="{local:Translate Key=ReceptionDetailAddLine}"
+                                Style="{StaticResource SecondaryButtonStyle}"
+                                Command="{Binding AddDetailCommand}"
+                                IsEnabled="{Binding IsNotBusy}"/>
+
+                    </VerticalStackLayout>
+                </Border>
+
+            </VerticalStackLayout>
+        </ScrollView>
+
+        <!-- ===== ERROR ===== -->
+        <Grid Grid.Row="2"
+              ColumnSpacing="8"
+              IsVisible="{Binding HasError}">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Image Grid.Column="0"
+                   Source="{icons:AppIcon Icon=ErrorOutline, Color={StaticResource ErrorColor}}"
+                   WidthRequest="24" HeightRequest="24"/>
+            <Label Grid.Column="1"
+                   Text="{Binding ErrorMessage}"
+                   Style="{StaticResource ErrorTextStyle}"/>
+        </Grid>
+
+        <!-- ===== CONTINUE BUTTON ===== -->
+        <Button Grid.Row="3"
+                Text="{local:Translate Key=ReceptionDetailContinue}"
+                Style="{StaticResource PrimaryButtonStyle}"
+                Command="{Binding ContinueCommand}"
+                IsEnabled="{Binding IsNotBusy}"/>
+
+        <!-- ===== BACK + LOADING ===== -->
+        <Grid Grid.Row="4" ColumnSpacing="12">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <Button Grid.Column="0"
+                    Text="{local:Translate Key=CommonBack}"
+                    Style="{StaticResource SecondaryButtonStyle}"
+                    Command="{Binding GoBackCommand}"
+                    IsEnabled="{Binding IsNotBusy}"/>
+            <ActivityIndicator Grid.Column="1"
+                               IsVisible="{Binding IsBusy}"
+                               IsRunning="{Binding IsBusy}"
+                               VerticalOptions="Center"/>
+        </Grid>
+
+    </Grid>
+</ContentPage>

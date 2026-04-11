@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:LogiFlow.Mobile.ViewModels.Camera"
+             xmlns:icons="clr-namespace:LogiFlow.Mobile.Resources.Icons"
+             xmlns:local="clr-namespace:LogiFlow.Mobile.Extensions"
+             x:Class="LogiFlow.Mobile.Views.Camera.CameraScanPage"
+             x:DataType="vm:CameraScanViewModel"
+             NavigationPage.HasNavigationBar="False"
+             BackgroundColor="{DynamicResource PageBackground}"
+             Title="{local:Translate Key=CameraScanTitle}">
+
+    <Grid RowSpacing="0">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- ===== HEADER ===== -->
+        <Border Grid.Row="0"
+                BackgroundColor="{DynamicResource PrimaryColor}"
+                Padding="16,12">
+            <Grid ColumnSpacing="12">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Image Grid.Column="0"
+                       Source="{icons:AppIcon Icon=QrCodeScanner, Color=White}"
+                       WidthRequest="24" HeightRequest="24"
+                       VerticalOptions="Center"/>
+                <Label Grid.Column="1"
+                       Text="{local:Translate Key=CameraScanTitle}"
+                       FontSize="18"
+                       FontAttributes="Bold"
+                       TextColor="White"
+                       VerticalOptions="Center"/>
+            </Grid>
+        </Border>
+
+        <!-- ===== CAMERA CONTAINER ===== -->
+        <Grid x:Name="CameraContainer" Grid.Row="1">
+
+            <!-- Scan frame overlay -->
+            <Border WidthRequest="240"
+                    HeightRequest="240"
+                    HorizontalOptions="Center"
+                    VerticalOptions="Center"
+                    Stroke="{DynamicResource PrimaryColor}"
+                    StrokeThickness="3"
+                    BackgroundColor="Transparent">
+                <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="8"/>
+                </Border.StrokeShape>
+            </Border>
+
+            <!-- Instruction label -->
+            <Label Text="{local:Translate Key=CameraScanInstruction}"
+                   TextColor="White"
+                   FontSize="14"
+                   HorizontalOptions="Center"
+                   VerticalOptions="End"
+                   Margin="0,0,0,24"
+                   HorizontalTextAlignment="Center">
+                <Label.Background>
+                    <SolidColorBrush Color="#AA000000"/>
+                </Label.Background>
+            </Label>
+
+        </Grid>
+
+        <!-- ===== CANCEL BUTTON ===== -->
+        <Button Grid.Row="2"
+                Text="{local:Translate Key=CameraScanCancel}"
+                Style="{StaticResource DangerButtonStyle}"
+                Command="{Binding CancelCommand}"
+                IsEnabled="{Binding IsNotBusy}"
+                Margin="24,16"/>
+
+    </Grid>
+</ContentPage>

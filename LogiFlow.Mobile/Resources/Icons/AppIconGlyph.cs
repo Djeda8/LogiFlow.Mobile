@@ -52,5 +52,32 @@ namespace LogiFlow.Mobile.Resources.Icons
 
         /// <summary>DNS icon. Used for the server configuration section.</summary>
         Dns,
+
+        /// <summary>Receipt icon. Used for reception number.</summary>
+        Receipt,
+
+        /// <summary>Local shipping icon. Used for sender/recipient.</summary>
+        LocalShipping,
+
+        /// <summary>Location on icon. Used for warehouse location.</summary>
+        LocationOn,
+
+        /// <summary>Checklist icon. Used for reception checklist.</summary>
+        Checklist,
+
+        /// <summary>Check circle icon. Used for confirmation actions.</summary>
+        CheckCircle,
+
+        /// <summary>Cancel icon. Used for rejection actions.</summary>
+        Cancel,
+
+        /// <summary>View list icon. Used for generated items list.</summary>
+        ViewList,
+
+        /// <summary>Straighten icon. Used for dimensions and weight.</summary>
+        Straighten,
+
+        /// <summary>Tag icon. Used for quantity and lot number.</summary>
+        Tag,
     }
 }

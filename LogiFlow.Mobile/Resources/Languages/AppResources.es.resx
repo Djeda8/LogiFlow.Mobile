@@ -258,4 +258,300 @@
   <data name="EnvironmentProduction" xml:space="preserve">
     <value>Producción</value>
   </data>
+    <!-- ===== Common ===== -->
+    <data name="CommonBack" xml:space="preserve">
+  <value>Volver</value>
+</data>
+    <data name="CommonCancel" xml:space="preserve">
+  <value>Cancelar</value>
+</data>
+
+    <!-- ===== Camera Scan ===== -->
+    <data name="CameraScanTitle" xml:space="preserve">
+  <value>Escanear código</value>
+</data>
+    <data name="CameraScanInstruction" xml:space="preserve">
+  <value>Apunta la cámara al código de barras</value>
+</data>
+    <data name="CameraScanCancel" xml:space="preserve">
+  <value>Cancelar escaneo</value>
+</data>
+
+    <!-- ===== Reception Start ===== -->
+    <data name="ReceptionStartTitle" xml:space="preserve">
+  <value>Recepción</value>
+</data>
+    <data name="ReceptionStartNumberLabel" xml:space="preserve">
+  <value>Número de recepción</value>
+</data>
+    <data name="ReceptionStartNumberPlaceholder" xml:space="preserve">
+  <value>Escanea o introduce el número de recepción</value>
+</data>
+    <data name="ReceptionStartScanButton" xml:space="preserve">
+  <value>Cargar recepción</value>
+</data>
+<data name="ReceptionStartContinue" xml:space="preserve">
+  <value>Continuar</value>
+</data>
+
+    <!-- ===== Reception Header ===== -->
+    <data name="ReceptionHeaderTitle" xml:space="preserve">
+  <value>Datos generales</value>
+</data>
+    <data name="ReceptionHeaderSectionInfo" xml:space="preserve">
+  <value>Información de recepción</value>
+</data>
+    <data name="ReceptionHeaderSectionParties" xml:space="preserve">
+  <value>Remitente / Destinatario</value>
+</data>
+    <data name="ReceptionHeaderSectionObservations" xml:space="preserve">
+  <value>Observaciones</value>
+</data>
+    <data name="ReceptionHeaderNumber" xml:space="preserve">
+  <value>Número de recepción</value>
+</data>
+    <data name="ReceptionHeaderFlowType" xml:space="preserve">
+  <value>Tipo de flujo</value>
+</data>
+    <data name="ReceptionHeaderDeliveryNote" xml:space="preserve">
+  <value>Albarán</value>
+</data>
+    <data name="ReceptionHeaderExpectedDate" xml:space="preserve">
+  <value>Fecha prevista</value>
+</data>
+    <data name="ReceptionHeaderSender" xml:space="preserve">
+  <value>Remitente</value>
+</data>
+    <data name="ReceptionHeaderRecipient" xml:space="preserve">
+  <value>Destinatario</value>
+</data>
+    <data name="ReceptionHeaderObservations" xml:space="preserve">
+  <value>Observaciones</value>
+</data>
+    <data name="ReceptionHeaderContinue" xml:space="preserve">
+  <value>Continuar</value>
+</data>
+
+    <!-- ===== Reception Detail ===== -->
+    <data name="ReceptionDetailTitle" xml:space="preserve">
+  <value>Detalle</value>
+</data>
+    <data name="ReceptionDetailSectionLogistic" xml:space="preserve">
+  <value>Datos logísticos</value>
+</data>
+    <data name="ReceptionDetailSectionDimensions" xml:space="preserve">
+  <value>Dimensiones / Peso</value>
+</data>
+    <data name="ReceptionDetailSectionSample" xml:space="preserve">
+  <value>Datos de muestra</value>
+</data>
+    <data name="ReceptionDetailSectionLines" xml:space="preserve">
+  <value>Líneas de detalle</value>
+</data>
+    <data name="ReceptionDetailArticle" xml:space="preserve">
+  <value>Artículo</value>
+</data>
+    <data name="ReceptionDetailArticlePlaceholder" xml:space="preserve">
+  <value>Escanea o introduce el código de artículo</value>
+</data>
+    <data name="ReceptionDetailQuantity" xml:space="preserve">
+  <value>Cantidad</value>
+</data>
+    <data name="ReceptionDetailQuantityPlaceholder" xml:space="preserve">
+  <value>Introduce la cantidad</value>
+</data>
+    <data name="ReceptionDetailLocation" xml:space="preserve">
+  <value>Ubicación</value>
+</data>
+    <data name="ReceptionDetailLocationPlaceholder" xml:space="preserve">
+  <value>Escanea o introduce el código de ubicación</value>
+</data>
+    <data name="ReceptionDetailWidth" xml:space="preserve">
+  <value>Ancho</value>
+</data>
+    <data name="ReceptionDetailHeight" xml:space="preserve">
+  <value>Alto</value>
+</data>
+    <data name="ReceptionDetailDepth" xml:space="preserve">
+  <value>Profundidad</value>
+</data>
+    <data name="ReceptionDetailWeight" xml:space="preserve">
+  <value>Peso</value>
+</data>
+    <data name="ReceptionDetailSampleReference" xml:space="preserve">
+  <value>Referencia de muestra</value>
+</data>
+    <data name="ReceptionDetailSampleReferencePlaceholder" xml:space="preserve">
+  <value>Escanea o introduce la referencia de muestra</value>
+</data>
+    <data name="ReceptionDetailLotNumber" xml:space="preserve">
+  <value>Número de lote</value>
+</data>
+    <data name="ReceptionDetailLotNumberPlaceholder" xml:space="preserve">
+  <value>Introduce el número de lote</value>
+</data>
+    <data name="ReceptionDetailExtraObservations" xml:space="preserve">
+  <value>Observaciones</value>
+</data>
+    <data name="ReceptionDetailNoLines" xml:space="preserve">
+  <value>No hay líneas de detalle añadidas</value>
+</data>
+    <data name="ReceptionDetailAddLine" xml:space="preserve">
+  <value>Añadir línea</value>
+</data>
+    <data name="ReceptionDetailContinue" xml:space="preserve">
+  <value>Continuar</value>
+</data>
+
+    <!-- ===== Reception Checklist ===== -->
+    <data name="ReceptionChecklistTitle" xml:space="preserve">
+  <value>Checklist</value>
+</data>
+    <data name="ReceptionChecklistSectionTitle" xml:space="preserve">
+  <value>Lista de verificación</value>
+</data>
+    <data name="ReceptionChecklistInstruction" xml:space="preserve">
+  <value>Completa todas las verificaciones antes de continuar</value>
+</data>
+    <data name="ReceptionChecklistComplete" xml:space="preserve">
+  <value>Todas las verificaciones completadas</value>
+</data>
+    <data name="ReceptionChecklistPending" xml:space="preserve">
+  <value>Verificaciones pendientes</value>
+</data>
+    <data name="ReceptionChecklistContinue" xml:space="preserve">
+  <value>Continuar</value>
+</data>
+    <data name="ReceptionCheckPackagingOk" xml:space="preserve">
+  <value>El embalaje está en buen estado</value>
+</data>
+    <data name="ReceptionCheckQuantityVerified" xml:space="preserve">
+  <value>La cantidad coincide con el albarán</value>
+</data>
+    <data name="ReceptionCheckLabelReadable" xml:space="preserve">
+  <value>La etiqueta de transporte es legible</value>
+</data>
+    <data name="ReceptionCheckSampleIntact" xml:space="preserve">
+  <value>La muestra está intacta y sin daños</value>
+</data>
+    <data name="ReceptionCheckSampleLabeled" xml:space="preserve">
+  <value>La muestra está correctamente etiquetada</value>
+</data>
+    <data name="ReceptionCheckTemperatureOk" xml:space="preserve">
+  <value>Condiciones de temperatura verificadas</value>
+</data>
+    <data name="ReceptionCheckVehicleCondition" xml:space="preserve">
+  <value>El estado del vehículo es aceptable</value>
+</data>
+    <data name="ReceptionCheckVehicleDocumentation" xml:space="preserve">
+  <value>La documentación del vehículo está completa</value>
+</data>
+
+    <!-- ===== Reception Confirmation ===== -->
+    <data name="ReceptionConfirmationTitle" xml:space="preserve">
+  <value>Confirmación</value>
+</data>
+    <data name="ReceptionConfirmationSectionSummary" xml:space="preserve">
+  <value>Resumen de recepción</value>
+</data>
+    <data name="ReceptionConfirmationSectionRejection" xml:space="preserve">
+  <value>Motivo de rechazo</value>
+</data>
+    <data name="ReceptionConfirmationNumber" xml:space="preserve">
+  <value>Número de recepción</value>
+</data>
+    <data name="ReceptionConfirmationFlowType" xml:space="preserve">
+  <value>Tipo de flujo</value>
+</data>
+    <data name="ReceptionConfirmationSender" xml:space="preserve">
+  <value>Remitente</value>
+</data>
+    <data name="ReceptionConfirmationRecipient" xml:space="preserve">
+  <value>Destinatario</value>
+</data>
+    <data name="ReceptionConfirmationTotalLines" xml:space="preserve">
+  <value>Total de líneas</value>
+</data>
+    <data name="ReceptionConfirmationTotalQuantity" xml:space="preserve">
+  <value>Cantidad total</value>
+</data>
+    <data name="ReceptionConfirmationConfirm" xml:space="preserve">
+  <value>Confirmar</value>
+</data>
+    <data name="ReceptionConfirmationReject" xml:space="preserve">
+  <value>Rechazar</value>
+</data>
+    <data name="ReceptionConfirmationRejectConfirm" xml:space="preserve">
+  <value>Confirmar rechazo</value>
+</data>
+    <data name="ReceptionConfirmationRejectionReason" xml:space="preserve">
+  <value>Motivo de rechazo</value>
+</data>
+    <data name="ReceptionConfirmationRejectionPlaceholder" xml:space="preserve">
+  <value>Introduce el motivo de rechazo</value>
+</data>
+
+    <!-- ===== Reception Items ===== -->
+    <data name="ReceptionItemsTitle" xml:space="preserve">
+  <value>Ítems generados</value>
+</data>
+    <data name="ReceptionItemsSectionSummary" xml:space="preserve">
+  <value>Recepción completada</value>
+</data>
+    <data name="ReceptionItemsSectionList" xml:space="preserve">
+  <value>Ítems generados</value>
+</data>
+    <data name="ReceptionItemsTotalItems" xml:space="preserve">
+  <value>Total de ítems</value>
+</data>
+    <data name="ReceptionItemsTotalQuantity" xml:space="preserve">
+  <value>Cantidad total</value>
+</data>
+    <data name="ReceptionItemsFinish" xml:space="preserve">
+  <value>Finalizar</value>
+</data>
+
+    <!-- ===== Reception Errors ===== -->
+    <data name="ReceptionErrorEmptyNumber" xml:space="preserve">
+  <value>Introduce o escanea un número de recepción.</value>
+</data>
+    <data name="ReceptionErrorNotFound" xml:space="preserve">
+  <value>Recepción no encontrada. Comprueba el número e inténtalo de nuevo.</value>
+</data>
+    <data name="ReceptionErrorNoActiveSession" xml:space="preserve">
+  <value>No hay sesión de recepción activa. Inicia una nueva recepción.</value>
+</data>
+    <data name="ReceptionErrorSenderRequired" xml:space="preserve">
+  <value>El remitente es obligatorio.</value>
+</data>
+    <data name="ReceptionErrorRecipientRequired" xml:space="preserve">
+  <value>El destinatario es obligatorio.</value>
+</data>
+    <data name="ReceptionErrorArticleRequired" xml:space="preserve">
+  <value>El artículo es obligatorio.</value>
+</data>
+    <data name="ReceptionErrorArticleInvalid" xml:space="preserve">
+  <value>Artículo no encontrado en los datos maestros. Comprueba el código.</value>
+</data>
+    <data name="ReceptionErrorQuantityZero" xml:space="preserve">
+  <value>La cantidad debe ser mayor que 0.</value>
+</data>
+    <data name="ReceptionErrorLocationRequired" xml:space="preserve">
+  <value>La ubicación es obligatoria.</value>
+</data>
+    <data name="ReceptionErrorLocationInvalid" xml:space="preserve">
+  <value>Ubicación no encontrada. Comprueba el código.</value>
+</data>
+    <data name="ReceptionErrorSampleReferenceRequired" xml:space="preserve">
+  <value>La referencia de muestra es obligatoria para el flujo TEST SAMPLE.</value>
+</data>
+    <data name="ReceptionErrorNoDetails" xml:space="preserve">
+  <value>Es necesaria al menos una línea de detalle.</value>
+</data>
+    <data name="ReceptionErrorChecklistIncomplete" xml:space="preserve">
+  <value>Completa todas las verificaciones del checklist antes de continuar.</value>
+</data>
+    <data name="ReceptionErrorRejectionReasonRequired" xml:space="preserve">
+  <value>Introduce el motivo de rechazo.</value>
+</data>
 </root>

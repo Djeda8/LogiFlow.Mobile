@@ -1,22 +1,27 @@
 using CommunityToolkit.Maui;
+using Microsoft.Extensions.Logging;
 #if ANDROID
 using LogiFlow.Mobile.Helpers;
 #endif
+using BarcodeScanning;
 using LogiFlow.Mobile.Services.Implementations;
 using LogiFlow.Mobile.Services.Interfaces;
+using LogiFlow.Mobile.ViewModels.Camera;
 using LogiFlow.Mobile.ViewModels.Login;
 using LogiFlow.Mobile.ViewModels.Menu;
+using LogiFlow.Mobile.ViewModels.Reception;
 using LogiFlow.Mobile.ViewModels.Settings;
 using LogiFlow.Mobile.ViewModels.Splash;
+using LogiFlow.Mobile.Views.Camera;
 using LogiFlow.Mobile.Views.Login;
 using LogiFlow.Mobile.Views.Menu;
+using LogiFlow.Mobile.Views.Reception;
 using LogiFlow.Mobile.Views.Settings;
 using LogiFlow.Mobile.Views.Splash;
-using Microsoft.Extensions.Logging;
+using Microsoft.Maui.Handlers;
 
 #if ANDROID
 using Android.Content.Res;
-using Microsoft.Maui.Handlers;
 #endif
 
 namespace LogiFlow.Mobile
@@ -37,6 +42,9 @@ namespace LogiFlow.Mobile
 
             builder
                 .UseMauiApp<App>()
+
+    .UseBarcodeScanning()
+
                 .UseMauiCommunityToolkit()
                 .ConfigureFonts(fonts =>
                 {
@@ -82,11 +90,33 @@ namespace LogiFlow.Mobile
             builder.Services.AddTransient<MenuPage>();
             builder.Services.AddTransient<SettingsPage>();
 
+            // ===== Camera =====
+            builder.Services.AddTransient<CameraScanPage>();
+
+            // ===== Reception =====
+            builder.Services.AddTransient<ReceptionStartPage>();
+            builder.Services.AddTransient<ReceptionHeaderPage>();
+            builder.Services.AddTransient<ReceptionDetailPage>();
+            builder.Services.AddTransient<ReceptionChecklistPage>();
+            builder.Services.AddTransient<ReceptionConfirmationPage>();
+            builder.Services.AddTransient<ReceptionItemsPage>();
+
             // ViewModels
             builder.Services.AddTransient<SplashViewModel>();
             builder.Services.AddTransient<LoginViewModel>();
             builder.Services.AddTransient<MenuViewModel>();
             builder.Services.AddTransient<SettingsViewModel>();
+
+            // ===== Camera =====
+            builder.Services.AddTransient<CameraScanViewModel>();
+
+            // ===== Reception =====
+            builder.Services.AddSingleton<ReceptionStartViewModel>();
+            builder.Services.AddSingleton<ReceptionHeaderViewModel>();
+            builder.Services.AddSingleton<ReceptionDetailViewModel>();
+            builder.Services.AddSingleton<ReceptionChecklistViewModel>();
+            builder.Services.AddSingleton<ReceptionConfirmationViewModel>();
+            builder.Services.AddSingleton<ReceptionItemsViewModel>();
 
             // Services
             builder.Services.AddSingleton<IFileSystemService, FileSystemService>();
@@ -103,6 +133,12 @@ namespace LogiFlow.Mobile
             builder.Services.AddSingleton<ISettingsService, SettingsService>();
             builder.Services.AddSingleton<IConnectionService, ConnectionService>();
             builder.Services.AddSingleton<IScanService, ScanService>();
+
+            // ===== Reception =====
+            builder.Services.AddSingleton<IReceptionSessionService, ReceptionSessionService>();
+            builder.Services.AddSingleton<ICameraScanService, CameraScanService>();
+            builder.Services.AddSingleton<IReceptionService, ReceptionService>();
+            builder.Services.AddSingleton<IMasterDataService, MasterDataService>();
 
             return builder.Build();
         }

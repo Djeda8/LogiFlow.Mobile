@@ -21,6 +21,15 @@ public class AppIconGlyphMapperTests
     [InlineData(AppIconGlyph.Logout, "\ue9ba")]
     [InlineData(AppIconGlyph.QrCodeScanner, "\uf206")]
     [InlineData(AppIconGlyph.Dns, "\ue875")]
+    [InlineData(AppIconGlyph.Receipt, "\ue8b0")]
+    [InlineData(AppIconGlyph.LocalShipping, "\ue558")]
+    [InlineData(AppIconGlyph.LocationOn, "\ue0c8")]
+    [InlineData(AppIconGlyph.Checklist, "\ue6b1")]
+    [InlineData(AppIconGlyph.CheckCircle, "\ue86c")]
+    [InlineData(AppIconGlyph.Cancel, "\ue5c9")]
+    [InlineData(AppIconGlyph.ViewList, "\ue8ef")]
+    [InlineData(AppIconGlyph.Straighten, "\ue41c")]
+    [InlineData(AppIconGlyph.Tag, "\ue892")]
     public void GetGlyph_WithKnownIcon_ReturnsCorrectGlyph(AppIconGlyph icon, string expectedGlyph)
     {
         // Act

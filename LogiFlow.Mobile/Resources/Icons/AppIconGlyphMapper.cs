@@ -28,6 +28,15 @@ namespace LogiFlow.Mobile.Resources.Icons
             AppIconGlyph.Logout => "\ue9ba",
             AppIconGlyph.QrCodeScanner => "\uf206",
             AppIconGlyph.Dns => "\ue875",
+            AppIconGlyph.Receipt => "\ue8b0",
+            AppIconGlyph.LocalShipping => "\ue558",
+            AppIconGlyph.LocationOn => "\ue0c8",
+            AppIconGlyph.Checklist => "\ue6b1",
+            AppIconGlyph.CheckCircle => "\ue86c",
+            AppIconGlyph.Cancel => "\ue5c9",
+            AppIconGlyph.ViewList => "\ue8ef",
+            AppIconGlyph.Straighten => "\ue41c",
+            AppIconGlyph.Tag => "\ue892",
             _ => "?",
         };
     }

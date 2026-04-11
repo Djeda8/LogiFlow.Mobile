@@ -61,6 +61,51 @@ namespace LogiFlow.Mobile.Resources.Languages {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Cancel scan.
+        /// </summary>
+        internal static string CameraScanCancel {
+            get {
+                return ResourceManager.GetString("CameraScanCancel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Point the camera at the barcode.
+        /// </summary>
+        internal static string CameraScanInstruction {
+            get {
+                return ResourceManager.GetString("CameraScanInstruction", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Scan Barcode.
+        /// </summary>
+        internal static string CameraScanTitle {
+            get {
+                return ResourceManager.GetString("CameraScanTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Back.
+        /// </summary>
+        internal static string CommonBack {
+            get {
+                return ResourceManager.GetString("CommonBack", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Cancel.
+        /// </summary>
+        internal static string CommonCancel {
+            get {
+                return ResourceManager.GetString("CommonCancel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Demo.
         /// </summary>
         internal static string EnvironmentDemo {
@@ -246,6 +291,798 @@ namespace LogiFlow.Mobile.Resources.Languages {
         internal static string Msg_TestErrorConnection {
             get {
                 return ResourceManager.GetString("Msg_TestErrorConnection", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Transport label is readable.
+        /// </summary>
+        internal static string ReceptionCheckLabelReadable {
+            get {
+                return ResourceManager.GetString("ReceptionCheckLabelReadable", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a All checks completed.
+        /// </summary>
+        internal static string ReceptionChecklistComplete {
+            get {
+                return ResourceManager.GetString("ReceptionChecklistComplete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Continue.
+        /// </summary>
+        internal static string ReceptionChecklistContinue {
+            get {
+                return ResourceManager.GetString("ReceptionChecklistContinue", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Complete all checks before continuing.
+        /// </summary>
+        internal static string ReceptionChecklistInstruction {
+            get {
+                return ResourceManager.GetString("ReceptionChecklistInstruction", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Pending checks.
+        /// </summary>
+        internal static string ReceptionChecklistPending {
+            get {
+                return ResourceManager.GetString("ReceptionChecklistPending", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Verification checklist.
+        /// </summary>
+        internal static string ReceptionChecklistSectionTitle {
+            get {
+                return ResourceManager.GetString("ReceptionChecklistSectionTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Checklist.
+        /// </summary>
+        internal static string ReceptionChecklistTitle {
+            get {
+                return ResourceManager.GetString("ReceptionChecklistTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Packaging is in good condition.
+        /// </summary>
+        internal static string ReceptionCheckPackagingOk {
+            get {
+                return ResourceManager.GetString("ReceptionCheckPackagingOk", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Quantity matches delivery note.
+        /// </summary>
+        internal static string ReceptionCheckQuantityVerified {
+            get {
+                return ResourceManager.GetString("ReceptionCheckQuantityVerified", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Sample is intact and undamaged.
+        /// </summary>
+        internal static string ReceptionCheckSampleIntact {
+            get {
+                return ResourceManager.GetString("ReceptionCheckSampleIntact", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Sample is correctly labeled.
+        /// </summary>
+        internal static string ReceptionCheckSampleLabeled {
+            get {
+                return ResourceManager.GetString("ReceptionCheckSampleLabeled", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Temperature conditions verified.
+        /// </summary>
+        internal static string ReceptionCheckTemperatureOk {
+            get {
+                return ResourceManager.GetString("ReceptionCheckTemperatureOk", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Vehicle condition is acceptable.
+        /// </summary>
+        internal static string ReceptionCheckVehicleCondition {
+            get {
+                return ResourceManager.GetString("ReceptionCheckVehicleCondition", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Vehicle documentation is complete.
+        /// </summary>
+        internal static string ReceptionCheckVehicleDocumentation {
+            get {
+                return ResourceManager.GetString("ReceptionCheckVehicleDocumentation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Confirm.
+        /// </summary>
+        internal static string ReceptionConfirmationConfirm {
+            get {
+                return ResourceManager.GetString("ReceptionConfirmationConfirm", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Flow type.
+        /// </summary>
+        internal static string ReceptionConfirmationFlowType {
+            get {
+                return ResourceManager.GetString("ReceptionConfirmationFlowType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Reception number.
+        /// </summary>
+        internal static string ReceptionConfirmationNumber {
+            get {
+                return ResourceManager.GetString("ReceptionConfirmationNumber", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Recipient.
+        /// </summary>
+        internal static string ReceptionConfirmationRecipient {
+            get {
+                return ResourceManager.GetString("ReceptionConfirmationRecipient", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Reject.
+        /// </summary>
+        internal static string ReceptionConfirmationReject {
+            get {
+                return ResourceManager.GetString("ReceptionConfirmationReject", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Confirm rejection.
+        /// </summary>
+        internal static string ReceptionConfirmationRejectConfirm {
+            get {
+                return ResourceManager.GetString("ReceptionConfirmationRejectConfirm", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Enter rejection reason.
+        /// </summary>
+        internal static string ReceptionConfirmationRejectionPlaceholder {
+            get {
+                return ResourceManager.GetString("ReceptionConfirmationRejectionPlaceholder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Rejection reason.
+        /// </summary>
+        internal static string ReceptionConfirmationRejectionReason {
+            get {
+                return ResourceManager.GetString("ReceptionConfirmationRejectionReason", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Rejection reason.
+        /// </summary>
+        internal static string ReceptionConfirmationSectionRejection {
+            get {
+                return ResourceManager.GetString("ReceptionConfirmationSectionRejection", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Reception summary.
+        /// </summary>
+        internal static string ReceptionConfirmationSectionSummary {
+            get {
+                return ResourceManager.GetString("ReceptionConfirmationSectionSummary", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Sender.
+        /// </summary>
+        internal static string ReceptionConfirmationSender {
+            get {
+                return ResourceManager.GetString("ReceptionConfirmationSender", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Confirmation.
+        /// </summary>
+        internal static string ReceptionConfirmationTitle {
+            get {
+                return ResourceManager.GetString("ReceptionConfirmationTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Total lines.
+        /// </summary>
+        internal static string ReceptionConfirmationTotalLines {
+            get {
+                return ResourceManager.GetString("ReceptionConfirmationTotalLines", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Total quantity.
+        /// </summary>
+        internal static string ReceptionConfirmationTotalQuantity {
+            get {
+                return ResourceManager.GetString("ReceptionConfirmationTotalQuantity", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Add line.
+        /// </summary>
+        internal static string ReceptionDetailAddLine {
+            get {
+                return ResourceManager.GetString("ReceptionDetailAddLine", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Article.
+        /// </summary>
+        internal static string ReceptionDetailArticle {
+            get {
+                return ResourceManager.GetString("ReceptionDetailArticle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Scan or enter article code.
+        /// </summary>
+        internal static string ReceptionDetailArticlePlaceholder {
+            get {
+                return ResourceManager.GetString("ReceptionDetailArticlePlaceholder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Continue.
+        /// </summary>
+        internal static string ReceptionDetailContinue {
+            get {
+                return ResourceManager.GetString("ReceptionDetailContinue", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Depth.
+        /// </summary>
+        internal static string ReceptionDetailDepth {
+            get {
+                return ResourceManager.GetString("ReceptionDetailDepth", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Observations.
+        /// </summary>
+        internal static string ReceptionDetailExtraObservations {
+            get {
+                return ResourceManager.GetString("ReceptionDetailExtraObservations", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Height.
+        /// </summary>
+        internal static string ReceptionDetailHeight {
+            get {
+                return ResourceManager.GetString("ReceptionDetailHeight", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Location.
+        /// </summary>
+        internal static string ReceptionDetailLocation {
+            get {
+                return ResourceManager.GetString("ReceptionDetailLocation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Scan or enter location code.
+        /// </summary>
+        internal static string ReceptionDetailLocationPlaceholder {
+            get {
+                return ResourceManager.GetString("ReceptionDetailLocationPlaceholder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Lot number.
+        /// </summary>
+        internal static string ReceptionDetailLotNumber {
+            get {
+                return ResourceManager.GetString("ReceptionDetailLotNumber", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Enter lot number.
+        /// </summary>
+        internal static string ReceptionDetailLotNumberPlaceholder {
+            get {
+                return ResourceManager.GetString("ReceptionDetailLotNumberPlaceholder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a No detail lines added yet.
+        /// </summary>
+        internal static string ReceptionDetailNoLines {
+            get {
+                return ResourceManager.GetString("ReceptionDetailNoLines", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Quantity.
+        /// </summary>
+        internal static string ReceptionDetailQuantity {
+            get {
+                return ResourceManager.GetString("ReceptionDetailQuantity", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Enter quantity.
+        /// </summary>
+        internal static string ReceptionDetailQuantityPlaceholder {
+            get {
+                return ResourceManager.GetString("ReceptionDetailQuantityPlaceholder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Sample reference.
+        /// </summary>
+        internal static string ReceptionDetailSampleReference {
+            get {
+                return ResourceManager.GetString("ReceptionDetailSampleReference", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Scan or enter sample reference.
+        /// </summary>
+        internal static string ReceptionDetailSampleReferencePlaceholder {
+            get {
+                return ResourceManager.GetString("ReceptionDetailSampleReferencePlaceholder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Dimensions / Weight.
+        /// </summary>
+        internal static string ReceptionDetailSectionDimensions {
+            get {
+                return ResourceManager.GetString("ReceptionDetailSectionDimensions", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Detail lines.
+        /// </summary>
+        internal static string ReceptionDetailSectionLines {
+            get {
+                return ResourceManager.GetString("ReceptionDetailSectionLines", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Logistic data.
+        /// </summary>
+        internal static string ReceptionDetailSectionLogistic {
+            get {
+                return ResourceManager.GetString("ReceptionDetailSectionLogistic", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Sample data.
+        /// </summary>
+        internal static string ReceptionDetailSectionSample {
+            get {
+                return ResourceManager.GetString("ReceptionDetailSectionSample", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Detail.
+        /// </summary>
+        internal static string ReceptionDetailTitle {
+            get {
+                return ResourceManager.GetString("ReceptionDetailTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Weight.
+        /// </summary>
+        internal static string ReceptionDetailWeight {
+            get {
+                return ResourceManager.GetString("ReceptionDetailWeight", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Width.
+        /// </summary>
+        internal static string ReceptionDetailWidth {
+            get {
+                return ResourceManager.GetString("ReceptionDetailWidth", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Article not found in master data. Please check the code..
+        /// </summary>
+        internal static string ReceptionErrorArticleInvalid {
+            get {
+                return ResourceManager.GetString("ReceptionErrorArticleInvalid", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Article is required..
+        /// </summary>
+        internal static string ReceptionErrorArticleRequired {
+            get {
+                return ResourceManager.GetString("ReceptionErrorArticleRequired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Please complete all checklist items before continuing..
+        /// </summary>
+        internal static string ReceptionErrorChecklistIncomplete {
+            get {
+                return ResourceManager.GetString("ReceptionErrorChecklistIncomplete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Please enter or scan a reception number..
+        /// </summary>
+        internal static string ReceptionErrorEmptyNumber {
+            get {
+                return ResourceManager.GetString("ReceptionErrorEmptyNumber", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Location not found. Please check the code..
+        /// </summary>
+        internal static string ReceptionErrorLocationInvalid {
+            get {
+                return ResourceManager.GetString("ReceptionErrorLocationInvalid", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Location is required..
+        /// </summary>
+        internal static string ReceptionErrorLocationRequired {
+            get {
+                return ResourceManager.GetString("ReceptionErrorLocationRequired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a No active reception session. Please start a new reception..
+        /// </summary>
+        internal static string ReceptionErrorNoActiveSession {
+            get {
+                return ResourceManager.GetString("ReceptionErrorNoActiveSession", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a At least one detail line is required..
+        /// </summary>
+        internal static string ReceptionErrorNoDetails {
+            get {
+                return ResourceManager.GetString("ReceptionErrorNoDetails", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Reception not found. Please check the number and try again..
+        /// </summary>
+        internal static string ReceptionErrorNotFound {
+            get {
+                return ResourceManager.GetString("ReceptionErrorNotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Quantity must be greater than 0..
+        /// </summary>
+        internal static string ReceptionErrorQuantityZero {
+            get {
+                return ResourceManager.GetString("ReceptionErrorQuantityZero", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Recipient is required..
+        /// </summary>
+        internal static string ReceptionErrorRecipientRequired {
+            get {
+                return ResourceManager.GetString("ReceptionErrorRecipientRequired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Please enter a rejection reason..
+        /// </summary>
+        internal static string ReceptionErrorRejectionReasonRequired {
+            get {
+                return ResourceManager.GetString("ReceptionErrorRejectionReasonRequired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Sample reference is required for TEST SAMPLE flow..
+        /// </summary>
+        internal static string ReceptionErrorSampleReferenceRequired {
+            get {
+                return ResourceManager.GetString("ReceptionErrorSampleReferenceRequired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Sender is required..
+        /// </summary>
+        internal static string ReceptionErrorSenderRequired {
+            get {
+                return ResourceManager.GetString("ReceptionErrorSenderRequired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Continue.
+        /// </summary>
+        internal static string ReceptionHeaderContinue {
+            get {
+                return ResourceManager.GetString("ReceptionHeaderContinue", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Delivery note.
+        /// </summary>
+        internal static string ReceptionHeaderDeliveryNote {
+            get {
+                return ResourceManager.GetString("ReceptionHeaderDeliveryNote", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Expected date.
+        /// </summary>
+        internal static string ReceptionHeaderExpectedDate {
+            get {
+                return ResourceManager.GetString("ReceptionHeaderExpectedDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Flow type.
+        /// </summary>
+        internal static string ReceptionHeaderFlowType {
+            get {
+                return ResourceManager.GetString("ReceptionHeaderFlowType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Reception number.
+        /// </summary>
+        internal static string ReceptionHeaderNumber {
+            get {
+                return ResourceManager.GetString("ReceptionHeaderNumber", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Observations.
+        /// </summary>
+        internal static string ReceptionHeaderObservations {
+            get {
+                return ResourceManager.GetString("ReceptionHeaderObservations", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Recipient.
+        /// </summary>
+        internal static string ReceptionHeaderRecipient {
+            get {
+                return ResourceManager.GetString("ReceptionHeaderRecipient", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Reception info.
+        /// </summary>
+        internal static string ReceptionHeaderSectionInfo {
+            get {
+                return ResourceManager.GetString("ReceptionHeaderSectionInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Observations.
+        /// </summary>
+        internal static string ReceptionHeaderSectionObservations {
+            get {
+                return ResourceManager.GetString("ReceptionHeaderSectionObservations", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Sender / Recipient.
+        /// </summary>
+        internal static string ReceptionHeaderSectionParties {
+            get {
+                return ResourceManager.GetString("ReceptionHeaderSectionParties", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Sender.
+        /// </summary>
+        internal static string ReceptionHeaderSender {
+            get {
+                return ResourceManager.GetString("ReceptionHeaderSender", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a General data.
+        /// </summary>
+        internal static string ReceptionHeaderTitle {
+            get {
+                return ResourceManager.GetString("ReceptionHeaderTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Finish.
+        /// </summary>
+        internal static string ReceptionItemsFinish {
+            get {
+                return ResourceManager.GetString("ReceptionItemsFinish", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Generated items.
+        /// </summary>
+        internal static string ReceptionItemsSectionList {
+            get {
+                return ResourceManager.GetString("ReceptionItemsSectionList", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Reception completed.
+        /// </summary>
+        internal static string ReceptionItemsSectionSummary {
+            get {
+                return ResourceManager.GetString("ReceptionItemsSectionSummary", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Generated items.
+        /// </summary>
+        internal static string ReceptionItemsTitle {
+            get {
+                return ResourceManager.GetString("ReceptionItemsTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Total items.
+        /// </summary>
+        internal static string ReceptionItemsTotalItems {
+            get {
+                return ResourceManager.GetString("ReceptionItemsTotalItems", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Total quantity.
+        /// </summary>
+        internal static string ReceptionItemsTotalQuantity {
+            get {
+                return ResourceManager.GetString("ReceptionItemsTotalQuantity", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Continue.
+        /// </summary>
+        internal static string ReceptionStartContinue {
+            get {
+                return ResourceManager.GetString("ReceptionStartContinue", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Reception number.
+        /// </summary>
+        internal static string ReceptionStartNumberLabel {
+            get {
+                return ResourceManager.GetString("ReceptionStartNumberLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Scan or enter reception number.
+        /// </summary>
+        internal static string ReceptionStartNumberPlaceholder {
+            get {
+                return ResourceManager.GetString("ReceptionStartNumberPlaceholder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Load reception.
+        /// </summary>
+        internal static string ReceptionStartScanButton {
+            get {
+                return ResourceManager.GetString("ReceptionStartScanButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Reception.
+        /// </summary>
+        internal static string ReceptionStartTitle {
+            get {
+                return ResourceManager.GetString("ReceptionStartTitle", resourceCulture);
             }
         }
         

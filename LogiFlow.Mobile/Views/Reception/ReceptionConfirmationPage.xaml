@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:LogiFlow.Mobile.ViewModels.Reception"
+             xmlns:icons="clr-namespace:LogiFlow.Mobile.Resources.Icons"
+             xmlns:local="clr-namespace:LogiFlow.Mobile.Extensions"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             x:Class="LogiFlow.Mobile.Views.Reception.ReceptionConfirmationPage"
+             x:DataType="vm:ReceptionConfirmationViewModel"
+             NavigationPage.HasNavigationBar="False"
+             BackgroundColor="{DynamicResource PageBackground}"
+             Title="{local:Translate Key=ReceptionConfirmationTitle}">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <toolkit:InvertedBoolConverter x:Key="InverseBoolConverter"/>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <Grid Padding="24" RowSpacing="16">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- ===== HEADER ===== -->
+        <VerticalStackLayout Grid.Row="0" Spacing="4">
+            <Label>
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span Text="Logi" FontSize="22" TextColor="{DynamicResource PrimaryColor}"/>
+                        <Span Text="Flow" FontSize="22" FontAttributes="Bold" TextColor="{DynamicResource PrimaryColor}"/>
+                        <Span Text=" · " FontSize="22" TextColor="{DynamicResource SecondaryText}"/>
+                        <Span Text="{local:Translate Key=ReceptionConfirmationTitle}" FontSize="22" TextColor="{DynamicResource PrimaryText}"/>
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
+            <Label Text="{Binding ReceptionNumber}"
+                   Style="{StaticResource SecondaryTextStyle}"/>
+            <BoxView HeightRequest="1" BackgroundColor="{DynamicResource Divider}" Margin="0,4,0,0"/>
+        </VerticalStackLayout>
+
+        <!-- ===== CONTENT ===== -->
+        <ScrollView Grid.Row="1">
+            <VerticalStackLayout Spacing="0">
+
+                <!-- ===== Summary ===== -->
+                <Border Style="{StaticResource SectionCardStyle}">
+                    <VerticalStackLayout Spacing="12">
+
+                        <Grid ColumnSpacing="10">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Image Grid.Column="0"
+                                   Source="{icons:AppIcon Icon=Receipt, Color={StaticResource PrimaryColor}}"
+                                   WidthRequest="22" HeightRequest="22" VerticalOptions="Center"/>
+                            <Label Grid.Column="1"
+                                   Text="{local:Translate Key=ReceptionConfirmationSectionSummary}"
+                                   Style="{StaticResource SectionTitleStyle}"/>
+                        </Grid>
+
+                        <!-- Reception Number -->
+                        <Grid ColumnSpacing="12">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+                            <Label Grid.Column="0"
+                                   Text="{local:Translate Key=ReceptionConfirmationNumber}"
+                                   Style="{StaticResource FieldLabelStyle}"/>
+                            <Label Grid.Column="1"
+                                   Text="{Binding ReceptionNumber}"
+                                   Style="{StaticResource BodyTextStyle}"
+                                   FontAttributes="Bold"/>
+                        </Grid>
+
+                        <!-- Flow Type -->
+                        <Grid ColumnSpacing="12">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+                            <Label Grid.Column="0"
+                                   Text="{local:Translate Key=ReceptionConfirmationFlowType}"
+                                   Style="{StaticResource FieldLabelStyle}"/>
+                            <Label Grid.Column="1"
+                                   Text="{Binding FlowType}"
+                                   Style="{StaticResource BodyTextStyle}"/>
+                        </Grid>
+
+                        <!-- Sender -->
+                        <Grid ColumnSpacing="12">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+                            <Label Grid.Column="0"
+                                   Text="{local:Translate Key=ReceptionConfirmationSender}"
+                                   Style="{StaticResource FieldLabelStyle}"/>
+                            <Label Grid.Column="1"
+                                   Text="{Binding Sender}"
+                                   Style="{StaticResource BodyTextStyle}"/>
+                        </Grid>
+
+                        <!-- Recipient -->
+                        <Grid ColumnSpacing="12">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+                            <Label Grid.Column="0"
+                                   Text="{local:Translate Key=ReceptionConfirmationRecipient}"
+                                   Style="{StaticResource FieldLabelStyle}"/>
+                            <Label Grid.Column="1"
+                                   Text="{Binding Recipient}"
+                                   Style="{StaticResource BodyTextStyle}"/>
+                        </Grid>
+
+                        <!-- Total Lines -->
+                        <Grid ColumnSpacing="12">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+                            <Label Grid.Column="0"
+                                   Text="{local:Translate Key=ReceptionConfirmationTotalLines}"
+                                   Style="{StaticResource FieldLabelStyle}"/>
+                            <Label Grid.Column="1"
+                                   Text="{Binding TotalLines}"
+                                   Style="{StaticResource BodyTextStyle}"
+                                   FontAttributes="Bold"/>
+                        </Grid>
+
+                        <!-- Total Quantity -->
+                        <Grid ColumnSpacing="12">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+                            <Label Grid.Column="0"
+                                   Text="{local:Translate Key=ReceptionConfirmationTotalQuantity}"
+                                   Style="{StaticResource FieldLabelStyle}"/>
+                            <Label Grid.Column="1"
+                                   Text="{Binding TotalQuantity}"
+                                   Style="{StaticResource BodyTextStyle}"
+                                   FontAttributes="Bold"/>
+                        </Grid>
+
+                    </VerticalStackLayout>
+                </Border>
+
+                <!-- ===== Rejection reason (visible when rejecting) ===== -->
+                <Border Style="{StaticResource SectionCardStyle}"
+                        IsVisible="{Binding IsRejecting}">
+                    <VerticalStackLayout Spacing="12">
+
+                        <Grid ColumnSpacing="10">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Image Grid.Column="0"
+                                   Source="{icons:AppIcon Icon=Cancel, Color={StaticResource ErrorColor}}"
+                                   WidthRequest="22" HeightRequest="22" VerticalOptions="Center"/>
+                            <Label Grid.Column="1"
+                                   Text="{local:Translate Key=ReceptionConfirmationSectionRejection}"
+                                   Style="{StaticResource SectionTitleStyle}"/>
+                        </Grid>
+
+                        <Label Text="{local:Translate Key=ReceptionConfirmationRejectionReason}"
+                               Style="{StaticResource FieldLabelStyle}"/>
+                        <Border Style="{StaticResource EntryBorderStyle}">
+                            <Border.Triggers>
+                                <DataTrigger TargetType="Border"
+                                             Binding="{Binding RejectionReasonHasError}"
+                                             Value="True">
+                                    <Setter Property="Stroke" Value="{DynamicResource ErrorColor}"/>
+                                </DataTrigger>
+                            </Border.Triggers>
+                            <Editor Text="{Binding RejectionReason}"
+                                    AutoSize="TextChanges"
+                                    MinimumHeightRequest="80"
+                                    Placeholder="{local:Translate Key=ReceptionConfirmationRejectionPlaceholder}"
+                                    Style="{StaticResource PrimaryEntryStyle}"
+                                    IsEnabled="{Binding IsNotBusy}"/>
+                        </Border>
+
+                        <!-- Reject confirm + cancel -->
+                        <Grid ColumnSpacing="12">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Button Grid.Column="0"
+                                    Text="{local:Translate Key=ReceptionConfirmationRejectConfirm}"
+                                    Style="{StaticResource DangerButtonStyle}"
+                                    Command="{Binding RejectCommand}"
+                                    IsEnabled="{Binding IsNotBusy}"/>
+                            <Button Grid.Column="1"
+                                    Text="{local:Translate Key=CommonCancel}"
+                                    Style="{StaticResource SecondaryButtonStyle}"
+                                    Command="{Binding CancelRejectCommand}"
+                                    IsEnabled="{Binding IsNotBusy}"/>
+                        </Grid>
+
+                    </VerticalStackLayout>
+                </Border>
+
+            </VerticalStackLayout>
+        </ScrollView>
+
+        <!-- ===== ERROR ===== -->
+        <Grid Grid.Row="2"
+              ColumnSpacing="8"
+              IsVisible="{Binding HasError}">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Image Grid.Column="0"
+                   Source="{icons:AppIcon Icon=ErrorOutline, Color={StaticResource ErrorColor}}"
+                   WidthRequest="24" HeightRequest="24"/>
+            <Label Grid.Column="1"
+                   Text="{Binding ErrorMessage}"
+                   Style="{StaticResource ErrorTextStyle}"/>
+        </Grid>
+
+        <!-- ===== ACTION BUTTONS ===== -->
+        <Grid Grid.Row="3" ColumnSpacing="12" IsVisible="{Binding IsRejecting, Converter={StaticResource InverseBoolConverter}}">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Button Grid.Column="0"
+                    Text="{local:Translate Key=ReceptionConfirmationConfirm}"
+                    Style="{StaticResource PrimaryButtonStyle}"
+                    Command="{Binding ConfirmCommand}"
+                    IsEnabled="{Binding IsNotBusy}"/>
+            <Button Grid.Column="1"
+                    Text="{local:Translate Key=ReceptionConfirmationReject}"
+                    Style="{StaticResource DangerButtonStyle}"
+                    Command="{Binding StartRejectAsyncCommand}"
+                    IsEnabled="{Binding IsNotBusy}"/>
+        </Grid>
+
+        <!-- ===== BACK + LOADING ===== -->
+        <Grid Grid.Row="4" ColumnSpacing="12">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <Button Grid.Column="0"
+                    Text="{local:Translate Key=CommonBack}"
+                    Style="{StaticResource SecondaryButtonStyle}"
+                    Command="{Binding GoBackCommand}"
+                    IsEnabled="{Binding IsNotBusy}"
+                    IsVisible="{Binding IsRejecting, Converter={StaticResource InverseBoolConverter}}"/>
+            <ActivityIndicator Grid.Column="1"
+                               IsVisible="{Binding IsBusy}"
+                               IsRunning="{Binding IsBusy}"
+                               VerticalOptions="Center"/>
+        </Grid>
+
+    </Grid>
+</ContentPage>

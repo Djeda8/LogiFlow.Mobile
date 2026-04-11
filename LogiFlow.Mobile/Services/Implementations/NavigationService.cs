@@ -1,4 +1,6 @@
 using LogiFlow.Mobile.Services.Interfaces;
+using LogiFlow.Mobile.Views.Camera;
+using LogiFlow.Mobile.Views.Reception;
 
 namespace LogiFlow.Mobile.Services.Implementations;
 
@@ -33,6 +35,17 @@ public class NavigationService : INavigationService
             { nameof(Views.Splash.SplashPage), typeof(Views.Splash.SplashPage) },
             { nameof(Views.Menu.MenuPage), typeof(Views.Menu.MenuPage) },
             { nameof(Views.Settings.SettingsPage), typeof(Views.Settings.SettingsPage) },
+
+            // ===== Camera =====
+            { nameof(CameraScanPage), typeof(CameraScanPage) },
+
+            // ===== Reception =====
+            { nameof(ReceptionStartPage), typeof(ReceptionStartPage) },
+            { nameof(ReceptionHeaderPage), typeof(ReceptionHeaderPage) },
+            { nameof(ReceptionDetailPage), typeof(ReceptionDetailPage) },
+            { nameof(ReceptionChecklistPage), typeof(ReceptionChecklistPage) },
+            { nameof(ReceptionConfirmationPage), typeof(ReceptionConfirmationPage) },
+            { nameof(ReceptionItemsPage), typeof(ReceptionItemsPage) },
 
             // Add new pages here
         };
