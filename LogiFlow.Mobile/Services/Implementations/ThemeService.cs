@@ -22,6 +22,8 @@ public class ThemeService : IThemeService
         var mergedDictionaries = Application.Current?.Resources.MergedDictionaries;
         if (mergedDictionaries is null)
         {
+            // 🔔 Notificar cambio de tema incluso si no hay aplicación
+            ThemeChanged?.Invoke(this, EventArgs.Empty);
             return;
         }
 

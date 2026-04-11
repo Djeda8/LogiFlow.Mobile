@@ -4,7 +4,7 @@ using Serilog;
 namespace LogiFlow.Mobile.Services.Implementations;
 
 /// <summary>
-/// Provides structured logging using Serilog, including warehouse operation tracking.
+/// Provides logging functionality.
 /// </summary>
 public class LogService : ILogService
 {
@@ -13,25 +13,33 @@ public class LogService : ILogService
     /// <summary>
     /// Initializes a new instance of the <see cref="LogService"/> class.
     /// </summary>
-    /// <param name="fileSystemService">The file system service.</param>
+    /// <param name="fileSystemService">Provides access to the application file system.</param>
     public LogService(IFileSystemService fileSystemService)
     {
-        var logPath = Path.Combine(fileSystemService.AppDataDirectory, "logs", "logiflow-.log");
+        // 📁 Carpeta segura para todas las versiones de Android
+        var logDir = Path.Combine(fileSystemService.AppDataDirectory, "logs");
 
-        if (fileSystemService.ExternalStorageDirectory is not null)
-        {
-            logPath = Path.Combine(fileSystemService.ExternalStorageDirectory, "Android", "data", "com.companyname.logiflow.mobile", "files", "logs", "logiflow-.log");
-        }
+        // Crear carpeta si no existe
+        Directory.CreateDirectory(logDir);
+
+        var logPath = Path.Combine(logDir, "logiflow-.log");
 
         var loggerConfig = new LoggerConfiguration()
             .MinimumLevel.Debug()
+            .Enrich.WithThreadId()
+            .Enrich.WithProcessId()
             .WriteTo.File(
                 path: logPath,
-                rollingInterval: RollingInterval.Day,
-                retainedFileCountLimit: 7,
-                outputTemplate: "{Timestamp:yyyy-MM-dd HH:mm:ss.fff} [{Level:u3}] {Message:lj}{NewLine}{Exception}");
+                rollingInterval: RollingInterval.Day,          // One file per day
+                retainedFileCountLimit: 7,                     // Keep 7 days
+                fileSizeLimitBytes: 5 * 1024 * 1024,           // 5 MB per file
+                rollOnFileSizeLimit: true,                     // Rotate if size exceeded
+                shared: true,
+                flushToDiskInterval: TimeSpan.FromSeconds(1),  // Frequent flush
+                outputTemplate: "{Timestamp:yyyy-MM-dd HH:mm:ss.fff} [{Level:u3}] [T{ThreadId}] {Message:lj}{NewLine}{Exception}");
 
 #if ANDROID
+         // Visible in logcat
         loggerConfig.WriteTo.AndroidLog(
             outputTemplate: "[LogiFlow] {Message:lj}{NewLine}{Exception}");
 #else
@@ -40,7 +48,10 @@ public class LogService : ILogService
 #endif
 
         _logger = loggerConfig.CreateLogger();
-        _logger.Information("LogService initialized. Log path: {LogPath}", logPath);
+
+        _logger.Information("LogService initialized");
+        _logger.Information("Log directory: {LogDir}", logDir);
+        _logger.Information("Log path: {LogPath}", logPath);
     }
 
     /// <inheritdoc/>

@@ -2,7 +2,7 @@ using LogiFlow.Mobile.Services.Implementations;
 using LogiFlow.Mobile.Services.Interfaces;
 using Moq;
 
-namespace LogiFlow.Mobile.Tests.Services;
+namespace LogiFlow.Mobile.Tests.Services.Implementations;
 
 public class LocalizationServiceTests
 {

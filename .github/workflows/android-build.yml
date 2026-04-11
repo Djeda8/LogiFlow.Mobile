@@ -6,6 +6,8 @@ on:
 
 env:
   MAJOR_VERSION: 1
+  MINOR_VERSION: 1
+  PATCH_VERSION: 0
 
 jobs:
   build:
@@ -37,7 +39,7 @@ jobs:
             -p:AndroidSdkDirectory=$env:ANDROID_SDK_ROOT `
             -p:AndroidPackageFormat=apk `
             -p:ApplicationVersion=${{ github.run_number }} `
-            -p:ApplicationDisplayVersion=${{ env.MAJOR_VERSION }}.0.${{ github.run_number }}
+            -p:ApplicationDisplayVersion=${{ env.MAJOR_VERSION }}.${{ env.MINOR_VERSION }}.${{ env.PATCH_VERSION }}
 
       - name: Find APK
         id: find_apk

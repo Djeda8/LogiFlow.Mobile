@@ -36,10 +36,6 @@
         <NoWarn>SA1633;SA1309;SA1101;XC0025;CS1591;WME1006;MVVMTK0045;CA1416</NoWarn>
     </PropertyGroup>
 
-    <ItemGroup Condition="'$(TargetFramework)' != 'net9.0'">
-        <MauiSplashScreen Include="Resources\Splash\splash.svg" Color="#2563EB" />
-    </ItemGroup>
-
     <!-- Excluir recursos MAUI para net9.0 -->
     <ItemGroup Condition="'$(TargetFramework)' == 'net9.0'">
         <MauiIcon Remove="Resources\AppIcon\appicon.png" />
@@ -65,12 +61,15 @@
     </ItemGroup>
 
     <ItemGroup>
+        <PackageReference Include="BarcodeScanning.Native.Maui" Version="2.2.0" />
         <PackageReference Include="CommunityToolkit.Maui" Version="9.1.1" />
         <PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.0" />
         <PackageReference Include="Microsoft.Maui.Controls" Version="9.0.120" />
         <PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="9.0.120" />
         <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="9.0.13" />
         <PackageReference Include="Serilog" Version="4.3.1" />
+        <PackageReference Include="Serilog.Enrichers.Process" Version="3.0.0" />
+        <PackageReference Include="Serilog.Enrichers.Thread" Version="4.0.0" />
         <PackageReference Include="Serilog.Extensions.Logging" Version="10.0.0" />
         <PackageReference Include="Serilog.Sinks.Debug" Version="3.0.0" />
         <PackageReference Include="Serilog.Sinks.File" Version="7.0.0" />
@@ -117,6 +116,9 @@
         <MauiXaml Update="Resources\Styles\Typography.xaml">
             <Generator>MSBuild:Compile</Generator>
         </MauiXaml>
+        <MauiXaml Update="Views\Camera\CameraScanPage.xaml">
+          <Generator>MSBuild:Compile</Generator>
+        </MauiXaml>
         <MauiXaml Update="Views\Inventory\InventoryPage.xaml">
             <Generator>MSBuild:Compile</Generator>
         </MauiXaml>
@@ -135,8 +137,26 @@
         <MauiXaml Update="Views\Picking\PickingPage.xaml">
             <Generator>MSBuild:Compile</Generator>
         </MauiXaml>
+        <MauiXaml Update="Views\Reception\ReceptionChecklistPage.xaml">
+          <Generator>MSBuild:Compile</Generator>
+        </MauiXaml>
+        <MauiXaml Update="Views\Reception\ReceptionConfirmationPage.xaml">
+          <Generator>MSBuild:Compile</Generator>
+        </MauiXaml>
+        <MauiXaml Update="Views\Reception\ReceptionDetailPage.xaml">
+          <Generator>MSBuild:Compile</Generator>
+        </MauiXaml>
+        <MauiXaml Update="Views\Reception\ReceptionHeaderPage.xaml">
+          <Generator>MSBuild:Compile</Generator>
+        </MauiXaml>
+        <MauiXaml Update="Views\Reception\ReceptionItemsPage.xaml">
+          <Generator>MSBuild:Compile</Generator>
+        </MauiXaml>
         <MauiXaml Update="Views\Reception\ReceptionPage.xaml">
             <Generator>MSBuild:Compile</Generator>
+        </MauiXaml>
+        <MauiXaml Update="Views\Reception\ReceptionStartPage.xaml">
+          <Generator>MSBuild:Compile</Generator>
         </MauiXaml>
         <MauiXaml Update="Views\Settings\SettingsPage.xaml">
             <Generator>MSBuild:Compile</Generator>

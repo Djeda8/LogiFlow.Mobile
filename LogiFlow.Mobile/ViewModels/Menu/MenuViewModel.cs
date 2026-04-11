@@ -119,7 +119,7 @@ public partial class MenuViewModel : BaseViewModel
     private void BuildMenuItems()
     {
         MenuItems.Clear();
-        MenuItems.Add(new(_localizationService.GetString(nameof(AppResources.MenuReception)), nameof(ReceptionPage), AppIconGlyph.Inventory2));
+        MenuItems.Add(new(_localizationService.GetString(nameof(AppResources.MenuReception)), nameof(ReceptionStartPage), AppIconGlyph.Inventory2));
         MenuItems.Add(new(_localizationService.GetString(nameof(AppResources.MenuMovements)), nameof(MovementsPage), AppIconGlyph.SwapHoriz));
         MenuItems.Add(new(_localizationService.GetString(nameof(AppResources.MenuPicking)), nameof(PickingPage), AppIconGlyph.ShoppingCart));
         MenuItems.Add(new(_localizationService.GetString(nameof(AppResources.MenuInventory)), nameof(InventoryPage), AppIconGlyph.Inventory));

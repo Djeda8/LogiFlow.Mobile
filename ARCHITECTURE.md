@@ -37,6 +37,10 @@ All services are registered in `MauiProgram.cs` using the built-in .NET DI conta
 | `IAuthService` | Singleton | Stateless, safe to share |
 | `ISettingsService` | Singleton | Cached settings |
 | `ISessionService` | Singleton | Shared session state |
+| `IReceptionService` | Singleton | Stateless, safe to share |
+| `IMasterDataService` | Singleton | Stateless master data |
+| `IReceptionSessionService` | Singleton | Shared reception flow state |
+| `ICameraScanService` | Singleton | Shared scan callback coordination |
 | ViewModels | Transient | Fresh instance per page |
 | Pages | Transient | Fresh instance per navigation |
 
@@ -133,8 +137,9 @@ _logService.OperationFailure("Login", username, reason);
 ```
 
 ### Log file location
-- **Android**: External storage `/LogiFlow/logs/` if available, otherwise app data directory
+- **Android**: `files/logs/logiflow-YYYYMMDD.log` in app data directory
 - **All platforms**: `logs/logiflow-.log` with daily rolling
+- **Accessible via**: `adb exec-out run-as com.companyname.logiflow.mobile cat /data/data/com.companyname.logiflow.mobile/files/logs/logiflow-YYYYMMDD.log > C:\logs\logiflow.log`
 
 ---
 
@@ -168,11 +173,13 @@ xUnit + Moq with 85% code coverage.
 - XAML Pages (code-behind) — depend on `InitializeComponent()`, not testable without UI
 - Platform wrappers (`PreferencesService`, `NavigationWindowService`, `FileSystemService`) — thin wrappers over platform APIs
 - `MauiProgram`, `App`, `AppShell` — infrastructure, no business logic
+- `ThemeService.ApplyThemeToApplication` — depends on `Application.Current`, platform API
 
 ### Testability patterns
 - `INavigationWindowService` abstracts `NavigationPage` for navigation testing
 - `IPreferencesService` abstracts MAUI `Preferences` for settings testing
 - `IFileSystemService` abstracts `FileSystem` for log path testing
+- `ICameraScanService` coordinates scan callbacks between ViewModels and camera page
 
 ---
 
@@ -237,7 +244,67 @@ Both files expose identical semantic keys so all styles resolve correctly in eit
 
 ---
 
-## 11. How to Add a New Module
+## 11. Camera Barcode Scanning
+
+### Decision
+**BarcodeScanning.Native.Maui** with a dedicated `CameraScanPage` and `ICameraScanService` callback coordination.
+
+### Why BarcodeScanning.Native.Maui
+- Native ML APIs on Android (Google ML Kit) and iOS (Apple Vision)
+- Compatible with .NET MAUI 9
+- Better performance and reliability than ZXing.Net.MAUI for .NET 9
+
+### How it works
+1. Any ViewModel that needs a scan calls `ICameraScanService.RequestScan(callback)` and navigates to `CameraScanPage`
+2. `CameraScanPage` activates the camera on `OnAppearing` and requests camera permission at runtime
+3. When a barcode is detected, `CameraScanViewModel` navigates back first, then calls `ICameraScanService.DeliverResult(code)`
+4. The callback registered by the requesting ViewModel is invoked with the scanned code
+5. Navigation back happens before delivery to ensure the requesting page is active when the callback fires
+
+### Why navigate back before delivering result
+- ViewModels are Singleton — the callback always targets the correct instance
+- Delivering after navigation back ensures the UI binding updates are processed on the active page
+- Prevents race conditions between navigation stack changes and property updates
+
+### Permissions
+- Android: `android.permission.CAMERA` in `AndroidManifest.xml` + runtime request via `Permissions.RequestAsync<Permissions.Camera>()`
+
+---
+
+## 12. Reception Module Architecture
+
+### Decision
+Multi-step sequential flow with `IReceptionSessionService` as shared state container.
+
+### Flow
+```
+ReceptionStartPage → ReceptionHeaderPage → ReceptionDetailPage → [ReceptionChecklistPage] → ReceptionConfirmationPage → ReceptionItemsPage
+```
+
+### Why IReceptionSessionService
+- The reception DTO is built progressively across 6 screens
+- Singleton service preserves state across the entire flow
+- Each ViewModel reads and writes to the session independently
+- No coupling between ViewModels — they only depend on the service
+
+### Flow types
+| Type | Checklist | Extra fields |
+|------|-----------|--------------|
+| STANDARD | Not required | None |
+| TEST_SAMPLE | Mandatory | Sample reference, lot number |
+| Any with VEHICLE article | Mandatory | None |
+
+### Demo data
+Simulated receptions available for testing:
+| Code | Flow type | Sender |
+|------|-----------|--------|
+| REC-001 | STANDARD | Supplier A |
+| REC-002 | TEST_SAMPLE | Lab B |
+| REC-003 | STANDARD | Supplier C |
+
+---
+
+## 13. How to Add a New Module
 
 Follow these steps to add a new module (e.g. `Reception`):
 

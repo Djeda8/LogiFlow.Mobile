@@ -5,7 +5,7 @@
       <DataCollector friendlyName="XPlat code coverage">
         <Configuration>
           <Format>cobertura</Format>
-	    <Exclude>[LogiFlow.Mobile]LogiFlow.Mobile.Views.*,[LogiFlow.Mobile]LogiFlow.Mobile.Platforms.*,[LogiFlow.Mobile]LogiFlow.Mobile.MauiProgram,[LogiFlow.Mobile]LogiFlow.Mobile.App,[LogiFlow.Mobile]LogiFlow.Mobile.AppShell</Exclude>
+          <Exclude>[LogiFlow.Mobile]LogiFlow.Mobile.Views.*,[LogiFlow.Mobile]LogiFlow.Mobile.Platforms.*,[LogiFlow.Mobile]LogiFlow.Mobile.MauiProgram,[LogiFlow.Mobile]LogiFlow.Mobile.App,[LogiFlow.Mobile]LogiFlow.Mobile.AppShell,[LogiFlow.Mobile]LogiFlow.Mobile.Services.Implementations.NavigationWindowService,[LogiFlow.Mobile]LogiFlow.Mobile.Services.Implementations.FileSystemService,[LogiFlow.Mobile]LogiFlow.Mobile.Services.Implementations.PreferencesService,[LogiFlow.Mobile]LogiFlow.Mobile.Resources.Styles.*,[LogiFlow.Mobile]LogiFlow.Mobile.Resources.Languages.AppResources,[LogiFlow.Mobile]Microsoft.Maui.Controls.Generated.*,[LogiFlow.Mobile]__XamlGeneratedCode__.*</Exclude>
           <ExcludeByAttribute>ExcludeFromCodeCoverage</ExcludeByAttribute>
         </Configuration>
       </DataCollector>

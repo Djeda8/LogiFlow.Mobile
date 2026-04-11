@@ -1,3 +1,15 @@
+## v1.1.0 - Reception Module
+- Full reception flow: scan, header, detail, checklist, confirmation and item generation
+- Camera-based barcode scanning via BarcodeScanning.Native.Maui
+- Support for STANDARD and TEST_SAMPLE flow types
+- Dynamic checklist mandatory.
+- Reception session management across multi-step flow
+- Master data service with simulated articles, locations, senders and recipients
+- Real-time validation with immediate operator feedback
+- Architecture prepared for backend integration
+- Test suite expanded to 439 passing tests
+- Code coverage at 94%
+
 ## v1.0.19 - Entry theme refinements
 - Entry underline and cursor color now update in real-time when theme changes
 - Entry text selection highlight color adapts to active theme

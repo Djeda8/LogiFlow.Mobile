@@ -5,8 +5,8 @@
 ![Platform](https://img.shields.io/badge/platform-Android-green)
 ![.NET](https://img.shields.io/badge/.NET-9.0-purple)
 ![MAUI](https://img.shields.io/badge/MAUI-9.0-blue)
-![Tests](https://img.shields.io/badge/tests-207%20passing-brightgreen)
-![Coverage](https://img.shields.io/badge/coverage-95%25-brightgreen)
+![Tests](https://img.shields.io/badge/tests-439%20passing-brightgreen)
+![Coverage](https://img.shields.io/badge/coverage-94%25-brightgreen)
 ![License](https://img.shields.io/badge/license-MIT-blue)
 
 ## Overview
@@ -26,6 +26,17 @@ The project follows enterprise-grade development practices including MVVM archit
   &nbsp;&nbsp;&nbsp;&nbsp;
   <img src="docs/images/settings.png" width="200" alt="Settings"/>
 </p>
+<p align="center">
+  <img src="docs/images/reception_start.png" width="200" alt="Reception Start"/>
+  &nbsp;&nbsp;&nbsp;&nbsp;
+  <img src="docs/images/reception_general_data.png" width="200" alt="Reception General data"/>
+  &nbsp;&nbsp;&nbsp;&nbsp;
+  <img src="docs/images/reception_detail.png" width="200" alt="Reception Detail"/>
+  &nbsp;&nbsp;&nbsp;&nbsp;
+  <img src="docs/images/reception_generated_items.png" width="200" alt="Reception Generated items"/>
+  &nbsp;&nbsp;&nbsp;&nbsp;
+  <img src="docs/images/reception_checklist.png" width="200" alt="Reception CheckList"/>
+</p>
 
 ## Features
 
@@ -33,13 +44,14 @@ The project follows enterprise-grade development practices including MVVM archit
 - **Main Menu** — Quick access to all warehouse modules
 - **Settings** — Configurable server URL, scanner type, language and visual theme
 - **Internationalization** — Full English and Spanish support with real-time language switching
+- **Reception** — Full goods reception flow with barcode scanning, checklist and item generation
 - **Offline-ready architecture** — Service layer designed for easy API integration
 
 ## Modules
 
 | Module | Description | Status |
 |--------|-------------|--------|
-| Reception | Goods reception and validation | 🚧 In progress |
+| Reception | Goods reception and validation | ✅ Complete |
 | Movements | Stock movements between locations | 🚧 In progress |
 | Picking | Order picking operations | 🚧 In progress |
 | Inventory | Stock counting and verification | 🚧 In progress |
@@ -80,13 +92,12 @@ LogiFlow.Mobile/
 | Serilog | Structured logging |
 | xUnit + Moq | Unit testing |
 | coverlet | Code coverage |
-| CommunityToolkit.MAUI | UI components and behaviors |
 
 ## CI/CD Pipeline
 
 Every push to `main` automatically:
 
-1. ✅ Runs 205 unit tests
+1. ✅ Runs 439 unit tests
 2. ✅ Builds the Android APK in Release mode
 3. ✅ Distributes to testers via Firebase App Distribution
 
