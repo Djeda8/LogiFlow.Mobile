@@ -1,3 +1,8 @@
+## v1.2.1 - AI Contextual Assistant (documentation update)
+- Updated screenshots to show the Ask AI button on all 6 Reception screens
+- Added extra images for clarity and completeness
+- No code changes; purely documentation and visuals
+
 ## v1.2.0 - AI Contextual Assistant
 - Anthropic Claude API (claude-haiku-4-5) integrated as a contextual WMS assistant
 - 💬 Ask AI button available on all 6 Reception screens
