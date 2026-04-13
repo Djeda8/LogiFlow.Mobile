@@ -34,8 +34,11 @@ The project follows enterprise-grade development practices including MVVM archit
   <img src="docs/images/reception_detail.png" width="200" alt="Reception Detail"/>
   &nbsp;&nbsp;&nbsp;&nbsp;
   <img src="docs/images/reception_generated_items.png" width="200" alt="Reception Generated items"/>
+</p>
+<p align="center">
+  <img src="docs/images/reception_checklist.png" width="200" alt="Reception Generated items"/>
   &nbsp;&nbsp;&nbsp;&nbsp;
-  <img src="docs/images/reception_checklist.png" width="200" alt="Reception CheckList"/>
+  <img src="docs/images/ai_assistant.png" width="200" alt="Reception CheckList"/>
 </p>
 
 ## Features
