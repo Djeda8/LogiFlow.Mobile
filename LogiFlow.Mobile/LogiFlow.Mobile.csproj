@@ -56,6 +56,14 @@
     </ItemGroup>
 
     <ItemGroup>
+        <MauiAsset Include="appsettings.json"
+                   LogicalName="appsettings.json" />
+        <MauiAsset Include="appsettings.Development.json"
+                   LogicalName="appsettings.Development.json"
+                   Condition="Exists('appsettings.Development.json')" />
+    </ItemGroup>
+    
+    <ItemGroup>
         <None Remove="appsettings.Development.json" />
         <None Remove="appsettings.json" />
         <None Remove="Resources\AppIcon\appicon.svg" />
@@ -231,11 +239,6 @@
 
     <ItemGroup>
       <Folder Include="Platforms\Android\Resources\drawable\" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <MauiAsset Include="appsettings.Development.json" />
-      <MauiAsset Include="appsettings.json" />
     </ItemGroup>
 
 </Project>
