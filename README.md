@@ -6,7 +6,7 @@
 ![.NET](https://img.shields.io/badge/.NET-9.0-purple)
 ![MAUI](https://img.shields.io/badge/MAUI-9.0-blue)
 ![Tests](https://img.shields.io/badge/tests-439%20passing-brightgreen)
-![Coverage](https://img.shields.io/badge/coverage-94%25-brightgreen)
+![Coverage](https://img.shields.io/badge/coverage-85%25-brightgreen)
 ![License](https://img.shields.io/badge/license-MIT-blue)
 
 ## Overview
@@ -45,6 +45,7 @@ The project follows enterprise-grade development practices including MVVM archit
 - **Settings** — Configurable server URL, scanner type, language and visual theme
 - **Internationalization** — Full English and Spanish support with real-time language switching
 - **Reception** — Full goods reception flow with barcode scanning, checklist and item generation
+- **AI Assistant** — Contextual Claude-powered chat available on all Reception screens
 - **Offline-ready architecture** — Service layer designed for easy API integration
 
 ## Modules
@@ -65,7 +66,8 @@ LogiFlow.Mobile/
 ├── DTOs/                # Data transfer objects
 ├── Exceptions/          # Custom domain exceptions
 ├── Extensions/          # XAML markup extensions
-├── Models/              # Domain models
+├── Models/
+│   └── AI/              # AI chat models (ChatMessage, WmsScreenContext)
 ├── Platforms/           # Platform-specific code
 ├── Resources/
 │   ├── AppIcon/         # App icon
@@ -75,11 +77,16 @@ LogiFlow.Mobile/
 │   ├── Languages/       # Localization (.resx)
 │   ├── Splash/          # Splash screen
 │   └── Styles/          # Global styles and Design System
+├── Selectors/           # DataTemplateSelectors (AI chat bubbles)
 ├── Services/
-│   ├── Implementations/ # Service implementations
-│   └── Interfaces/      # Service contracts
-├── ViewModels/          # MVVM ViewModels
-└── Views/               # XAML Pages
+│   ├── Implementations/ # Service implementations (incl. ClaudeService, ChatDialogService)
+│   └── Interfaces/      # Service contracts (incl. IClaudeService, IChatDialogService)
+├── ViewModels/
+│   ├── AI/              # ChatViewModel
+│   └── Reception/       # Reception flow ViewModels
+└── Views/
+    ├── AI/              # ChatBottomSheet
+    └── Reception/       # Reception flow Pages
 ```
 
 ## Tech Stack
@@ -89,6 +96,7 @@ LogiFlow.Mobile/
 | .NET MAUI 9 | Cross-platform mobile framework |
 | CommunityToolkit.MAUI | UI components and behaviors |
 | CommunityToolkit.Mvvm | MVVM pattern implementation |
+| Anthropic Claude API | Contextual AI assistant (claude-haiku-4-5) |
 | Serilog | Structured logging |
 | xUnit + Moq | Unit testing |
 | coverlet | Code coverage |
@@ -98,8 +106,9 @@ LogiFlow.Mobile/
 Every push to `main` automatically:
 
 1. ✅ Runs 439 unit tests
-2. ✅ Builds the Android APK in Release mode
-3. ✅ Distributes to testers via Firebase App Distribution
+2. ✅ Injects `ANTHROPIC_API_KEY` from GitHub Secrets into `appsettings.json`
+3. ✅ Builds the Android APK in Release mode
+4. ✅ Distributes to testers via Firebase App Distribution
 
 Built with **GitHub Actions** and **Firebase App Distribution**.
 
@@ -111,6 +120,7 @@ Built with **GitHub Actions** and **Firebase App Distribution**.
 - .NET 9 SDK
 - .NET MAUI workload
 - Android SDK
+- Anthropic API key (for AI assistant)
 
 ### Run locally
 ```bash
@@ -118,6 +128,16 @@ git clone https://github.com/Djeda8/LogiFlow.Mobile.git
 cd LogiFlow.Mobile
 dotnet restore
 dotnet build
+```
+
+### Configure AI Assistant (local)
+Create `LogiFlow.Mobile/appsettings.Development.json` (excluded from git):
+```json
+{
+  "Anthropic": {
+    "ApiKey": "sk-ant-your-key-here"
+  }
+}
 ```
 
 ### Run tests

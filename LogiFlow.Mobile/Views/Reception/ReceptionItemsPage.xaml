@@ -20,21 +20,46 @@
         </Grid.RowDefinitions>
 
         <!-- ===== HEADER ===== -->
-        <VerticalStackLayout Grid.Row="0" Spacing="4">
-            <Label>
-                <Label.FormattedText>
-                    <FormattedString>
-                        <Span Text="Logi" FontSize="22" TextColor="{DynamicResource PrimaryColor}"/>
-                        <Span Text="Flow" FontSize="22" FontAttributes="Bold" TextColor="{DynamicResource PrimaryColor}"/>
-                        <Span Text=" · " FontSize="22" TextColor="{DynamicResource SecondaryText}"/>
-                        <Span Text="{local:Translate Key=ReceptionItemsTitle}" FontSize="22" TextColor="{DynamicResource PrimaryText}"/>
-                    </FormattedString>
-                </Label.FormattedText>
-            </Label>
-            <Label Text="{Binding ReceptionNumber}"
-                   Style="{StaticResource SecondaryTextStyle}"/>
-            <BoxView HeightRequest="1" BackgroundColor="{DynamicResource Divider}" Margin="0,4,0,0"/>
-        </VerticalStackLayout>
+        <Grid Grid.Row="0" RowSpacing="4">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <Grid Grid.Row="0" ColumnDefinitions="*,Auto">
+                <Label Grid.Column="0">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="Logi" FontSize="22" TextColor="{DynamicResource PrimaryColor}"/>
+                            <Span Text="Flow" FontSize="22" FontAttributes="Bold" TextColor="{DynamicResource PrimaryColor}"/>
+                            <Span Text=" · " FontSize="22" TextColor="{DynamicResource SecondaryText}"/>
+                            <Span Text="{local:Translate Key=ReceptionItemsTitle}" FontSize="22" TextColor="{DynamicResource PrimaryText}"/>
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+
+                <Button Grid.Column="1"
+                Text="{local:Translate Key=AiChatAskButton}"
+                Command="{Binding OpenAiChatCommand}"
+                FontFamily="RobotoMedium"
+                FontSize="13"
+                Padding="12,6"
+                CornerRadius="16"
+                BackgroundColor="{DynamicResource PrimaryColor}"
+                TextColor="{DynamicResource IconTextDefault}"
+                VerticalOptions="Center"/>
+            </Grid>
+
+            <Label Grid.Row="1"
+           Text="{Binding ReceptionNumber}"
+           Style="{StaticResource SecondaryTextStyle}"/>
+
+            <BoxView Grid.Row="2"
+             HeightRequest="1"
+             BackgroundColor="{DynamicResource Divider}"
+             Margin="0,4,0,0"/>
+        </Grid>
 
         <!-- ===== CONTENT ===== -->
         <ScrollView Grid.Row="1">

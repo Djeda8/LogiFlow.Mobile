@@ -61,6 +61,69 @@ namespace LogiFlow.Mobile.Resources.Languages {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a 💬 Ask AI.
+        /// </summary>
+        internal static string AiChatAskButton {
+            get {
+                return ResourceManager.GetString("AiChatAskButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Clear.
+        /// </summary>
+        internal static string AiChatClear {
+            get {
+                return ResourceManager.GetString("AiChatClear", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Sorry, I couldn&apos;t reach the AI service. Please try again..
+        /// </summary>
+        internal static string AiChatErrorService {
+            get {
+                return ResourceManager.GetString("AiChatErrorService", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Hi! I&apos;m your LogiFlow assistant. I can help you with {0}. What do you need?.
+        /// </summary>
+        internal static string AiChatGreeting {
+            get {
+                return ResourceManager.GetString("AiChatGreeting", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Type your question….
+        /// </summary>
+        internal static string AiChatPlaceholder {
+            get {
+                return ResourceManager.GetString("AiChatPlaceholder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Assistant is thinking….
+        /// </summary>
+        internal static string AiChatThinking {
+            get {
+                return ResourceManager.GetString("AiChatThinking", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a AI Assistant.
+        /// </summary>
+        internal static string AiChatTitle {
+            get {
+                return ResourceManager.GetString("AiChatTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Cancel scan.
         /// </summary>
         internal static string CameraScanCancel {

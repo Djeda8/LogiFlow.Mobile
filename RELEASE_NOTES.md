@@ -1,3 +1,14 @@
+## v1.2.0 - AI Contextual Assistant
+- Anthropic Claude API (claude-haiku-4-5) integrated as a contextual WMS assistant
+- 💬 Ask AI button available on all 6 Reception screens
+- Chat bottom sheet with full conversation history per session
+- Screen-aware context — Claude knows which screen the operator is on and its current state
+- Full dark/light theme support in the chat UI following the app design system
+- Fully localized chat UI (English and Spanish)
+- MVVM-pure implementation via IChatDialogService — no UI logic in ViewModels
+- API key managed via GitHub Secrets in CI/CD pipeline and appsettings.Development.json locally
+- ChatViewModel registered as Transient — fresh session per popup open
+
 ## v1.1.0 - Reception Module
 - Full reception flow: scan, header, detail, checklist, confirmation and item generation
 - Camera-based barcode scanning via BarcodeScanning.Native.Maui
