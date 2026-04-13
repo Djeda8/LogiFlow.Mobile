@@ -1,5 +1,6 @@
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using LogiFlow.Mobile.Models.AI;
 using LogiFlow.Mobile.Resources.Languages;
 using LogiFlow.Mobile.Services.Interfaces;
 using LogiFlow.Mobile.ViewModels.Base;
@@ -60,13 +61,15 @@ public partial class ReceptionConfirmationViewModel : BaseViewModel
     /// <param name="localizationService">The service that provides localized resources and strings. Cannot be null.</param>
     /// <param name="logService">The service used for logging informational and error messages. Cannot be null.</param>
     /// <param name="errorHandlerService">The service responsible for handling and reporting errors within the view model. Cannot be null.</param>
+    /// <param name="chatDialogService">Service to display AI chat dialogs from the ViewModel.</param>
     public ReceptionConfirmationViewModel(
         IReceptionService receptionService,
         IReceptionSessionService receptionSessionService,
         INavigationService navigationService,
         ILocalizationService localizationService,
         ILogService logService,
-        IErrorHandlerService errorHandlerService)
+        IErrorHandlerService errorHandlerService,
+        IChatDialogService chatDialogService)
     {
         _receptionService = receptionService;
         _receptionSessionService = receptionSessionService;
@@ -74,6 +77,8 @@ public partial class ReceptionConfirmationViewModel : BaseViewModel
         _localizationService = localizationService;
         _logService = logService;
         _errorHandlerService = errorHandlerService;
+
+        ChatDialogService = chatDialogService;
 
         _logService.Info("ReceptionConfirmationViewModel initialized.");
     }
@@ -107,6 +112,23 @@ public partial class ReceptionConfirmationViewModel : BaseViewModel
 
         _logService.Info("ReceptionConfirmation loaded. ReceptionNumber={ReceptionNumber}, TotalLines={TotalLines}, TotalQuantity={TotalQuantity}", ReceptionNumber, TotalLines, TotalQuantity);
     }
+
+    // ── AI context ────────────────────────────────────────────────────────────
+
+    /// <summary>
+    /// Gets the AI chat context for the reception checklist page.
+    /// </summary>
+    /// <returns>A <see cref="WmsScreenContext"/> representing the current screen state.</returns>
+    protected override WmsScreenContext GetAiContext() => new()
+    {
+        ScreenId = nameof(ReceptionConfirmationPage),
+        ScreenDisplayName = "Reception — Confirmation",
+        Module = "Reception",
+        ScreenState = $"Reception {ReceptionNumber} — FlowType: {FlowType}, " +
+                            $"Sender: {Sender}, Recipient: {Recipient}, " +
+                            $"TotalLines: {TotalLines}, TotalQuantity: {TotalQuantity}, " +
+                            $"IsRejecting: {IsRejecting}",
+    };
 
     /// <summary>
     /// Confirms the reception, generates logistic items and navigates to the items screen.

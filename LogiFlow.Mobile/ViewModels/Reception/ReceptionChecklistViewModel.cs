@@ -2,6 +2,7 @@ using System.Collections.ObjectModel;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using LogiFlow.Mobile.DTOs;
+using LogiFlow.Mobile.Models.AI;
 using LogiFlow.Mobile.Resources.Languages;
 using LogiFlow.Mobile.Services.Interfaces;
 using LogiFlow.Mobile.ViewModels.Base;
@@ -38,18 +39,22 @@ public partial class ReceptionChecklistViewModel : BaseViewModel
     /// <param name="localizationService">Provides localized UI strings.</param>
     /// <param name="logService">Logs information and errors.</param>
     /// <param name="errorHandlerService">Handles errors and exceptions.</param>
+    /// <param name="chatDialogService">Service to display AI chat dialogs from the ViewModel.</param>
     public ReceptionChecklistViewModel(
         IReceptionSessionService receptionSessionService,
         INavigationService navigationService,
         ILocalizationService localizationService,
         ILogService logService,
-        IErrorHandlerService errorHandlerService)
+        IErrorHandlerService errorHandlerService,
+        IChatDialogService chatDialogService)
     {
         _receptionSessionService = receptionSessionService;
         _navigationService = navigationService;
         _localizationService = localizationService;
         _logService = logService;
         _errorHandlerService = errorHandlerService;
+
+        ChatDialogService = chatDialogService;
 
         _logService.Info("ReceptionChecklistViewModel initialized.");
     }
@@ -93,6 +98,23 @@ public partial class ReceptionChecklistViewModel : BaseViewModel
         AllItemsChecked = ChecklistItems.Count > 0 && ChecklistItems.All(i => i.IsChecked);
         ContinueCommand.NotifyCanExecuteChanged();
     }
+
+    // ── AI context ────────────────────────────────────────────────────────────
+
+    /// <summary>
+    /// Gets the AI chat context for the reception checklist page.
+    /// </summary>
+    /// <returns>A <see cref="WmsScreenContext"/> representing the current screen state.</returns>
+    protected override WmsScreenContext GetAiContext() => new()
+    {
+        ScreenId = nameof(ReceptionChecklistPage),
+        ScreenDisplayName = "Reception — Checklist",
+        Module = "Reception",
+        ScreenState = $"Reception {ReceptionNumber} — FlowType: {FlowType}, " +
+                            $"Items: {ChecklistItems.Count}, " +
+                            $"Checked: {ChecklistItems.Count(i => i.IsChecked)}, " +
+                            $"AllCompleted: {AllItemsChecked}",
+    };
 
     private bool CanContinue() => IsNotBusy && AllItemsChecked;
 

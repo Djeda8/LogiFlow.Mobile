@@ -20,6 +20,8 @@ public class ReceptionDetailViewModelTests
     private readonly Mock<ILocalizationService> _localizationServiceMock;
     private readonly Mock<ILogService> _logServiceMock;
     private readonly Mock<IErrorHandlerService> _errorHandlerServiceMock;
+    private readonly Mock<IChatDialogService> _chatDialogService;
+
     private readonly ReceptionDetailViewModel _sut;
 
     public ReceptionDetailViewModelTests()
@@ -32,6 +34,7 @@ public class ReceptionDetailViewModelTests
         _localizationServiceMock = new Mock<ILocalizationService>();
         _logServiceMock = new Mock<ILogService>();
         _errorHandlerServiceMock = new Mock<IErrorHandlerService>();
+        _chatDialogService = new Mock<IChatDialogService>();
 
         _localizationServiceMock
             .Setup(x => x.GetString(It.IsAny<string>()))
@@ -85,7 +88,8 @@ public class ReceptionDetailViewModelTests
             _navigationServiceMock.Object,
             _localizationServiceMock.Object,
             _logServiceMock.Object,
-            _errorHandlerServiceMock.Object);
+            _errorHandlerServiceMock.Object,
+            _chatDialogService.Object);
     }
 
     // --- Initial state ---

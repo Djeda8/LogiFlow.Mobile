@@ -20,6 +20,9 @@ public partial class ReceptionStartPage : ContentPage
         BindingContext = _viewModel;
     }
 
+    /// <summary>
+    /// Called when the page appears. Invokes the corresponding ViewModel logic.
+    /// </summary>
     protected override void OnAppearing()
     {
         base.OnAppearing();

@@ -41,6 +41,9 @@ All services are registered in `MauiProgram.cs` using the built-in .NET DI conta
 | `IMasterDataService` | Singleton | Stateless master data |
 | `IReceptionSessionService` | Singleton | Shared reception flow state |
 | `ICameraScanService` | Singleton | Shared scan callback coordination |
+| `IClaudeService` | Singleton | Stateless HTTP client wrapper |
+| `IChatDialogService` | Singleton | Resolves ChatViewModel from DI and shows popup |
+| `ChatViewModel` | Transient | Fresh instance per chat session |
 | ViewModels | Transient | Fresh instance per page |
 | Pages | Transient | Fresh instance per navigation |
 
@@ -180,6 +183,7 @@ xUnit + Moq with 85% code coverage.
 - `IPreferencesService` abstracts MAUI `Preferences` for settings testing
 - `IFileSystemService` abstracts `FileSystem` for log path testing
 - `ICameraScanService` coordinates scan callbacks between ViewModels and camera page
+- `IChatDialogService` abstracts popup display for AI chat testing
 
 ---
 
@@ -304,7 +308,53 @@ Simulated receptions available for testing:
 
 ---
 
-## 13. How to Add a New Module
+## 13. AI Assistant — Contextual Chat
+
+### Decision
+**Anthropic Claude API** (claude-haiku-4-5) integrated as a contextual WMS assistant available on all Reception screens.
+
+### Architecture
+```
+BaseViewModel.OpenAiChatCommand
+        ↓
+IChatDialogService.ShowAsync(WmsScreenContext)
+        ↓
+ChatDialogService → resolves ChatViewModel from DI
+        ↓
+ChatBottomSheet (Popup) bound to ChatViewModel
+        ↓
+IClaudeService.SendAsync(history, context)
+        ↓
+Anthropic HTTP API → claude-haiku-4-5
+```
+
+### Key design decisions
+
+**`IChatDialogService`** — decouples ViewModels from UI. ViewModels call `ShowAsync(context)` without knowing anything about Popups or Pages.
+
+**`BaseViewModel.OpenAiChatCommand`** — the command is defined once in `BaseViewModel`. Any ViewModel that sets `ChatDialogService` and overrides `GetAiContext()` automatically gets the 💬 Ask AI button wired up via XAML binding with zero additional code-behind.
+
+**`WmsScreenContext`** — each ViewModel overrides `GetAiContext()` to provide real-time screen state to Claude: reception number, flow type, current article, lines count, checklist progress, etc. Claude uses this as its system prompt context.
+
+**`DataTemplateSelector`** — chat bubbles use `ChatMessageTemplateSelector` instead of `IsVisible` converters to avoid double-rendering of user and assistant messages.
+
+**`ChatViewModel` as Transient** — fresh instance per chat session. History is cleared on `InitialiseContext()`, so each popup open starts a clean conversation with the current screen context.
+
+### API key management
+| Environment | Source |
+|-------------|--------|
+| Local debug | `appsettings.Development.json` (excluded from git) |
+| CI/CD | GitHub Secret `ANTHROPIC_API_KEY` injected into `appsettings.json` at build time |
+
+### Screens with AI chat enabled
+All 6 Reception screens expose `OpenAiChatCommand` via their ViewModel and show the 💬 Ask AI button in the page header.
+
+### Why not add AI to Settings
+Settings is a technical configuration screen used rarely by operators. There is no operational workflow context where Claude can add value. The AI assistant is intentionally scoped to operational modules only.
+
+---
+
+## 14. How to Add a New Module
 
 Follow these steps to add a new module (e.g. `Reception`):
 
@@ -341,7 +391,13 @@ new(_localizationService.GetString(nameof(AppResources.MenuReception)), nameof(R
 <data name="MenuReception"><value>Reception</value></data>
 ```
 
-**7. Write unit tests**
+**7. Add 💬 Ask AI button to XAML header**
+```xml
+<Button Text="{local:Translate Key=AiChatAskButton}"
+        Command="{Binding OpenAiChatCommand}" ... />
+```
+
+**8. Write unit tests**
 ```
 Tests/ViewModels/ReceptionViewModelTests.cs
 ```

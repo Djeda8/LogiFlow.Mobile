@@ -2,10 +2,12 @@ using System.Collections.ObjectModel;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using LogiFlow.Mobile.DTOs;
+using LogiFlow.Mobile.Models.AI;
 using LogiFlow.Mobile.Resources.Languages;
 using LogiFlow.Mobile.Services.Interfaces;
 using LogiFlow.Mobile.ViewModels.Base;
 using LogiFlow.Mobile.Views.Menu;
+using LogiFlow.Mobile.Views.Reception;
 
 namespace LogiFlow.Mobile.ViewModels.Reception;
 
@@ -42,13 +44,15 @@ public partial class ReceptionItemsViewModel : BaseViewModel
     /// <param name="localizationService">The service used to provide localized resources. Cannot be null.</param>
     /// <param name="logService">The service used for logging informational and error messages. Cannot be null.</param>
     /// <param name="errorHandlerService">The service responsible for handling and reporting errors. Cannot be null.</param>
+    /// <param name="chatDialogService">Service to display AI chat dialogs from the ViewModel.</param>
     public ReceptionItemsViewModel(
         IReceptionService receptionService,
         IReceptionSessionService receptionSessionService,
         INavigationService navigationService,
         ILocalizationService localizationService,
         ILogService logService,
-        IErrorHandlerService errorHandlerService)
+        IErrorHandlerService errorHandlerService,
+        IChatDialogService chatDialogService)
     {
         _receptionService = receptionService;
         _receptionSessionService = receptionSessionService;
@@ -56,6 +60,8 @@ public partial class ReceptionItemsViewModel : BaseViewModel
         _localizationService = localizationService;
         _logService = logService;
         _errorHandlerService = errorHandlerService;
+
+        ChatDialogService = chatDialogService;
 
         _logService.Info("ReceptionItemsViewModel initialized.");
     }
@@ -111,6 +117,21 @@ public partial class ReceptionItemsViewModel : BaseViewModel
             IsBusy = false;
         }
     }
+
+    // ── AI context ────────────────────────────────────────────────────────────
+
+    /// <summary>
+    /// Gets the AI chat context for the reception checklist page.
+    /// </summary>
+    /// <returns>A <see cref="WmsScreenContext"/> representing the current screen state.</returns>
+    protected override WmsScreenContext GetAiContext() => new()
+    {
+        ScreenId = nameof(ReceptionItemsPage),
+        ScreenDisplayName = "Reception — Generated Items",
+        Module = "Reception",
+        ScreenState = $"Reception {ReceptionNumber} completed — " +
+                            $"TotalItems: {TotalItems}, TotalQuantity: {TotalQuantity}",
+    };
 
     /// <summary>
     /// Clears the reception session and navigates back to the main menu.

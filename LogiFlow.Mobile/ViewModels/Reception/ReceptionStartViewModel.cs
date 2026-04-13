@@ -1,5 +1,6 @@
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using LogiFlow.Mobile.Models.AI;
 using LogiFlow.Mobile.Resources.Languages;
 using LogiFlow.Mobile.Services.Interfaces;
 using LogiFlow.Mobile.ViewModels.Base;
@@ -47,6 +48,7 @@ public partial class ReceptionStartViewModel : BaseViewModel
     /// <param name="localizationService">The service used to provide localized resources. Cannot be null.</param>
     /// <param name="logService">The service used for logging informational and error messages. Cannot be null.</param>
     /// <param name="errorHandlerService">The service responsible for handling and reporting errors. Cannot be null.</param>
+    /// <param name="chatDialogService">Service to display AI chat dialogs from the ViewModel.</param>
     public ReceptionStartViewModel(
         IReceptionService receptionService,
         IReceptionSessionService receptionSessionService,
@@ -54,7 +56,8 @@ public partial class ReceptionStartViewModel : BaseViewModel
         INavigationService navigationService,
         ILocalizationService localizationService,
         ILogService logService,
-        IErrorHandlerService errorHandlerService)
+        IErrorHandlerService errorHandlerService,
+        IChatDialogService chatDialogService)
     {
         _receptionService = receptionService;
         _receptionSessionService = receptionSessionService;
@@ -63,6 +66,8 @@ public partial class ReceptionStartViewModel : BaseViewModel
         _localizationService = localizationService;
         _logService = logService;
         _errorHandlerService = errorHandlerService;
+
+        ChatDialogService = chatDialogService;
 
         _logService.Info("ReceptionStartViewModel initialized.");
     }
@@ -85,6 +90,22 @@ public partial class ReceptionStartViewModel : BaseViewModel
         HasError = false;
         ErrorMessage = string.Empty;
     }
+
+    /// <summary>
+    /// Gets the AI chat context for the reception checklist page.
+    /// </summary>
+    /// <returns>A <see cref="WmsScreenContext"/> representing the current screen state.</returns>
+    protected override WmsScreenContext GetAiContext() => new()
+    {
+        ScreenId = nameof(ReceptionStartPage),
+        ScreenDisplayName = "Reception — Start",
+        Module = "Reception",
+        ScreenState = ReceptionLoaded
+            ? $"Reception {ReceptionNumber} loaded — FlowType: {FlowTypeDisplay}, Status: {StatusDisplay}"
+            : string.IsNullOrWhiteSpace(ReceptionNumber)
+                ? "Waiting for operator to scan or enter a reception number."
+                : $"Reception number entered: {ReceptionNumber} — not yet loaded.",
+    };
 
     private bool CanScanReception() => IsNotBusy && !string.IsNullOrWhiteSpace(ReceptionNumber);
 

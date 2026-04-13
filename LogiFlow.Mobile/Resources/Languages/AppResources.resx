@@ -563,4 +563,26 @@
     <data name="ReceptionErrorRejectionReasonRequired" xml:space="preserve">
   <value>Please enter a rejection reason.</value>
 </data>
+<!-- ===== AI Chat ===== -->
+<data name="AiChatAskButton" xml:space="preserve">
+  <value>💬 Ask AI</value>
+</data>
+    <data name="AiChatTitle" xml:space="preserve">
+  <value>AI Assistant</value>
+</data>
+    <data name="AiChatClear" xml:space="preserve">
+  <value>Clear</value>
+</data>
+    <data name="AiChatPlaceholder" xml:space="preserve">
+  <value>Type your question…</value>
+</data>
+    <data name="AiChatThinking" xml:space="preserve">
+  <value>Assistant is thinking…</value>
+</data>
+    <data name="AiChatGreeting" xml:space="preserve">
+  <value>Hi! I'm your LogiFlow assistant. I can help you with {0}. What do you need?</value>
+</data>
+    <data name="AiChatErrorService" xml:space="preserve">
+  <value>Sorry, I couldn't reach the AI service. Please try again.</value>
+</data>
 </root>

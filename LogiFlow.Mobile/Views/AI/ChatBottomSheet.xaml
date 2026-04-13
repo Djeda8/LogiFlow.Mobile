@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<toolkit:Popup
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    xmlns:vm="clr-namespace:LogiFlow.Mobile.ViewModels.AI"
+    xmlns:models="clr-namespace:LogiFlow.Mobile.Models.AI"
+    xmlns:selectors="clr-namespace:LogiFlow.Mobile.Selectors"
+    xmlns:local="clr-namespace:LogiFlow.Mobile.Extensions"
+    x:Class="LogiFlow.Mobile.Views.AI.ChatBottomSheet"
+    VerticalOptions="End"
+    HorizontalOptions="Fill"
+    CanBeDismissedByTappingOutsideOfPopup="True"
+    Color="{DynamicResource PageBackground}">
+
+    <Grid x:DataType="vm:ChatViewModel"
+          RowDefinitions="Auto,Auto,Auto,*,Auto,Auto"
+          Padding="16,8,16,24"
+          HorizontalOptions="Fill"
+          VerticalOptions="Fill"
+          BackgroundColor="{DynamicResource PageBackground}">
+
+        <Grid.Resources>
+
+            <!-- ── Burbuja USUARIO (derecha) ── -->
+            <DataTemplate x:Key="UserBubble" x:DataType="models:ChatMessage">
+                <Grid Padding="0,4">
+                    <Border HorizontalOptions="End"
+                            BackgroundColor="{DynamicResource PrimaryColor}"
+                            StrokeShape="RoundRectangle 18,18,4,18"
+                            Stroke="Transparent"
+                            Padding="14,10"
+                            Margin="56,0,0,0">
+                        <Label Text="{Binding Content}"
+                               FontFamily="RobotoRegular"
+                               FontSize="15"
+                               TextColor="{DynamicResource IconTextDefault}"
+                               LineBreakMode="WordWrap"/>
+                    </Border>
+                </Grid>
+            </DataTemplate>
+
+            <!-- ── Burbuja ASISTENTE (izquierda) ── -->
+            <DataTemplate x:Key="AssistantBubble" x:DataType="models:ChatMessage">
+                <Grid Padding="0,4">
+                    <Border HorizontalOptions="Start"
+                            BackgroundColor="{DynamicResource CardBackground}"
+                            StrokeShape="RoundRectangle 18,18,18,4"
+                            Stroke="{DynamicResource Divider}"
+                            StrokeThickness="1"
+                            Padding="14,10"
+                            Margin="0,0,56,0">
+                        <Label Text="{Binding Content}"
+                               FontFamily="RobotoRegular"
+                               FontSize="15"
+                               TextColor="{DynamicResource PrimaryText}"
+                               LineBreakMode="WordWrap"/>
+                    </Border>
+                </Grid>
+            </DataTemplate>
+
+            <!-- ── Selector ── -->
+            <selectors:ChatMessageTemplateSelector
+                x:Key="MessageSelector"
+                UserTemplate="{StaticResource UserBubble}"
+                AssistantTemplate="{StaticResource AssistantBubble}"/>
+
+        </Grid.Resources>
+
+        <!-- ── Handle ──────────────────────────────────────────────────── -->
+        <BoxView Grid.Row="0"
+                 HeightRequest="4"
+                 WidthRequest="44"
+                 CornerRadius="2"
+                 HorizontalOptions="Center"
+                 Margin="0,8,0,16"
+                 Color="{DynamicResource Divider}"/>
+
+        <!-- ── Header ─────────────────────────────────────────────────── -->
+        <Grid Grid.Row="1"
+              ColumnDefinitions="*,Auto"
+              Margin="0,0,0,8">
+
+            <Label Grid.Column="0" VerticalOptions="Center">
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span Text="Logi" FontSize="18" TextColor="{DynamicResource PrimaryColor}"/>
+                        <Span Text="Flow" FontSize="18" FontAttributes="Bold" TextColor="{DynamicResource PrimaryColor}"/>
+                        <Span Text=" · " FontSize="18" TextColor="{DynamicResource SecondaryText}"/>
+                        <Span Text="{local:Translate Key=AiChatTitle}" FontSize="18" TextColor="{DynamicResource PrimaryText}"/>
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
+
+            <Button Grid.Column="1"
+                    Text="{local:Translate Key=AiChatClear}"
+                    Command="{Binding ClearChatCommand}"
+                    FontFamily="RobotoMedium"
+                    FontSize="14"
+                    Padding="12,6"
+                    CornerRadius="8"
+                    HeightRequest="36"
+                    BackgroundColor="Transparent"
+                    TextColor="{DynamicResource PrimaryColor}"
+                    BorderColor="{DynamicResource PrimaryColor}"
+                    BorderWidth="1.5"
+                    VerticalOptions="Center"/>
+        </Grid>
+
+        <!-- ── Divisor ────────────────────────────────────────────────── -->
+        <BoxView Grid.Row="2"
+                 HeightRequest="1"
+                 BackgroundColor="{DynamicResource Divider}"
+                 Margin="0,0,0,8"/>
+
+        <!-- ── Messages ───────────────────────────────────────────────── -->
+        <CollectionView Grid.Row="3"
+                        x:Name="MessagesCollection"
+                        ItemsSource="{Binding Messages}"
+                        ItemTemplate="{StaticResource MessageSelector}"
+                        VerticalOptions="Fill"/>
+
+        <!-- ── Thinking + Error ───────────────────────────────────────── -->
+        <VerticalStackLayout Grid.Row="4"
+                             Spacing="4"
+                             Margin="0,6,0,6">
+
+            <HorizontalStackLayout IsVisible="{Binding IsThinking}" Spacing="8">
+                <ActivityIndicator IsRunning="{Binding IsThinking}"
+                                   Color="{DynamicResource PrimaryColor}"
+                                   HeightRequest="18"
+                                   WidthRequest="18"/>
+                <Label Text="{local:Translate Key=AiChatThinking}"
+                       Style="{StaticResource SecondaryTextStyle}"
+                       FontSize="13"
+                       VerticalOptions="Center"/>
+            </HorizontalStackLayout>
+
+            <Label IsVisible="{Binding HasError}"
+                   Text="{Binding ErrorMessage}"
+                   Style="{StaticResource ErrorTextStyle}"
+                   FontSize="13"
+                   LineBreakMode="WordWrap"/>
+        </VerticalStackLayout>
+
+        <!-- ── Input ──────────────────────────────────────────────────── -->
+        <Grid Grid.Row="5"
+              ColumnDefinitions="*,56"
+              ColumnSpacing="10">
+
+            <Border Grid.Column="0"
+                    Style="{StaticResource EntryBorderStyle}">
+                <Entry x:Name="MessageEntry"
+                       Text="{Binding InputText}"
+                       Placeholder="{local:Translate Key=AiChatPlaceholder}"
+                       Style="{StaticResource PrimaryEntryStyle}"
+                       ReturnCommand="{Binding SendCommand}"
+                       IsEnabled="{Binding IsNotBusy}"
+                       HeightRequest="48"/>
+            </Border>
+
+            <Button Grid.Column="1"
+                    Text="➤"
+                    Command="{Binding SendCommand}"
+                    FontSize="18"
+                    HeightRequest="48"
+                    WidthRequest="48"
+                    CornerRadius="8"
+                    Padding="0"
+                    BackgroundColor="{DynamicResource PrimaryColor}"
+                    TextColor="{DynamicResource IconTextDefault}"
+                    VerticalOptions="Center"/>
+        </Grid>
+
+    </Grid>
+</toolkit:Popup>

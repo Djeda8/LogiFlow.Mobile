@@ -2,6 +2,7 @@ using System.Collections.ObjectModel;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using LogiFlow.Mobile.DTOs;
+using LogiFlow.Mobile.Models.AI;
 using LogiFlow.Mobile.Resources.Languages;
 using LogiFlow.Mobile.Services.Interfaces;
 using LogiFlow.Mobile.ViewModels.Base;
@@ -108,6 +109,7 @@ public partial class ReceptionDetailViewModel : BaseViewModel
     /// <param name="localizationService">The service used to provide localized resources and translations.</param>
     /// <param name="logService">The service used for logging informational and diagnostic messages.</param>
     /// <param name="errorHandlerService">The service responsible for handling and reporting errors.</param>
+    /// <param name="chatDialogService">Service to display AI chat dialogs from the ViewModel.</param>
     public ReceptionDetailViewModel(
         IReceptionService receptionService,
         IReceptionSessionService receptionSessionService,
@@ -116,7 +118,8 @@ public partial class ReceptionDetailViewModel : BaseViewModel
         INavigationService navigationService,
         ILocalizationService localizationService,
         ILogService logService,
-        IErrorHandlerService errorHandlerService)
+        IErrorHandlerService errorHandlerService,
+        IChatDialogService chatDialogService)
     {
         _receptionService = receptionService;
         _receptionSessionService = receptionSessionService;
@@ -126,6 +129,8 @@ public partial class ReceptionDetailViewModel : BaseViewModel
         _localizationService = localizationService;
         _logService = logService;
         _errorHandlerService = errorHandlerService;
+
+        ChatDialogService = chatDialogService;
 
         _logService.Info("ReceptionDetailViewModel initialized.");
     }
@@ -182,6 +187,23 @@ public partial class ReceptionDetailViewModel : BaseViewModel
             IsBusy = false;
         }
     }
+
+    // ── AI context ────────────────────────────────────────────────────────────
+
+    /// <summary>
+    /// Gets the AI chat context for the reception checklist page.
+    /// </summary>
+    /// <returns>A <see cref="WmsScreenContext"/> representing the current screen state.</returns>
+    protected override WmsScreenContext GetAiContext() => new()
+    {
+        ScreenId = nameof(ReceptionDetailPage),
+        ScreenDisplayName = "Reception — Detail",
+        Module = "Reception",
+        ScreenState = $"Reception {ReceptionNumber} — FlowType: {FlowType}, " +
+                            $"Lines: {DetailLines.Count}, " +
+                            $"Current article: {(string.IsNullOrWhiteSpace(Article) ? "none" : Article)}, " +
+                            $"Quantity: {Quantity}, Location: {(string.IsNullOrWhiteSpace(Location) ? "none" : Location)}",
+    };
 
     private bool CanAddDetail() =>
         IsNotBusy &&

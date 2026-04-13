@@ -19,6 +19,9 @@ using LogiFlow.Mobile.Views.Reception;
 using LogiFlow.Mobile.Views.Settings;
 using LogiFlow.Mobile.Views.Splash;
 using Microsoft.Maui.Handlers;
+using Microsoft.Extensions.Configuration;
+using LogiFlow.Mobile.ViewModels.AI;
+using LogiFlow.Mobile.Views.AI;
 
 #if ANDROID
 using Android.Content.Res;
@@ -39,6 +42,16 @@ namespace LogiFlow.Mobile
         public static MauiApp CreateMauiApp()
         {
             var builder = MauiApp.CreateBuilder();
+
+            var appSettingsFileName = "appsettings.json";
+
+#if DEBUG
+            // In debug, prefer appsettings.Development.json if present
+            appSettingsFileName = "appsettings.Development.json";
+#endif
+
+            using var stream = FileSystem.OpenAppPackageFileAsync(appSettingsFileName).GetAwaiter().GetResult();
+            builder.Configuration.AddJsonStream(stream);
 
             builder
                 .UseMauiApp<App>()
@@ -89,6 +102,7 @@ namespace LogiFlow.Mobile
             builder.Services.AddTransient<LoginPage>();
             builder.Services.AddTransient<MenuPage>();
             builder.Services.AddTransient<SettingsPage>();
+            builder.Services.AddTransient<ChatBottomSheet>();
 
             // ===== Camera =====
             builder.Services.AddTransient<CameraScanPage>();
@@ -106,6 +120,7 @@ namespace LogiFlow.Mobile
             builder.Services.AddTransient<LoginViewModel>();
             builder.Services.AddTransient<MenuViewModel>();
             builder.Services.AddTransient<SettingsViewModel>();
+            builder.Services.AddTransient<ChatViewModel>();
 
             // ===== Camera =====
             builder.Services.AddTransient<CameraScanViewModel>();
@@ -133,12 +148,16 @@ namespace LogiFlow.Mobile
             builder.Services.AddSingleton<ISettingsService, SettingsService>();
             builder.Services.AddSingleton<IConnectionService, ConnectionService>();
             builder.Services.AddSingleton<IScanService, ScanService>();
+            builder.Services.AddSingleton<IChatDialogService, ChatDialogService>();
 
             // ===== Reception =====
             builder.Services.AddSingleton<IReceptionSessionService, ReceptionSessionService>();
             builder.Services.AddSingleton<ICameraScanService, CameraScanService>();
             builder.Services.AddSingleton<IReceptionService, ReceptionService>();
             builder.Services.AddSingleton<IMasterDataService, MasterDataService>();
+
+            // AI Chat — Claude integration
+            builder.Services.AddSingleton<IClaudeService, ClaudeService>();
 
             return builder.Build();
         }
